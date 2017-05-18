@@ -30,7 +30,7 @@ public class PersonnelDataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personnel_data);
         ButterKnife.bind(this);
-        initView();
+        //initView();
         initRefresh();
     }
     private void initRefresh() {

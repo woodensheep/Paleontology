@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,6 +9,7 @@
     tools:context="com.nandity.paleontology.common.MainActivity">
 
     <RelativeLayout
+        android:id="@+id/rl_title"
         android:layout_width="match_parent"
         android:layout_height="45dp"
         android:background="@color/green">
@@ -26,10 +27,12 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:layout_marginTop="35dp"
-        android:orientation="vertical"
+        android:id="@+id/ll_1"
         android:layout_width="match_parent"
-        android:layout_height="330dp">
+        android:layout_height="330dp"
+        android:layout_below="@+id/rl_title"
+        android:layout_marginTop="35dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -38,46 +41,46 @@
             android:orientation="horizontal">
 
             <LinearLayout
+                android:id="@+id/ll_personal_data"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
                     android:layout_weight="1"
                     android:background="@mipmap/personal_data" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/personal_data"
                     android:textColor="@color/text_workbench"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    />
+                    android:textSize="20sp" />
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
                     android:layout_weight="1"
                     android:background="@mipmap/paleontological_data" />
 
@@ -85,9 +88,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="20sp"
+                    android:text="@string/paleontological_data"
                     android:textColor="@color/text_workbench"
-                    android:text="@string/paleontological_data" />
+                    android:textSize="20sp" />
 
 
             </LinearLayout>
@@ -103,45 +106,44 @@
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
                     android:layout_weight="1"
                     android:background="@mipmap/video_recording" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="@string/video_recording"
                     android:textColor="@color/text_workbench"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    />
+                    android:textSize="20sp" />
 
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="vertical">
 
                 <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="5dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
                     android:layout_weight="1"
                     android:background="@mipmap/video_chat" />
 
@@ -149,9 +151,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="20sp"
+                    android:text="@string/video_chat"
                     android:textColor="@color/text_workbench"
-                    android:text="@string/video_chat" />
+                    android:textSize="20sp" />
 
 
             </LinearLayout>
@@ -161,26 +163,40 @@
     </LinearLayout>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/actions_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        fab:fab_addButtonColorNormal="@color/fab_menu"
+        fab:fab_addButtonColorPressed="@color/gray"
+        fab:fab_addButtonPlusIconColor="@color/white"
+        fab:fab_labelStyle="@style/menu_labels_style"
         >
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingActionButton"
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/action_update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
-            android:layout_marginBottom="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:src="@mipmap/add"
-            app:backgroundTint="@color/green"
-            app:borderWidth="0dp"
-            app:elevation="8dp"
-            app:pressedTranslationZ="16dp"
-            app:rippleColor="#33728dff" />
+            fab:fab_colorNormal="@color/white"
+            fab:fab_size="mini"
+            fab:fab_icon="@mipmap/update"
+            fab:fab_colorPressed="@color/greenish"
+            fab:fab_title="更新" />
 
-    </RelativeLayout>
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/action_signout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="@color/white"
+            fab:fab_icon="@mipmap/sign_out"
+            fab:fab_size="mini"
+            fab:fab_colorPressed="@color/greenish"
+            fab:fab_title="注销" />
 
-</LinearLayout>
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+
+</RelativeLayout>

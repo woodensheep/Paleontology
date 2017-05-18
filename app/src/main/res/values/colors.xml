@@ -7,7 +7,10 @@
     <color name="text_workbench">#2caeaa</color>
     <color name="green">#2caeaa</color>
     <color name="white">#ffffff</color>
-    <color name="greenish">#a4a9a9</color>
+    <color name="greenish">#95ece8</color>
+    <color name="gray">#707070</color>
+    <color name="fab_menu">#EE7600</color>
+    <color name="fab">#E9E9E9</color>
 
     <color name="color_999999">#999999</color>
     <color name="color_eeeeee">#eeeeee</color>
