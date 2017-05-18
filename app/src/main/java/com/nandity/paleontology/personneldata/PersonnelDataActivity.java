@@ -7,8 +7,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -29,49 +30,64 @@ public class PersonnelDataActivity extends AppCompatActivity {
     SwipeRefreshLayout mRefresh;
     @BindView(R.id.spinner1)
     Spinner spinner1;
+    @BindView(R.id.etSearch)
+    EditText etSearch;
+    @BindView(R.id.btnSearch)
+    Button btnSearch;
     private LinearLayoutManager mLinearLayoutManger;
+    private String spinnerType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personnel_data);
         ButterKnife.bind(this);
-//        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-//            @Override
-//            public void onItemSelected(AdapterView<?> parent, View view,
-//                                       int pos, long id) {
-//
-//                String[] languages = getResources().getStringArray(R.array.languages);
-//                Toast.makeText(PersonnelDataActivity.this, "你点击的是:"+languages[pos], Toast.LENGTH_LONG).show();
-//            }
-//            @Override
-//            public void onNothingSelected(AdapterView<?> parent) {
-//                // Another interface callback
-//            }
-//        });
-
+        initListener();
 //        initView();
-        initRefresh();
     }
 
-    private void initRefresh() {
+    private void initListener() {
+        //下拉框选择监听
+        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int pos, long id) {
+
+                String[] languages = getResources().getStringArray(R.array.personnel_date);
+                spinnerType=languages[pos];
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Another interface callback
+            }
+        });
+        //下拉刷新
         mRefresh.setColorSchemeResources(R.color.colorPrimary);
         mRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                initView();
+                initView(spinnerType,etSearch.getText().toString());
                 mRefresh.setRefreshing(false);
+            }
+        });
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initView(spinnerType,etSearch.getText().toString());
             }
         });
     }
 
-    private void initView() {
+
+    private void initView(String spinnerType,String searchText) {
         OkGo.post(PersonnelApi.DATE_Personnel)
-                .params("", "")
+                .params("type", spinnerType)
+                .params("searchText",searchText)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
-                        List<PersonnelBean> mPersonnelBeanList = GsonHelper.getDuanziBeanList(s);
+                        List<PersonnelBean> mPersonnelBeanList = PerGsonHelper.getDuanziBeanList(s);
                         mRvShowDate.setLayoutManager(mLinearLayoutManger);
                         mRvShowDate.setAdapter(new PersonnelAdapter(PersonnelDataActivity.this, mPersonnelBeanList));
                     }
