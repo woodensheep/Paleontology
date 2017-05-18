@@ -5,15 +5,12 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 
-import com.nandity.paleontology.MainActivity;
 
 /**
  * Created by qingsong on 2017/5/17.
  */
 
 public class ToActivityUtlis {
-
-
     /**
      * @Description: 跳转
      * @param packageContext

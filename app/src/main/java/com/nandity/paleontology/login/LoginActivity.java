@@ -22,14 +22,21 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nandity.paleontology.MainActivity;
+import com.lzy.okgo.OkGo;
+import com.lzy.okgo.cache.CacheMode;
+import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.R;
+import com.nandity.paleontology.common.MainActivity;
 import com.nandity.paleontology.util.ScreenZoomUtil;
 import com.nandity.paleontology.util.ToActivityUtlis;
 import com.nandity.paleontology.util.ToastUtils;
 
+import java.io.IOException;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.Call;
+import okhttp3.Response;
 
 public class LoginActivity extends FragmentActivity implements View.OnClickListener {
 
@@ -71,6 +78,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
         ButterKnife.bind(this);
         intiView();
         initListener();
+
     }
 
     private void intiView() {
@@ -193,11 +201,11 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                 break;
             case R.id.btn_login:
                 if (TextUtils.isEmpty(mobile)) {
-                    ToastUtils.showShort(this,"请输入账号");
+                    ToastUtils.showShort(this, "请输入账号");
                 } else if (TextUtils.isEmpty(pwd)) {
-                    ToastUtils.showShort(this,"请输入密码");
-
+                    ToastUtils.showShort(this, "请输入密码");
                 } else {
+//                    send();
                     ToActivityUtlis.toNextActivity(LoginActivity.this, MainActivity.class);
                     finish();
                 }
@@ -206,6 +214,21 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                 ToActivityUtlis.toNextActivity(LoginActivity.this, SettingActivity.class);
                 break;
         }
+    }
+
+    private void send() {
+        OkGo.get("https://www.baidu.com")
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        System.out.println("s" + s);
+                    }
+
+                    @Override
+                    public void onError(Call call, Response response, Exception e) {
+                        super.onError(call, response, e);
+                    }
+                });
     }
 
 }

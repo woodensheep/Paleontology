@@ -19,10 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".common.MainActivity" />
         <activity android:name=".login.SettingActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
     </application>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>
