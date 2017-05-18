@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="ids">
-        <item>c语言</item>
-        <item>java </item>
-        <item>php</item>
-        <item>xml</item>
-        <item>html</item>
+    <string-array name="personnel_date">
+        <item>全部</item>
+        <item>管理人员</item>
+        <item>技术人员</item>
+        <item>专家</item>
+        <item>专业技工</item>
     </string-array>
 
-    <string-array name="languages">
-        <item>1</item>
-        <item>2 </item>
-        <item>3</item>
-        <item>4</item>
+    <string-array name="paleontological_data">
+        <item>全部</item>
+        <item>古生物</item>
+        <item>古植物</item>
+        <item>古遗迹</item>
+        <item>古人类</item>
     </string-array>
 </resources>
