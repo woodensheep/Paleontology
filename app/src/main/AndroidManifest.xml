@@ -22,6 +22,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".common.MainActivity" />
+        <activity android:name=".relicdata.ReLicDataActivity" />
         <activity
             android:name=".login.SettingActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"

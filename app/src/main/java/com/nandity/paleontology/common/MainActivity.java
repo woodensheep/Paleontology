@@ -1,7 +1,6 @@
 package com.nandity.paleontology.common;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -10,6 +9,7 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.nandity.paleontology.R;
 import com.nandity.paleontology.personneldata.PersonnelDataActivity;
+import com.nandity.paleontology.relicdata.ReLicDataActivity;
 import com.nandity.paleontology.util.ToActivityUtlis;
 
 import butterknife.BindView;
@@ -25,6 +25,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
     FloatingActionButton actionSignout;
     @BindView(R.id.actions_menu)
     FloatingActionsMenu actionsMenu;
+    @BindView(R.id.ll_paleontological_data)
+    LinearLayout llPaleontologicalData;
     private boolean fabOpened = false;
 
 
@@ -33,7 +35,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        llPersonalData.setOnClickListener(this);
+        setListener();
+
 
 //        floatingActionButton.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -45,6 +48,11 @@ public class MainActivity extends Activity implements View.OnClickListener {
 //                }
 //            }
 //        });
+    }
+
+    private void setListener() {
+        llPersonalData.setOnClickListener(this);
+        llPaleontologicalData.setOnClickListener(this);
     }
 
 
@@ -69,6 +77,9 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.ll_personal_data:
                 ToActivityUtlis.toNextActivity(MainActivity.this, PersonnelDataActivity.class);
+                break;
+            case R.id.ll_paleontological_data:
+                ToActivityUtlis.toNextActivity(MainActivity.this, ReLicDataActivity.class);
                 break;
 
         }

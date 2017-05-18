@@ -70,6 +70,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_paleontological_data"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
