@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nandity.paleontology">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,10 +22,11 @@
             </intent-filter>
         </activity>
         <activity android:name=".common.MainActivity" />
-        <activity android:name=".login.SettingActivity"
+        <activity
+            android:name=".login.SettingActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
-            android:windowSoftInputMode="stateAlwaysHidden|adjustResize"/>
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity android:name=".personneldata.PersonnelDataActivity"></activity>
     </application>
-    <uses-permission android:name="android.permission.INTERNET"/>
 
 </manifest>

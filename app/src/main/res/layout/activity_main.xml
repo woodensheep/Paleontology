@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@mipmap/background_workbench"
     android:orientation="vertical"
-    tools:context="com.nandity.paleontology.MainActivity">
+    tools:context="com.nandity.paleontology.common.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
