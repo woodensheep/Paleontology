@@ -16,7 +16,7 @@ import java.util.List;
  * Created by qingsong on 2017/5/7.
  */
 
-public class GsonHelper {
+public class PerGsonHelper {
 
     public static List<PersonnelBean> getDuanziBeanList(String response){
 

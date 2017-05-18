@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -88,7 +87,7 @@ public class PersonnelDataActivity extends AppCompatActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
-                        List<PersonnelBean> mPersonnelBeanList = GsonHelper.getDuanziBeanList(s);
+                        List<PersonnelBean> mPersonnelBeanList = PerGsonHelper.getDuanziBeanList(s);
                         mRvShowDate.setLayoutManager(mLinearLayoutManger);
                         mRvShowDate.setAdapter(new PersonnelAdapter(PersonnelDataActivity.this, mPersonnelBeanList));
                     }
