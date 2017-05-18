@@ -36,19 +36,19 @@ public class PersonnelDataActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personnel_data);
         ButterKnife.bind(this);
-        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int pos, long id) {
-
-                String[] languages = getResources().getStringArray(R.array.languages);
-                Toast.makeText(PersonnelDataActivity.this, "你点击的是:"+languages[pos], Toast.LENGTH_LONG).show();
-            }
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-                // Another interface callback
-            }
-        });
+//        spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+//            @Override
+//            public void onItemSelected(AdapterView<?> parent, View view,
+//                                       int pos, long id) {
+//
+//                String[] languages = getResources().getStringArray(R.array.languages);
+//                Toast.makeText(PersonnelDataActivity.this, "你点击的是:"+languages[pos], Toast.LENGTH_LONG).show();
+//            }
+//            @Override
+//            public void onNothingSelected(AdapterView<?> parent) {
+//                // Another interface callback
+//            }
+//        });
 
 //        initView();
         initRefresh();

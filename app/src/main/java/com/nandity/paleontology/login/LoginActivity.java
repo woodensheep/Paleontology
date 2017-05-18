@@ -78,7 +78,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
         ButterKnife.bind(this);
         intiView();
         initListener();
-
+        Log.d("limeng",scrollView.getHeight()+"");
     }
 
     private void intiView() {
@@ -156,7 +156,9 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
+                            Log.d("limeng",scrollView.getHeight()+"");
                             scrollView.smoothScrollTo(0, scrollView.getHeight());
+
                         }
                     }, 0);
                     ScreenZoomUtil.zoomIn(logo, (oldBottom - bottom) - keyHeight);
@@ -167,6 +169,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
+                            Log.d("limeng",scrollView.getHeight()+"");
                             scrollView.smoothScrollTo(0, scrollView.getHeight());
                         }
                     }, 0);
