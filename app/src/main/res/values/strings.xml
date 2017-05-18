@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Paleontology</string>
+    <string name="workbench">工作平台</string>
+    <string name="personal_data">个人数据</string>
+    <string name="paleontological_data">古生物数据</string>
+    <string name="video_chat">视频会商</string>
+    <string name="video_recording">现场录像视频</string>
 </resources>
