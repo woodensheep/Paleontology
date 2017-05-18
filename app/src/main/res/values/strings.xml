@@ -1,15 +1,8 @@
 <resources>
     <string name="app_name">Paleontology</string>
-    <!--登录-->
-    <string name="hint_login_username">请输入手机号码</string>
-    <string name="hint_login_password">输入密码</string>
-    <string name="login">登录</string>
-    <string name="logSetting">设置</string>
-    <string name="logregist">注册新用户</string>
-    <string name="logName">208古生物化石保护管理工作</string>
-    <string name="please_input_limit_pwd">请输入数字或字母</string>
-    <!--设置-->
-    <string name="settingIp">请设置ip</string>
-    <string name="settingPort">请设置端口</string>
-    <string name="settingSure">确定</string>
+    <string name="workbench">工作平台</string>
+    <string name="personal_data">个人数据</string>
+    <string name="paleontological_data">古生物数据</string>
+    <string name="video_chat">视频会商</string>
+    <string name="video_recording">现场录像视频</string>
 </resources>
