@@ -21,12 +21,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by qingsong on 2017/5/18.
  */
 
-public class DuanziAdapter extends RecyclerView.Adapter<DuanziAdapter.PersonnelViewHolder>{
+public class PersonnelAdapter extends RecyclerView.Adapter<PersonnelAdapter.PersonnelViewHolder>{
 
     private Context context;
     private List<PersonnelBean> mPersonnelBeanList;
 
-    public DuanziAdapter(Context context, List<PersonnelBean> duanziBeanList){
+    public PersonnelAdapter(Context context, List<PersonnelBean> duanziBeanList){
         this.context= context;
         this.mPersonnelBeanList = duanziBeanList;
     }
