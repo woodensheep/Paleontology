@@ -114,6 +114,8 @@ public class PaleontologicalActivity extends AppCompatActivity {
     private void initceshi(){
 
         List<PaleontologicalaBean> mPaleontoBeanList =new ArrayList<>();
+        mPaleontoBeanList.add(new PaleontologicalaBean("11"));
+        mPaleontoBeanList.add(new PaleontologicalaBean("22"));
         dateShow.setLayoutManager(mLinearLayoutManger);
         mPaleontoAdapter=new PaleontoAdapter(PaleontologicalActivity.this,mPaleontoBeanList);
         mPaleontoAdapter.setOnItemClickListener(new PaleontoAdapter.OnItemClickListener() {

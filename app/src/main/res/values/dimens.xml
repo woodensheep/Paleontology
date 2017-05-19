@@ -8,4 +8,6 @@
     <dimen name="head_size">28.0dip</dimen>
     <dimen name="top_category_height">40.0dip</dimen>
     <dimen name="category_tab_text">15.0sp</dimen>
+    <dimen name="relic_text">16dp</dimen>
+    <dimen name="relic_text_edit">16dp</dimen>
 </resources>
