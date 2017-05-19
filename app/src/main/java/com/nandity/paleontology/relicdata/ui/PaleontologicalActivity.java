@@ -43,7 +43,7 @@ public class PaleontologicalActivity extends AppCompatActivity {
     SwipeRefreshLayout dateRefresh;
     private LinearLayoutManager mLinearLayoutManger;
     private String spinnerType;
-    private PaleontoAdapter mPaleontoAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +51,7 @@ public class PaleontologicalActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         initListener();
     }
+
     private void initListener() {
         //下拉框选择监听
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

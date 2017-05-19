@@ -1,18 +1,19 @@
-package com.nandity.paleontology.relicdata.ui;
+package com.nandity.paleontology.FossilDate;
 
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
-import com.nandity.paleontology.FossilDate.FossiAdapter;
-import com.nandity.paleontology.FossilDate.FossilDateActivity;
 import com.nandity.paleontology.R;
 import com.nandity.paleontology.personneldata.PersonnelApi;
+import com.nandity.paleontology.relicdata.ui.PaleontoAdapter;
+import com.nandity.paleontology.relicdata.ui.PaleontologicalActivity;
 import com.nandity.paleontology.relicdata.util.PaleGsonHelper;
 import com.nandity.paleontology.relicdata.util.PaleontologicalaBean;
 
@@ -23,11 +24,9 @@ import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Response;
 
-/**
- * Created by lemon on 2017/5/18.
- */
+import static com.nandity.paleontology.R.id.etSearch;
 
-public class ReLicDataActivity extends FragmentActivity {
+public class FossilDateActivity extends AppCompatActivity {
 
     @BindView(R.id.rl_title)
     RelativeLayout rlTitle;
@@ -37,11 +36,11 @@ public class ReLicDataActivity extends FragmentActivity {
     SwipeRefreshLayout dateRefresh;
     private LinearLayoutManager mLinearLayoutManger;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_relic_data);
-
+        setContentView(R.layout.activity_fossil_date);
         ButterKnife.bind(this);
         initListener();
     }
@@ -70,7 +69,7 @@ public class ReLicDataActivity extends FragmentActivity {
                     public void onSuccess(String s, Call call, Response response) {
                         List<PaleontologicalaBean> mPaleontoBeanList = PaleGsonHelper.mPaleontoBeanList(s);
                         dateShow.setLayoutManager(mLinearLayoutManger);
-                        dateShow.setAdapter(new FossiAdapter(ReLicDataActivity.this, mPaleontoBeanList));
+                        dateShow.setAdapter(new FossiAdapter(FossilDateActivity.this, mPaleontoBeanList));
                     }
                 });
     }
