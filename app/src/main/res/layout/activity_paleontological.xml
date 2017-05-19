@@ -25,7 +25,7 @@
             android:layout_centerHorizontal="true"
             android:gravity="center"
             android:paddingLeft="3dp"
-            android:text="@string/personneldatetop"
+            android:text="@string/paleontodatetop"
             android:textColor="@color/white"
             android:textSize="20sp" />
 
@@ -52,7 +52,7 @@
                 android:id="@+id/spinner1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:entries="@array/personnel_date" />
+                android:entries="@array/paleontological_data" />
         </LinearLayout>
 
         <EditText

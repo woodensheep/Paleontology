@@ -14,10 +14,7 @@ import android.widget.Spinner;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.R;
-import com.nandity.paleontology.personneldata.PerGsonHelper;
-import com.nandity.paleontology.personneldata.PersonnelAdapter;
 import com.nandity.paleontology.personneldata.PersonnelApi;
-import com.nandity.paleontology.personneldata.PersonnelBean;
 import com.nandity.paleontology.relicdata.util.PaleGsonHelper;
 import com.nandity.paleontology.relicdata.util.PaleontologicalaBean;
 

@@ -10,6 +10,7 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.nandity.paleontology.R;
 import com.nandity.paleontology.personneldata.PersonnelDataActivity;
 
+import com.nandity.paleontology.relicdata.ui.PaleontologicalActivity;
 import com.nandity.paleontology.relicdata.ui.ReLicDataActivity;
 import com.nandity.paleontology.util.ToActivityUtlis;
 
@@ -80,7 +81,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
                 ToActivityUtlis.toNextActivity(MainActivity.this, PersonnelDataActivity.class);
                 break;
             case R.id.ll_paleontological_data:
-                ToActivityUtlis.toNextActivity(MainActivity.this, ReLicDataActivity.class);
+                ToActivityUtlis.toNextActivity(MainActivity.this, PaleontologicalActivity.class);
                 break;
 
         }
