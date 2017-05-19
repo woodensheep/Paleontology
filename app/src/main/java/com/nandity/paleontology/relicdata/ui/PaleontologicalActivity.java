@@ -43,7 +43,7 @@ public class PaleontologicalActivity extends AppCompatActivity {
     SwipeRefreshLayout dateRefresh;
     private LinearLayoutManager mLinearLayoutManger;
     private String spinnerType;
-
+    private PaleontoAdapter mPaleontoAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
