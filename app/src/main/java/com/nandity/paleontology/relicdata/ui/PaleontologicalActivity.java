@@ -50,6 +50,7 @@ public class PaleontologicalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_paleontological);
         ButterKnife.bind(this);
         initListener();
+        initceshi();
     }
 
     private void initListener() {
