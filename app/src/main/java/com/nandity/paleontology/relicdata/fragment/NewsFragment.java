@@ -1,4 +1,4 @@
-package com.nandity.paleontology.relicdata;
+package com.nandity.paleontology.relicdata.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

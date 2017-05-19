@@ -58,7 +58,7 @@
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@id/icon_category">
 
-            <com.nandity.paleontology.relicdata.CategoryTabStrip
+            <com.nandity.paleontology.relicdata.util.CategoryTabStrip
                 android:id="@+id/category_strip"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/top_category_height"

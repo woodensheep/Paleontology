@@ -1,4 +1,4 @@
-package com.nandity.paleontology.relicdata;
+package com.nandity.paleontology.relicdata.util;
 
 
 import android.content.Context;

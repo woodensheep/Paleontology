@@ -18,7 +18,7 @@ import java.util.List;
 
 public class PerGsonHelper {
 
-    public static List<PersonnelBean> getDuanziBeanList(String response){
+    public static List<PersonnelBean> getPersonnelBeanList(String response){
 
         List<PersonnelBean> mPersonnelBeanList = new ArrayList<>();
         try {

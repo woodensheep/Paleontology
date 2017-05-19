@@ -1,4 +1,4 @@
-package com.nandity.paleontology.personneldata;
+package com.nandity.paleontology.relicdata.ui;
 
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,6 +14,12 @@ import android.widget.Spinner;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.R;
+import com.nandity.paleontology.personneldata.PerGsonHelper;
+import com.nandity.paleontology.personneldata.PersonnelAdapter;
+import com.nandity.paleontology.personneldata.PersonnelApi;
+import com.nandity.paleontology.personneldata.PersonnelBean;
+import com.nandity.paleontology.relicdata.util.PaleGsonHelper;
+import com.nandity.paleontology.relicdata.util.PaleontologicalaBean;
 
 import java.util.List;
 
@@ -22,30 +28,27 @@ import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class PersonnelDataActivity extends AppCompatActivity {
+public class PaleontologicalActivity extends AppCompatActivity {
 
-    @BindView(R.id.date_show)
-    RecyclerView mRvShowDate;
-    @BindView(R.id.date_refresh)
-    SwipeRefreshLayout mRefresh;
     @BindView(R.id.spinner1)
     Spinner spinner1;
     @BindView(R.id.etSearch)
     EditText etSearch;
     @BindView(R.id.btnSearch)
     Button btnSearch;
+    @BindView(R.id.date_show)
+    RecyclerView dateShow;
+    @BindView(R.id.date_refresh)
+    SwipeRefreshLayout dateRefresh;
     private LinearLayoutManager mLinearLayoutManger;
     private String spinnerType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_personnel_data);
+        setContentView(R.layout.activity_paleontological);
         ButterKnife.bind(this);
-        initListener();
-//        initView();
     }
-
     private void initListener() {
         //下拉框选择监听
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -63,12 +66,12 @@ public class PersonnelDataActivity extends AppCompatActivity {
             }
         });
         //下拉刷新
-        mRefresh.setColorSchemeResources(R.color.colorPrimary);
-        mRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        dateRefresh.setColorSchemeResources(R.color.colorPrimary);
+        dateRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 initView(spinnerType,etSearch.getText().toString());
-                mRefresh.setRefreshing(false);
+                dateRefresh.setRefreshing(false);
             }
         });
         btnSearch.setOnClickListener(new View.OnClickListener() {
@@ -87,9 +90,9 @@ public class PersonnelDataActivity extends AppCompatActivity {
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
-                        List<PersonnelBean> mPersonnelBeanList = PerGsonHelper.getPersonnelBeanList(s);
-                        mRvShowDate.setLayoutManager(mLinearLayoutManger);
-                        mRvShowDate.setAdapter(new PersonnelAdapter(PersonnelDataActivity.this, mPersonnelBeanList));
+                        List<PaleontologicalaBean> mPaleontoBeanList = PaleGsonHelper.mPaleontoBeanList(s);
+                        dateShow.setLayoutManager(mLinearLayoutManger);
+                        dateShow.setAdapter(new PaleontoAdapter(PaleontologicalActivity.this,mPaleontoBeanList));
                     }
                 });
     }

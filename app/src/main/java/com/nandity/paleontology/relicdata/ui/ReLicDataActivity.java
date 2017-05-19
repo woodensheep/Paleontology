@@ -1,6 +1,5 @@
-package com.nandity.paleontology.relicdata;
+package com.nandity.paleontology.relicdata.ui;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -9,6 +8,8 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
 import com.nandity.paleontology.R;
+import com.nandity.paleontology.relicdata.util.CategoryTabStrip;
+import com.nandity.paleontology.relicdata.fragment.NewsFragment;
 
 import java.util.ArrayList;
 import java.util.List;

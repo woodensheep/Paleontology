@@ -9,7 +9,8 @@ import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.nandity.paleontology.R;
 import com.nandity.paleontology.personneldata.PersonnelDataActivity;
-import com.nandity.paleontology.relicdata.ReLicDataActivity;
+
+import com.nandity.paleontology.relicdata.ui.ReLicDataActivity;
 import com.nandity.paleontology.util.ToActivityUtlis;
 
 import butterknife.BindView;
