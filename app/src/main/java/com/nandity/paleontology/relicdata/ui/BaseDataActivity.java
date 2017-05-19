@@ -12,8 +12,6 @@ import com.nandity.paleontology.R;
 public class BaseDataActivity extends FragmentActivity {
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

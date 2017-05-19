@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -44,6 +45,7 @@ public class PaleontologicalActivity extends AppCompatActivity {
     private LinearLayoutManager mLinearLayoutManger;
     private String spinnerType;
     private PaleontoAdapter mPaleontoAdapter;
+    private List<PaleontologicalaBean> mPaleontoBeanList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -113,8 +115,8 @@ public class PaleontologicalActivity extends AppCompatActivity {
     }
 
     private void initceshi(){
-
-        List<PaleontologicalaBean> mPaleontoBeanList =new ArrayList<>();
+        mLinearLayoutManger=new LinearLayoutManager(this);
+        mPaleontoBeanList =new ArrayList<>();
         mPaleontoBeanList.add(new PaleontologicalaBean("11"));
         mPaleontoBeanList.add(new PaleontologicalaBean("22"));
         dateShow.setLayoutManager(mLinearLayoutManger);
@@ -126,6 +128,7 @@ public class PaleontologicalActivity extends AppCompatActivity {
             }
         });
         dateShow.setAdapter(mPaleontoAdapter);
+
     }
 
     @Override
