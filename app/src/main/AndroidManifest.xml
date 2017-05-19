@@ -28,7 +28,8 @@
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity android:name=".personneldata.PersonnelDataActivity" />
-        <activity android:name=".relicdata.ui.PaleontologicalActivity"></activity>
+        <activity android:name=".relicdata.ui.PaleontologicalActivity" />
+        <activity android:name=".FossilDate.FossilDateActivity"></activity>
     </application>
 
 </manifest>
