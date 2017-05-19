@@ -25,7 +25,6 @@ public class PersonnelAdapter extends RecyclerView.Adapter<PersonnelAdapter.Pers
 
     private Context context;
     private List<PersonnelBean> mPersonnelBeanList;
-
     public PersonnelAdapter(Context context, List<PersonnelBean> duanziBeanList){
         this.context= context;
         this.mPersonnelBeanList = duanziBeanList;
@@ -38,7 +37,7 @@ public class PersonnelAdapter extends RecyclerView.Adapter<PersonnelAdapter.Pers
     }
 
     @Override
-    public void onBindViewHolder(PersonnelViewHolder holder, int position) {
+    public void onBindViewHolder(PersonnelViewHolder holder, final int position) {
         try {
             PersonnelBean personnelBean = mPersonnelBeanList.get(position);
             Glide.with(context).load(personnelBean.getmIcon()).into(holder.mCivAvatar);
@@ -49,6 +48,8 @@ public class PersonnelAdapter extends RecyclerView.Adapter<PersonnelAdapter.Pers
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+
     }
 
     @Override
@@ -73,6 +74,7 @@ public class PersonnelAdapter extends RecyclerView.Adapter<PersonnelAdapter.Pers
             mPosition = (TextView) itemView.findViewById(R.id.position_b);
         }
     }
+
 
 
 }

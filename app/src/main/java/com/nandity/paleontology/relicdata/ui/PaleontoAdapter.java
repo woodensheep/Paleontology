@@ -27,7 +27,7 @@ public class PaleontoAdapter extends RecyclerView.Adapter<PaleontoAdapter.Paleon
 
     private Context context;
     private List<PaleontologicalaBean>mPaleontoBeanList;
-
+    public OnItemClickListener mOnItemClickListener;
     public PaleontoAdapter(Context context, List<PaleontologicalaBean> mPaleontoBeanList){
         this.context= context;
         this.mPaleontoBeanList = mPaleontoBeanList;
@@ -40,12 +40,21 @@ public class PaleontoAdapter extends RecyclerView.Adapter<PaleontoAdapter.Paleon
     }
 
     @Override
-    public void onBindViewHolder(PaleontoViewHolder holder, int position) {
+    public void onBindViewHolder(PaleontoViewHolder holder, final int position) {
         try {
           PaleontologicalaBean paleontologicalaBean = mPaleontoBeanList.get(position);
             holder.paleonto_name.setText(paleontologicalaBean.getmName());
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        if( mOnItemClickListener!= null) {
+            holder.paleontoDataAll.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnItemClickListener.onClick(position);
+                }
+            });
         }
     }
 
@@ -57,14 +66,22 @@ public class PaleontoAdapter extends RecyclerView.Adapter<PaleontoAdapter.Paleon
     public static class PaleontoViewHolder extends RecyclerView.ViewHolder{
 
         private TextView paleonto_name;
+        private TextView paleontoDataAll;
 
 
         public PaleontoViewHolder(View itemView) {
             super(itemView);
             paleonto_name = (TextView) itemView.findViewById(R.id.paleonto_name);
-
+            paleontoDataAll= (TextView) itemView.findViewById(R.id.paleontoDataAll);
         }
     }
 
+    public interface OnItemClickListener{
+        void onClick( int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.mOnItemClickListener=onItemClickListener;
+    }
 
 }

@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -20,6 +21,7 @@ import com.nandity.paleontology.relicdata.util.PaleGsonHelper;
 import com.nandity.paleontology.relicdata.util.PaleontologicalaBean;
 import com.nandity.paleontology.util.ToActivityUtlis;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -41,7 +43,7 @@ public class PaleontologicalActivity extends AppCompatActivity {
     SwipeRefreshLayout dateRefresh;
     private LinearLayoutManager mLinearLayoutManger;
     private String spinnerType;
-
+    private PaleontoAdapter mPaleontoAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +76,7 @@ public class PaleontologicalActivity extends AppCompatActivity {
                 dateRefresh.setRefreshing(false);
             }
         });
+
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +84,8 @@ public class PaleontologicalActivity extends AppCompatActivity {
                 ToActivityUtlis.toNextActivity(PaleontologicalActivity.this,ReLicDataActivity.class);
             }
         });
+
+
     }
 
 
@@ -93,9 +98,30 @@ public class PaleontologicalActivity extends AppCompatActivity {
                     public void onSuccess(String s, Call call, Response response) {
                         List<PaleontologicalaBean> mPaleontoBeanList = PaleGsonHelper.mPaleontoBeanList(s);
                         dateShow.setLayoutManager(mLinearLayoutManger);
-                        dateShow.setAdapter(new PaleontoAdapter(PaleontologicalActivity.this,mPaleontoBeanList));
+                        mPaleontoAdapter=new PaleontoAdapter(PaleontologicalActivity.this,mPaleontoBeanList);
+                        mPaleontoAdapter.setOnItemClickListener(new PaleontoAdapter.OnItemClickListener() {
+                            @Override
+                            public void onClick(int position) {
+                                Log.d("limeng","-------position------"+position);
+                            }
+                        });
+                        dateShow.setAdapter(mPaleontoAdapter);
                     }
                 });
+    }
+
+    private void initceshi(){
+
+        List<PaleontologicalaBean> mPaleontoBeanList =new ArrayList<>();
+        dateShow.setLayoutManager(mLinearLayoutManger);
+        mPaleontoAdapter=new PaleontoAdapter(PaleontologicalActivity.this,mPaleontoBeanList);
+        mPaleontoAdapter.setOnItemClickListener(new PaleontoAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                Log.d("limeng","-------position------"+position);
+            }
+        });
+        dateShow.setAdapter(mPaleontoAdapter);
     }
 
     @Override
