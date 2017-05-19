@@ -40,4 +40,5 @@ dependencies {
     compile 'com.getbase:floatingactionbutton:1.9.0'
     testCompile 'junit:junit:4.12'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
+    compile 'com.afollestad.material-dialogs:commons:0.9.4.5'
 }
