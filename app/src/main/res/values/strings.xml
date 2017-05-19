@@ -17,9 +17,16 @@
     <string name="settingIp">请设置ip</string>
     <string name="settingPort">请设置端口</string>
     <string name="settingSure">确定</string>
-
-
     <string name="personneldatetop">人员数据</string>
+
+    <string name="base_data">基础数据</string>
+    <string name="scientific_value">科学价值</string>
+    <string name="art_value">美学价值</string>
+    <string name="natural_environment_condition">自然环境状况</string>
+    <string name="data_sources">数据来源</string>
+    <string name="picture">图片</string>
+
+
     <string name="paleontodatetop">人员数据</string>
     <string name="paleontodate">详细数据</string>
 
@@ -67,5 +74,6 @@
     <string name="category_news_astrology">星座</string>
     <string name="category_news_culture">文化</string>
     <string name="category_graduate">毕业生</string>
+    <string name="ceshi">测试</string>
 
 </resources>

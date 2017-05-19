@@ -173,7 +173,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         fab:fab_addButtonColorNormal="@color/fab_menu"
-        fab:fab_addButtonColorPressed="@color/gray"
+        fab:fab_addButtonColorPressed="@color/greenish"
         fab:fab_addButtonPlusIconColor="@color/white"
         fab:fab_labelStyle="@style/menu_labels_style"
         >
@@ -200,5 +200,63 @@
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
+<LinearLayout
+    android:visibility="gone"
+    android:layout_alignParentBottom="true"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+
+
+    <RelativeLayout
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        >
+
+        <ImageView
+            android:id="@+id/iv_workbench"
+            android:layout_centerVertical="true"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@mipmap/workbench"
+            />
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_workbench"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="工作平台"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:gravity="center"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        >
+
+        <ImageView
+            android:id="@+id/iv_settings"
+            android:layout_centerVertical="true"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@mipmap/settings"
+            />
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/iv_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="系统设置"
+            android:textSize="17sp"
+            android:textColor="@color/white"
+            />
+    </RelativeLayout>
+</LinearLayout>
 
 </RelativeLayout>

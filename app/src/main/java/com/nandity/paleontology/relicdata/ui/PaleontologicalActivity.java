@@ -5,6 +5,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import com.nandity.paleontology.R;
 import com.nandity.paleontology.personneldata.PersonnelApi;
 import com.nandity.paleontology.relicdata.util.PaleGsonHelper;
 import com.nandity.paleontology.relicdata.util.PaleontologicalaBean;
+import com.nandity.paleontology.util.ToActivityUtlis;
 
 import java.util.List;
 
@@ -45,6 +47,7 @@ public class PaleontologicalActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paleontological);
         ButterKnife.bind(this);
+        initListener();
     }
     private void initListener() {
         //下拉框选择监听
@@ -74,7 +77,8 @@ public class PaleontologicalActivity extends AppCompatActivity {
         btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                initView(spinnerType,etSearch.getText().toString());
+                //initView(spinnerType,etSearch.getText().toString());
+                ToActivityUtlis.toNextActivity(PaleontologicalActivity.this,ReLicDataActivity.class);
             }
         });
     }

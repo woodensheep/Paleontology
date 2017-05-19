@@ -1,0 +1,434 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@null"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_title"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/green">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:gravity="center"
+            android:text="@string/base_data"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_marginTop="20dp"
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:fillViewport="true"
+        android:scrollbarThumbVertical="@android:color/transparent"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="@dimen/relic_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="遗迹数据："
+                    android:textColor="@color/relic_text_color"
+                    />
+                <TextView
+                    android:textSize="@dimen/relic_text_edit"
+                    android:id="@+id/tv_base_data1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ceshi"
+                    android:textColor="@color/relic_text_edit_color"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="@dimen/relic_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="遗迹点名称："
+                    android:textColor="@color/relic_text_color"
+                    />
+                <TextView
+                    android:textColor="@color/relic_text_edit_color"
+                    android:textSize="@dimen/relic_text"
+                    android:id="@+id/tv_base_data2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ceshi"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="@dimen/relic_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="所属区县："
+                    android:textColor="@color/relic_text_color"
+                    />
+                <TextView
+                    android:textColor="@color/relic_text_edit_color"
+                    android:textSize="@dimen/relic_text"
+                    android:id="@+id/tv_base_data4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ceshi"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="@dimen/relic_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="承担单位："
+                    android:textColor="@color/relic_text_color"
+                    />
+                <TextView
+                    android:textColor="@color/relic_text_edit_color"
+                    android:textSize="@dimen/relic_text"
+                    android:id="@+id/tv_base_data5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ceshi"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:textSize="@dimen/relic_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="开发现状："
+                    android:textColor="@color/relic_text_color"
+                    />
+                <TextView
+                    android:textColor="@color/relic_text_edit_color"
+                    android:textSize="@dimen/relic_text"
+                    android:id="@+id/tv_base_data6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ceshi"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="保护现状："
+                    android:textColor="@color/relic_text_color"
+                    android:textSize="@dimen/relic_text" />
+                <TextView
+                    android:textColor="@color/relic_text_edit_color"
+                    android:textSize="@dimen/relic_text"
+                    android:id="@+id/tv_base_data7"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ceshi"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="地理位置："
+                    android:textColor="@color/relic_text_color"
+                    android:textSize="@dimen/relic_text" />
+
+                <TextView
+                    android:id="@+id/tv_base_data8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ceshi"
+                    android:textColor="@color/relic_text_edit_color"
+                    android:textSize="@dimen/relic_text" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="开发建议："
+                    android:textColor="@color/relic_text_color"
+                    android:textSize="@dimen/relic_text" />
+
+                <TextView
+                    android:id="@+id/tv_base_data9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ceshi"
+                    android:textColor="@color/relic_text_edit_color"
+                    android:textSize="@dimen/relic_text" />
+            </LinearLayout><LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="保护建议："
+                android:textColor="@color/relic_text_color"
+                android:textSize="@dimen/relic_text" />
+
+            <TextView
+                android:id="@+id/tv_base_data10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ceshi"
+                android:textColor="@color/relic_text_edit_color"
+                android:textSize="@dimen/relic_text" />
+        </LinearLayout><LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="交通状况："
+                android:textColor="@color/relic_text_color"
+                android:textSize="@dimen/relic_text" />
+
+            <TextView
+                android:id="@+id/tv_base_data11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ceshi"
+                android:textColor="@color/relic_text_edit_color"
+                android:textSize="@dimen/relic_text" />
+        </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="面积："
+                    android:textColor="@color/relic_text_color"
+                    android:textSize="@dimen/relic_text" />
+
+                <TextView
+                    android:id="@+id/tv_base_data12"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ceshi"
+                    android:textColor="@color/relic_text_edit_color"
+                    android:textSize="@dimen/relic_text" />
+            </LinearLayout><LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="海拔："
+                android:textColor="@color/relic_text_color"
+                android:textSize="@dimen/relic_text" />
+
+            <TextView
+                android:id="@+id/tv_base_data13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ceshi"
+                android:textColor="@color/relic_text_edit_color"
+                android:textSize="@dimen/relic_text" />
+        </LinearLayout><LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="级别："
+                android:textColor="@color/relic_text_color"
+                android:textSize="@dimen/relic_text" />
+
+            <TextView
+                android:id="@+id/tv_base_data14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ceshi"
+                android:textColor="@color/relic_text_edit_color"
+                android:textSize="@dimen/relic_text" />
+        </LinearLayout><LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发现者："
+                android:textColor="@color/relic_text_color"
+                android:textSize="@dimen/relic_text" />
+
+            <TextView
+                android:id="@+id/tv_base_data15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ceshi"
+                android:textColor="@color/relic_text_edit_color"
+                android:textSize="@dimen/relic_text" />
+        </LinearLayout><LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发现时间："
+                android:textColor="@color/relic_text_color"
+                android:textSize="@dimen/relic_text" />
+
+            <TextView
+                android:id="@+id/tv_base_data16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ceshi"
+                android:textColor="@color/relic_text_edit_color"
+                android:textSize="@dimen/relic_text" />
+        </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="底层代码："
+                    android:textColor="@color/relic_text_color"
+                    android:textSize="@dimen/relic_text" />
+
+                <TextView
+                    android:id="@+id/tv_base_data17"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ceshi"
+                    android:textColor="@color/relic_text_edit_color"
+                    android:textSize="@dimen/relic_text" />
+            </LinearLayout><LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="岩相："
+                android:textColor="@color/relic_text_color"
+                android:textSize="@dimen/relic_text" />
+
+            <TextView
+                android:id="@+id/tv_base_data18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ceshi"
+                android:textColor="@color/relic_text_edit_color"
+                android:textSize="@dimen/relic_text" />
+        </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="埋藏状态："
+                    android:textColor="@color/relic_text_color"
+                    android:textSize="@dimen/relic_text" />
+
+                <TextView
+                    android:id="@+id/tv_base_data19"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ceshi"
+                    android:textColor="@color/relic_text_edit_color"
+                    android:textSize="@dimen/relic_text" />
+            </LinearLayout>
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="种属名称："
+                    android:textColor="@color/relic_text_color"
+                    android:textSize="@dimen/relic_text" />
+
+                <TextView
+                    android:id="@+id/tv_base_data20"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ceshi"
+                    android:textColor="@color/relic_text_edit_color"
+                    android:textSize="@dimen/relic_text" />
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
