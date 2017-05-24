@@ -12,12 +12,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.R;
-import com.nandity.paleontology.personneldata.PersonnelApi;
+import com.nandity.paleontology.common.Api;
 import com.nandity.paleontology.relicdata.util.PaleGsonHelper;
 import com.nandity.paleontology.relicdata.util.PaleontologicalaBean;
 import com.nandity.paleontology.util.ToActivityUtlis;
@@ -94,7 +93,7 @@ public class PaleontologicalActivity extends AppCompatActivity {
 
 
     private void initView(String spinnerType,String searchText) {
-        OkGo.post(PersonnelApi.DATE_Personnel)
+        OkGo.post(Api.DATE_Personnel)
                 .params("type", spinnerType)
                 .params("searchText",searchText)
                 .execute(new StringCallback() {

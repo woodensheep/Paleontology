@@ -1,6 +1,7 @@
 package com.nandity.paleontology.common;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
@@ -16,6 +17,7 @@ public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
         //必须调用初始化
         OkGo.init(this);
         try {

@@ -72,7 +72,7 @@
                     android:hint="@string/settingIp"
                     android:gravity="center"
                     android:inputType="textVisiblePassword"
-                    android:maxLength="11"
+                    android:maxLength="15"
                     android:singleLine="true"
                     android:text=""
                     android:textColor="@color/color_999999"

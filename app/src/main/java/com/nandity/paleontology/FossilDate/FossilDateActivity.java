@@ -5,15 +5,12 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.RelativeLayout;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.R;
-import com.nandity.paleontology.personneldata.PersonnelApi;
-import com.nandity.paleontology.relicdata.ui.PaleontoAdapter;
-import com.nandity.paleontology.relicdata.ui.PaleontologicalActivity;
+import com.nandity.paleontology.common.Api;
 import com.nandity.paleontology.relicdata.util.PaleGsonHelper;
 import com.nandity.paleontology.relicdata.util.PaleontologicalaBean;
 
@@ -23,8 +20,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Response;
-
-import static com.nandity.paleontology.R.id.etSearch;
 
 public class FossilDateActivity extends AppCompatActivity {
 
@@ -61,7 +56,7 @@ public class FossilDateActivity extends AppCompatActivity {
 
 
     private void initView() {
-        OkGo.post(PersonnelApi.DATE_Personnel)
+        OkGo.post(Api.DATE_Personnel)
                 .params("type", "")
                 .params("searchText", "")
                 .execute(new StringCallback() {

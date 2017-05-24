@@ -1,9 +1,10 @@
 package com.nandity.paleontology.util;
 
-import android.app.Activity;
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
+import android.telephony.TelephonyManager;
+
+import java.util.UUID;
 
 
 /**
@@ -21,5 +22,11 @@ public class ToActivityUtlis {
     public static void toNextActivity(Context packageContext, Class<?> cls) {
         Intent i = new Intent(packageContext, cls);
         packageContext.startActivity(i);
+    }
+
+
+    public static String getMyUUID(){
+        String uuid = UUID.randomUUID().toString();
+     return uuid;
     }
 }

@@ -2,6 +2,7 @@ package com.nandity.paleontology.login;
 
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -26,10 +27,15 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.R;
+import com.nandity.paleontology.common.Api;
 import com.nandity.paleontology.common.MainActivity;
 import com.nandity.paleontology.util.ScreenZoomUtil;
+import com.nandity.paleontology.util.SharedUtils;
 import com.nandity.paleontology.util.ToActivityUtlis;
 import com.nandity.paleontology.util.ToastUtils;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -68,6 +74,10 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
     private int keyHeight = 0; //软件盘弹起后所占高度
     private float scale = 0.6f; //logo缩放比例
     private int height = 0;
+    private String pwd;
+    private String mobile;
+    private String sessionId;
+    private ProgressDialog progressDialog;
 
 
     @Override
@@ -78,12 +88,19 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
         ButterKnife.bind(this);
         intiView();
         initListener();
-        Log.d("limeng",scrollView.getHeight()+"");
+        Log.d("limeng", sessionId);
     }
 
     private void intiView() {
         screenHeight = this.getResources().getDisplayMetrics().heightPixels; //获取屏幕高度
         keyHeight = screenHeight / 4;//弹起高度为屏幕高度的1/3
+        //dialog
+        progressDialog = new ProgressDialog(this, ProgressDialog.STYLE_SPINNER);
+        progressDialog.setCancelable(false);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.setMessage("正在登录...");
+        sessionId=ToActivityUtlis.getMyUUID();
+        SharedUtils.putShare(this,"sessionId",sessionId);
     }
 
     private void initListener() {
@@ -156,7 +173,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Log.d("limeng",scrollView.getHeight()+"");
+                            Log.d("limeng", scrollView.getHeight() + "");
                             scrollView.smoothScrollTo(0, scrollView.getHeight());
 
                         }
@@ -169,7 +186,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                     new Handler().postDelayed(new Runnable() {
                         @Override
                         public void run() {
-                            Log.d("limeng",scrollView.getHeight()+"");
+                            Log.d("limeng", scrollView.getHeight() + "");
                             scrollView.smoothScrollTo(0, scrollView.getHeight());
                         }
                     }, 0);
@@ -181,8 +198,8 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        String pwd = etPassword.getText().toString();
-        String mobile = etMobile.getText().toString();
+        pwd = etPassword.getText().toString();
+        mobile = etMobile.getText().toString();
         int id = v.getId();
         switch (id) {
             case R.id.iv_clean_phone:
@@ -208,9 +225,9 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                 } else if (TextUtils.isEmpty(pwd)) {
                     ToastUtils.showShort(this, "请输入密码");
                 } else {
-//                    send();
-                    ToActivityUtlis.toNextActivity(LoginActivity.this, MainActivity.class);
-                    finish();
+                    progressDialog.show();
+                    send();
+
                 }
                 break;
             case R.id.forget_password:
@@ -220,16 +237,39 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
     }
 
     private void send() {
-        OkGo.get("https://www.baidu.com")
+        Log.i("Qingsong","sessionId:"+sessionId+"userName"+mobile+"passWord"+pwd);
+        OkGo.post(new Api(this).getLoginUrl())
+                .params("sessionId",sessionId)
+                .params("userName", mobile)
+                .params("passWord", pwd)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
-                        System.out.println("s" + s);
+                        Log.d("Qingsong", s.toString());
+                        progressDialog.dismiss();
+                        JSONObject js= null;
+                        try {
+                            js = new JSONObject(s);
+                            String message=js.optString("message");
+                           String  status= js.optString("status");
+                            if (status.equals("200")){
+                                ToastUtils.showShort(LoginActivity.this,message);
+                                ToActivityUtlis.toNextActivity(LoginActivity.this, MainActivity.class);
+                                finish();
+                            }else{
+                                ToastUtils.showShort(LoginActivity.this,message);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+
                     }
 
                     @Override
                     public void onError(Call call, Response response, Exception e) {
                         super.onError(call, response, e);
+                        ToastUtils.showShort(LoginActivity.this,"网络请求失败");
                     }
                 });
     }

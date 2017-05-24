@@ -10,9 +10,8 @@ import android.widget.RelativeLayout;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.FossilDate.FossiAdapter;
-import com.nandity.paleontology.FossilDate.FossilDateActivity;
 import com.nandity.paleontology.R;
-import com.nandity.paleontology.personneldata.PersonnelApi;
+import com.nandity.paleontology.common.Api;
 import com.nandity.paleontology.relicdata.util.PaleGsonHelper;
 import com.nandity.paleontology.relicdata.util.PaleontologicalaBean;
 
@@ -62,7 +61,7 @@ public class ReLicDataActivity extends FragmentActivity {
 
 
     private void initView() {
-        OkGo.post(PersonnelApi.DATE_Personnel)
+        OkGo.post(Api.DATE_Personnel)
                 .params("type", "")
                 .params("searchText", "")
                 .execute(new StringCallback() {

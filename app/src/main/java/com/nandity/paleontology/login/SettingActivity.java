@@ -29,19 +29,21 @@ public class SettingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
         ButterKnife.bind(this);
-
+        if (SharedUtils.containsShare(this, "IP")&&SharedUtils.containsShare(this, "PORT")) {
+            etMobile.setText((String) SharedUtils.getShare(this, "IP", ""));
+            etPassword.setText((String) SharedUtils.getShare(this, "PORT", ""));
+        }
     }
-
 
     @OnClick(R.id.btn_setting)
     public void onViewClicked() {
-        if (TextUtils.isEmpty(etMobile.getText().toString())){
-            ToastUtils.showShort(this,"请输入ip");
-        }else if (TextUtils.isEmpty(etPassword.getText().toString())){
-            ToastUtils.showShort(this,"请输入端口");
-        }else{
-            SharedUtils.putShare(this,"IP",etMobile.getText().toString());
-            SharedUtils.putShare(this,"PORT",etPassword.getText().toString());
+        if (TextUtils.isEmpty(etMobile.getText().toString())) {
+            ToastUtils.showShort(this, "请输入ip");
+        } else if (TextUtils.isEmpty(etPassword.getText().toString())) {
+            ToastUtils.showShort(this, "请输入端口");
+        } else {
+            SharedUtils.putShare(this, "IP", etMobile.getText().toString());
+            SharedUtils.putShare(this, "PORT", etPassword.getText().toString());
             finish();
         }
 

@@ -53,12 +53,12 @@ public class PaleontoAdapter extends RecyclerView.Adapter<PaleontoAdapter.Paleon
 
 
         if (mOnItemClickListener != null) {
-            holder.paleontoDataAll.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    mOnItemClickListener.onClick(position);
-                }
-            });
+                holder.paleontoDataAll.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        mOnItemClickListener.onClick(position);
+                    }
+                });
         }
     }
 

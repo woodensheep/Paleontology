@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.nandity.paleontology.R;
+import com.nandity.paleontology.relicdata.ui.PaleontoAdapter;
 
 import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -21,60 +22,61 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by qingsong on 2017/5/18.
  */
 
-public class PersonnelAdapter extends RecyclerView.Adapter<PersonnelAdapter.PersonnelViewHolder>{
-
+public class PersonnelAdapter extends RecyclerView.Adapter<PersonnelAdapter.ViewHolder> {
     private Context context;
-    private List<PersonnelBean> mPersonnelBeanList;
-    public PersonnelAdapter(Context context, List<PersonnelBean> duanziBeanList){
-        this.context= context;
-        this.mPersonnelBeanList = duanziBeanList;
+    private List<PersonnelBean> beanList;
+    public OnItemClickListener mOnItemClickListener=null;
+
+    public PersonnelAdapter(Context context, List<PersonnelBean> beanList) {
+        this.context = context;
+        this.beanList = beanList;
     }
 
+    //创建新View，被LayoutManager所调用
     @Override
-    public PersonnelViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_personnel, null);
-        return new PersonnelViewHolder(view);
+    public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int viewType) {
+        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item_personnel, viewGroup, false);
+        return new ViewHolder(view);
     }
 
+    //将数据与界面进行绑定的操作
     @Override
-    public void onBindViewHolder(PersonnelViewHolder holder, final int position) {
-        try {
-            PersonnelBean personnelBean = mPersonnelBeanList.get(position);
-            Glide.with(context).load(personnelBean.getmIcon()).into(holder.mCivAvatar);
-            holder.mCompany.setText(personnelBean.getmCompany());
-            holder.mMobile.setText(personnelBean.getmMobile());
-            holder.mName.setText(personnelBean.getmName());
-            holder.mPosition.setText(personnelBean.getmPosition());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public void onBindViewHolder(ViewHolder viewHolder, int position) {
+        final PersonnelBean item = beanList.get(position);
 
-
+        viewHolder.mTextView.setText(item.getmName());
+//        viewHolder.mTextView1.setText(item.);
     }
 
+    //获取数据的数量
     @Override
     public int getItemCount() {
-        return mPersonnelBeanList.size();
+        return null == beanList ? 0 : beanList.size();
     }
 
-    public static class PersonnelViewHolder extends RecyclerView.ViewHolder{
+    //自定义的ViewHolder，持有每个Item的的所有界面元素
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        public TextView mTextView, mTextView1;
 
-        private CircleImageView mCivAvatar;
-        private TextView mName;
-        private TextView mCompany;
-        private TextView mMobile;
-        private TextView mPosition;
+        public ViewHolder(View view) {
+            super(view);
+            mTextView = (TextView) view.findViewById(R.id.name_b);
+//            mTextView1 = (TextView) view.findViewById(R.id.directoryNumber);
+            view.setOnClickListener(this);
+        }
 
-        public PersonnelViewHolder(View itemView) {
-            super(itemView);
-            mCivAvatar = (CircleImageView) itemView.findViewById(R.id.duanzi_civ_avatar);
-            mName = (TextView) itemView.findViewById(R.id.name_b);
-            mCompany = (TextView) itemView.findViewById(R.id.company_b);
-            mMobile = (TextView) itemView.findViewById(R.id.mobile_b);
-            mPosition = (TextView) itemView.findViewById(R.id.position_b);
+        @Override
+        public void onClick(View v) {
+            if(mOnItemClickListener!=null){
+                mOnItemClickListener.onItemClick(v);
+            }
         }
     }
-
-
-
+    public interface OnItemClickListener{
+        void onItemClick(View view);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mOnItemClickListener = listener;
+    }
 }
+
