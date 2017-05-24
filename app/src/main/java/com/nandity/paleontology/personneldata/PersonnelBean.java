@@ -5,19 +5,37 @@ package com.nandity.paleontology.personneldata;
  */
 
 public class PersonnelBean {
-    private  String mName;
+    private  String name;
     private  String id;
+    private  String mobile;
 
-
-    public String getmName() {
-        return mName;
+    public String getName() {
+        return name;
     }
 
-    public void setmName(String mName) {
-        this.mName = mName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public PersonnelBean(String mName, String mCompany, String mMobile, String mIcon, String mPosition) {
-        this.mName = mName;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public PersonnelBean(String name, String mobile, String id) {
+        this.name = name;
+        this.id=id;
+        this.mobile=mobile;
     }
 }

@@ -1,5 +1,6 @@
 package com.nandity.paleontology.personneldata;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -20,9 +21,12 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.R;
 import com.nandity.paleontology.common.Api;
+import com.nandity.paleontology.login.LoginActivity;
 import com.nandity.paleontology.util.JsonFormat;
 import com.nandity.paleontology.util.LogUtils;
 import com.nandity.paleontology.util.SharedUtils;
+import com.nandity.paleontology.util.ToActivityUtlis;
+import com.nandity.paleontology.util.ToastUtils;
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 
 import org.json.JSONException;
@@ -63,15 +67,15 @@ public class PersonnelDataActivity extends AppCompatActivity {
     @BindView(R.id.search_progress)
     RelativeLayout searchProgress;
     private LinearLayoutManager mLinearLayoutManger;
-    private String spinnerType;
     private PersonnelAdapter mPersonnelAdapter;
-    private PersonnelAdapter personnelAdapter;
     private List<PersonnelBean> personnelBeanlist = new ArrayList<>();
     private int pageNum = 0;
     private static int rowsNum = 10;
     private String sessionId = "";
-    RecyclerView mRecyclerView;
-    PersonnelAdapter  normalAdapter;
+    private RecyclerView mRecyclerView;
+    private PersonnelAdapter  normalAdapter;
+    private  Context mContext;
+    private  String  spinnerType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,7 +107,7 @@ public class PersonnelDataActivity extends AppCompatActivity {
 
     private void setAdapter() {
         dateShow.setLinearLayout();
-        normalAdapter = new PersonnelAdapter(this, personnelBeanlist);
+        normalAdapter = new PersonnelAdapter(mContext, personnelBeanlist);
         dateShow.setAdapter(normalAdapter);
     }
 
@@ -133,6 +137,42 @@ public class PersonnelDataActivity extends AppCompatActivity {
 
     }
 
+    private void loadMore() {
+        pageNum += 10;
+        OkGo.post(new Api(this).getPersonnelUrl())
+                .params("page", pageNum + "")
+                .params("rows", rowsNum + "")
+                .params("sessionId", sessionId)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        LogUtils.i("Qingsong", "上拉加载的数据：" + s.toString());
+                        String msg,status;
+                        try {
+                            JSONObject jsonObject= new JSONObject(s);
+                            msg=jsonObject.optString("message");
+                            status=jsonObject.optString("status");
+                            if (status.equals("200")){
+                                personnelBeanlist= JsonFormat.stringToList(msg,PersonnelBean.class);
+                                setAdapter();
+                                itemClickListener(normalAdapter, personnelBeanlist, mRecyclerView);
+                            }else if (status.equals("400")){
+                                initToLogin(msg);
+                            }else {
+                                ToastUtils.showLong(mContext,msg);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+    }
+
+    private void initToLogin(String msg) {
+        ToastUtils.showLong(PersonnelDataActivity.this,msg);
+        ToActivityUtlis.toNextActivity(mContext,LoginActivity.class);
+        finish();
+    }
 
     private void initView() {
         LogUtils.i("Qingsong", new Api(this).getPersonnelUrl());
@@ -153,20 +193,14 @@ public class PersonnelDataActivity extends AppCompatActivity {
                                 personnelBeanlist= JsonFormat.stringToList(msg,PersonnelBean.class);
                                 setAdapter();
                                 itemClickListener(normalAdapter, personnelBeanlist, mRecyclerView);
+                            }else if (status.equals("400")){
+                                initToLogin(msg);
+                            }else {
+                                ToastUtils.showLong(mContext,msg);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-//                        List<PersonnelBean> mPersonnelBeanList = PerGsonHelper.getPersonnelBeanList(s);
-//                        mRvShowDate.setLayoutManager(new LinearLayoutManager(PersonnelDataActivity.this));
-//                        mPersonnelAdapter = new PersonnelAdapter(PersonnelDataActivity.this, mPersonnelBeanList);
-//                        mPersonnelAdapter.setOnItemClickListener(new PaleontoAdapter.OnItemClickListener() {
-//                            @Override
-//                            public void onClick(int position) {
-//
-//                            }
-//                        });
-//                        mRvShowDate.setAdapter(mPersonnelAdapter);
                         }
                     });
                 }

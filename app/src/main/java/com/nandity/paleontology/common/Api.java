@@ -15,16 +15,20 @@ public class Api {
     private String ip;
 
     public Api(Context context) {
-        context=context;
-        ip = (String) SharedUtils.getShare(context,"IP","");
-        port = (String) SharedUtils.getShare(context,"PORT","");
+        ip = (String) SharedUtils.getShare(context, "IP", "");
+        port = (String) SharedUtils.getShare(context, "PORT", "");
     }
 
+    //登录接口
     public String getLoginUrl() {
+
         return "http://" + ip + ":" + port + "/ael/android/login.do";
     }
-    public  String getPersonnelUrl(){
+
+    //人员数据接口
+    public String getPersonnelUrl() {
         return "http://" + ip + ":" + port + "/ael/android/getPerson.do";
     }
-    public static final String DATE_Personnel= "";
+
+    public static final String DATE_Personnel = "";
 }
