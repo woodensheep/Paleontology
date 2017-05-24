@@ -57,16 +57,10 @@ public class PersonnelDataActivity extends AppCompatActivity {
     PullLoadMoreRecyclerView dateShow;
     @BindView(R.id.ll_normal)
     LinearLayout llNormal;
-    @BindView(R.id.search_recyclerview)
-    RecyclerView searchRecyclerview;
-    @BindView(R.id.ll_search)
-    LinearLayout llSearch;
     @BindView(R.id.progresbar)
     ProgressBar progresbar;
     @BindView(R.id.search_progress)
     RelativeLayout searchProgress;
-    private PersonnelAdapter mPersonnelAdapter;
-    private List<PersonnelBean> searchList = new ArrayList<>();
     private List<PersonnelBean> personnelBeanlist = new ArrayList<>();
     private int pageNum = 0;
     private static int rowsNum = 10;
@@ -138,7 +132,7 @@ public class PersonnelDataActivity extends AppCompatActivity {
     private void searchView() {
         String param = etSearch.getText().toString();
         String paramName = getParamName(param);
-        LogUtils.i(TAG,paramName+param+"type:"+spinnerType);
+        LogUtils.i(TAG, paramName + param + "type:" + spinnerType);
         progressDialog.show();
         OkGo.post(new Api(this).getPersonnelUrl())
                 .params(paramName, param)
@@ -156,13 +150,9 @@ public class PersonnelDataActivity extends AppCompatActivity {
                             msg = jsonObject.optString("message");
                             status = jsonObject.optString("status");
                             if (status.equals("200")) {
-                                llSearch.setVisibility(View.VISIBLE);
-                                llNormal.setVisibility(View.INVISIBLE);
-                                searchList = JsonFormat.stringToList(msg, PersonnelBean.class);
-                                searchRecyclerview.setLayoutManager(new LinearLayoutManager(mContext));
-                                mPersonnelAdapter = new PersonnelAdapter(mContext, searchList);
-                                searchRecyclerview.setAdapter(mPersonnelAdapter);
-                                itemClickListener(mPersonnelAdapter, searchList, searchRecyclerview);
+                                personnelBeanlist = JsonFormat.stringToList(msg, PersonnelBean.class);
+                                setAdapter();
+                                itemClickListener(normalAdapter, personnelBeanlist, mRecyclerView);
                             } else if (status.equals("400")) {
                                 initToLogin(msg);
                             } else if (status.equals("500")) {
@@ -252,7 +242,7 @@ public class PersonnelDataActivity extends AppCompatActivity {
                     @Override
                     public void onError(Call call, Response response, Exception e) {
                         super.onError(call, response, e);
-                        progressDialog.dismiss();
+                        dateShow.setPullLoadMoreCompleted();
                         ToastUtils.showLong(mContext, "网络不给力请稍后");
                     }
                 });

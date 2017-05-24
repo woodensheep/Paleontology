@@ -97,18 +97,7 @@
             </com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_search"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:visibility="gone">
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/search_recyclerview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
 
-            </android.support.v7.widget.RecyclerView>
-        </LinearLayout>
         <RelativeLayout
             android:id="@+id/search_progress"
             android:layout_width="match_parent"
