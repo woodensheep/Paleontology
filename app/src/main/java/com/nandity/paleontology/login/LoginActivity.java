@@ -78,6 +78,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
     private String mobile;
     private String sessionId;
     private ProgressDialog progressDialog;
+    private  boolean isLogin=false;
 
 
     @Override
@@ -179,6 +180,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                         }
                     }, 0);
                     ScreenZoomUtil.zoomIn(logo, (oldBottom - bottom) - keyHeight);
+                    logo.setVisibility(View.GONE);
 
                 } else if (oldBottom != 0 && bottom != 0 && (bottom - oldBottom > keyHeight)) {
                     Log.e("wenzhihao", "down------>" + (bottom - oldBottom));
@@ -191,6 +193,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                         }
                     }, 0);
                     ScreenZoomUtil.zoomOut(logo, (bottom - oldBottom) - keyHeight);
+                    logo.setVisibility(View.VISIBLE);
                 }
             }
         });
@@ -253,6 +256,8 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                             String message=js.optString("message");
                            String  status= js.optString("status");
                             if (status.equals("200")){
+                                boolean isLogin=true;
+                                SharedUtils.putShare(LoginActivity.this,"isLogin",isLogin);
                                 ToastUtils.showShort(LoginActivity.this,message);
                                 ToActivityUtlis.toNextActivity(LoginActivity.this, MainActivity.class);
                                 finish();
@@ -269,7 +274,8 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                     @Override
                     public void onError(Call call, Response response, Exception e) {
                         super.onError(call, response, e);
-                        ToastUtils.showShort(LoginActivity.this,"网络请求失败");
+                        progressDialog.dismiss();
+                        ToastUtils.showShort(LoginActivity.this,"网络不给力请稍后");
                     }
                 });
     }

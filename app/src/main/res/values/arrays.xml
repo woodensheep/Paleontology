@@ -2,10 +2,10 @@
 <resources>
     <string-array name="personnel_date">
         <item>全部</item>
-        <item>管理人员</item>
         <item>技术人员</item>
         <item>专家</item>
         <item>专业技工</item>
+        <item>管理人员</item>
     </string-array>
 
     <string-array name="paleontological_data">

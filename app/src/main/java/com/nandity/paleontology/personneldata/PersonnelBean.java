@@ -5,9 +5,17 @@ package com.nandity.paleontology.personneldata;
  */
 
 public class PersonnelBean {
-    private  String name;
     private  String id;
-    private  String mobile;
+    private  String name;
+    private  String iphone;
+
+    public String getIphone() {
+        return iphone;
+    }
+
+    public void setIphone(String iphone) {
+        this.iphone = iphone;
+    }
 
     public String getName() {
         return name;
@@ -25,17 +33,10 @@ public class PersonnelBean {
         this.id = id;
     }
 
-    public String getMobile() {
-        return mobile;
-    }
 
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public PersonnelBean(String name, String mobile, String id) {
+    public PersonnelBean(String id, String name, String iphone) {
+        this.id = id;
         this.name = name;
-        this.id=id;
-        this.mobile=mobile;
+        this.iphone = iphone;
     }
 }

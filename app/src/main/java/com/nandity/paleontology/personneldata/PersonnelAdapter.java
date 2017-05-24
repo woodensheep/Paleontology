@@ -45,7 +45,7 @@ public class PersonnelAdapter extends RecyclerView.Adapter<PersonnelAdapter.View
         final PersonnelBean item = beanList.get(position);
 
         viewHolder.mTextView.setText(item.getName());
-        viewHolder.mTextView1.setText(item.getMobile());
+        viewHolder.mTextView1.setText(item.getIphone());
         viewHolder.mTextView2.setText(item.getId());
 //        viewHolder.mTextView1.setText(item.);
     }
