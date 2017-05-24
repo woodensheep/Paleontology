@@ -4,78 +4,126 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:background="@color/color_button"
         app:cardCornerRadius="5dp"
         app:cardElevation="5dp"
         app:cardUseCompatPadding="true">
 
-        <!--<include-->
-            <!--layout="@layout/layout_app_divide"-->
-            <!--android:visibility="gone" />-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_margin="10dp"
-            android:id="@+id/item_ll_1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/name_a"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingLeft="8dp"
-                android:paddingStart="8dp"
-                android:text="人员姓名：" />
-
-            <TextView
-            android:id="@+id/name_b"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:paddingLeft="8dp"
-            android:paddingStart="8dp"
-            android:text="奥巴马" />
-
-            <TextView
-                android:id="@+id/ids"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:text="100"
-                android:visibility="gone"/>
-        </LinearLayout>
-
-    <LinearLayout
-        android:layout_margin="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/mobile_a"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:paddingLeft="8dp"
-            android:paddingStart="8dp"
-            android:text="联系方式：" />
 
-        <TextView
-            android:id="@+id/mobile_b"
+        <ImageView
+            android:id="@+id/personnel_image"
+            android:layout_marginLeft="5dp"
+            android:layout_width="50dp"
+            android:layout_weight="1"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:src="@mipmap/logo"
+            />
+
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="3"
-            android:paddingLeft="8dp"
-            android:paddingStart="8dp"
-            android:text="12321321" />
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical" >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/name_a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingStart="8dp"
+                    android:text="人员姓名:" />
+                <TextView
+                    android:id="@+id/name_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingStart="8dp"
+                    android:text="奥巴马" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/mobile_a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingStart="8dp"
+                    android:text="手机号码:" />
+                <TextView
+                    android:id="@+id/mobile_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingStart="8dp"
+                    android:text="119" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/company_a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingStart="8dp"
+                    android:text="所属单位:" />
+                <TextView
+                    android:id="@+id/company_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingStart="8dp"
+                    android:text="美国国务院" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/position_a"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingStart="8dp"
+                    android:text="职务职位:" />
+                <TextView
+                    android:id="@+id/position_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:paddingLeft="8dp"
+                    android:paddingStart="8dp"
+                    android:text="总统" />
+            </LinearLayout>
+        </LinearLayout>
+
+
 
     </LinearLayout>
     </android.support.v7.widget.CardView>

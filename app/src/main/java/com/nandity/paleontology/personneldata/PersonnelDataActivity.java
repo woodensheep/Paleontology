@@ -88,6 +88,7 @@ public class PersonnelDataActivity extends AppCompatActivity {
         initDialogAndRecy();
     }
 
+    //初始化dialog和recycerview
     private void initDialogAndRecy() {
         progressDialog = new ProgressDialog(this, ProgressDialog.STYLE_SPINNER);
         progressDialog.setCancelable(false);
@@ -111,6 +112,7 @@ public class PersonnelDataActivity extends AppCompatActivity {
         });
     }
 
+    //设置adapter
     private void setAdapter() {
         dateShow.setLinearLayout();
         normalAdapter = new PersonnelAdapter(mContext, personnelBeanlist);
@@ -127,14 +129,16 @@ public class PersonnelDataActivity extends AppCompatActivity {
         Pattern p = Pattern.compile("[0-9]*");
         Matcher m = p.matcher(param);
         if (m.matches()) {
-            return "phoneNo";
+            return "phone";
         }
-        return "userName";
+        return "name";
     }
 
+    //搜索加载
     private void searchView() {
         String param = etSearch.getText().toString();
         String paramName = getParamName(param);
+        LogUtils.i(TAG,paramName+param+"type:"+spinnerType);
         progressDialog.show();
         OkGo.post(new Api(this).getPersonnelUrl())
                 .params(paramName, param)
@@ -180,6 +184,7 @@ public class PersonnelDataActivity extends AppCompatActivity {
 
     }
 
+    //监听
     private void initListener() {
         //下拉框选择监听
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -261,6 +266,7 @@ public class PersonnelDataActivity extends AppCompatActivity {
         finish();
     }
 
+    //第一次进入获取数据
     private void initView() {
         LogUtils.i("Qingsong", new Api(this).getPersonnelUrl());
         OkGo.post(new Api(this).getPersonnelUrl())
@@ -293,6 +299,7 @@ public class PersonnelDataActivity extends AppCompatActivity {
                 });
     }
 
+    //item监听
     private void itemClickListener(PersonnelAdapter adapter, final List<PersonnelBean> personnelBeanList, final RecyclerView recyclerView) {
         adapter.setOnItemClickListener(new PersonnelAdapter.OnItemClickListener() {
             @Override
