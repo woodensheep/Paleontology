@@ -263,6 +263,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                                 finish();
                             }else{
                                 ToastUtils.showShort(LoginActivity.this,message);
+
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

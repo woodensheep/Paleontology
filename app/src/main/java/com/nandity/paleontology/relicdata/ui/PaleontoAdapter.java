@@ -45,8 +45,8 @@ public class PaleontoAdapter extends RecyclerView.Adapter<PaleontoAdapter.Paleon
     public void onBindViewHolder(PaleontoViewHolder holder, final int position) {
         try {
             PaleontologicalaBean paleontologicalaBean = mPaleontoBeanList.get(position);
-            Log.d("limeng","mPaleontoBeanList:"+paleontologicalaBean.getmName());
-            holder.paleonto_name.setText(paleontologicalaBean.getmName());
+            Log.d("limeng","mPaleontoBeanList:"+paleontologicalaBean.getPalaeobiosName());
+            holder.paleonto_name.setText(paleontologicalaBean.getPalaeobiosName());
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -106,7 +106,7 @@ public class PersonnelDataActivity extends AppCompatActivity {
         });
     }
 
-    //设置adapter
+       //设置adapter
     private void setAdapter() {
         dateShow.setLinearLayout();
         normalAdapter = new PersonnelAdapter(mContext, personnelBeanlist);

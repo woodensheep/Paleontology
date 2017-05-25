@@ -75,18 +75,14 @@
             android:background="@mipmap/ic_search" />
     </LinearLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/date_refresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/ll_123">
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/date_show"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true" />
-    </android.support.v4.widget.SwipeRefreshLayout>
+    <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
+        android:id="@+id/date_show"
+        android:layout_below="@+id/ll_123"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView>
 
 </RelativeLayout>
 

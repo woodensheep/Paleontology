@@ -10,9 +10,14 @@
 
     <string-array name="paleontological_data">
         <item>全部</item>
-        <item>古生物</item>
+        <item>化石面结构</item>
+        <item>古无脊椎动物</item>
+        <item>古脊椎动物</item>
         <item>古植物</item>
-        <item>古遗迹</item>
-        <item>古人类</item>
+        <item>足印</item>
+        <item>虫迹</item>
+        <item>古人类化石</item>
+        <item>旧石器文化遗址</item>
+        <item>新石器文化遗址</item>
     </string-array>
 </resources>

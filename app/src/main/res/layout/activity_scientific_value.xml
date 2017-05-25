@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingBottom="15dp"
+        android:paddingLeft="15dp"
+        android:paddingTop="15dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="科学研究价值："
+                android:textColor="@color/relic_text_color"
+                android:textSize="@dimen/relic_text" />
+
+            <TextView
+                android:id="@+id/tv_scientific_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ceshi"
+                android:textColor="@color/relic_text_edit_color"
+                android:textSize="@dimen/relic_text_edit" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="科教科普价值："
+                android:textColor="@color/relic_text_color"
+                android:textSize="@dimen/relic_text" />
+
+            <TextView
+                android:id="@+id/tv_scientific_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ceshi"
+                android:textColor="@color/relic_text_edit_color"
+                android:textSize="@dimen/relic_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="典型性："
+                android:textColor="@color/relic_text_color"
+                android:textSize="@dimen/relic_text" />
+
+            <TextView
+                android:id="@+id/tv_scientific_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ceshi"
+                android:textColor="@color/relic_text_edit_color"
+                android:textSize="@dimen/relic_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="稀有性："
+                android:textColor="@color/relic_text_color"
+                android:textSize="@dimen/relic_text" />
+
+            <TextView
+                android:id="@+id/tv_scientific_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ceshi"
+                android:textColor="@color/relic_text_edit_color"
+                android:textSize="@dimen/relic_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="完整性："
+                android:textColor="@color/relic_text_color"
+                android:textSize="@dimen/relic_text" />
+
+            <TextView
+                android:id="@+id/tv_scientific_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ceshi"
+                android:textColor="@color/relic_text_edit_color"
+                android:textSize="@dimen/relic_text" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="资源容量："
+                android:textColor="@color/relic_text_color"
+                android:textSize="@dimen/relic_text" />
+
+            <TextView
+                android:id="@+id/tv_scientific_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/ceshi"
+                android:textColor="@color/relic_text_edit_color"
+                android:textSize="@dimen/relic_text" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

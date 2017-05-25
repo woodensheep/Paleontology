@@ -40,7 +40,7 @@ public class FossiAdapter extends RecyclerView.Adapter<FossiAdapter.PaleontoView
     public void onBindViewHolder(PaleontoViewHolder holder, int position) {
         try {
           PaleontologicalaBean paleontologicalaBean = mPaleontoBeanList.get(position);
-            holder.fossil_name.setText(paleontologicalaBean.getmName());
+            holder.fossil_name.setText(paleontologicalaBean.getPalaeobiosName());
         } catch (Exception e) {
             e.printStackTrace();
         }

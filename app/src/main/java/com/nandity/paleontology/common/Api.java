@@ -30,5 +30,15 @@ public class Api {
         return "http://" + ip + ":" + port + "/ael/android/getPerson.do";
     }
 
+    //古生物数据接口
+    public String getPaleontogicalUrl() {
+        return "http://" + ip + ":" + port + "/ael/android/getPalae.do";
+    }
+    //古生物详细数据接口
+    public String getPalaeInfoUrl() {
+        return "http://" + ip + ":" + port + "/ael/android/getPalaeInfo.do";
+    }
+
+
     public static final String DATE_Personnel = "";
 }
