@@ -38,6 +38,10 @@ public class Api {
     public String getPalaeInfoUrl() {
         return "http://" + ip + ":" + port + "/ael/android/getPalaeInfo.do";
     }
+    //古生物详细数据接口
+    public String getfindStaticValueDataUrl() {
+        return "http://" + ip + ":" + port + "/ael/android/findStaticValueData.do";
+    }
 
 
     public static final String DATE_Personnel = "";
