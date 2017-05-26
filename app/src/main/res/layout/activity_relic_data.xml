@@ -24,8 +24,18 @@
             android:layout_height="match_parent"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:gravity="center"
             android:paddingLeft="3dp"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tv_nextFossi"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:gravity="center_vertical"
+            android:paddingRight="8dp"
+            android:text="详细数据"
             android:textColor="@color/white"
             android:textSize="20sp" />
 

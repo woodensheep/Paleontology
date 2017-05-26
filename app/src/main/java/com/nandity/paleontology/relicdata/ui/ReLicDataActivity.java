@@ -13,8 +13,10 @@ import android.widget.TextView;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
+import com.nandity.paleontology.FossilDate.FossilDateActivity;
 import com.nandity.paleontology.R;
 import com.nandity.paleontology.common.Api;
+import com.nandity.paleontology.relicdata.util.PaleGsonHelper;
 import com.nandity.paleontology.relicdata.util.PaleontologicalaBean;
 import com.nandity.paleontology.util.JsonFormat;
 import com.nandity.paleontology.util.SharedUtils;
@@ -159,17 +161,12 @@ public class ReLicDataActivity extends FragmentActivity implements View.OnClickL
     LinearLayout includeItem5;
     @BindView(R.id.include_item_6)
     LinearLayout includeItem6;
-    @BindView(R.id.tv_base_data21)
-    TextView tvBaseData21;
-    @BindView(R.id.tv_data_sources_4)
-    TextView tvDataSources4;
     private LinearLayoutManager mLinearLayoutManger;
     private Intent intent;
     private String title;
     private String id;
     private String sessionId;
     List<PaleontologicalaBean> paleontoBeanList;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -218,14 +215,21 @@ public class ReLicDataActivity extends FragmentActivity implements View.OnClickL
             case R.id.ll_item_6:
                 setVisibility(includeItem6);
                 break;
+            case R.id.tv_nextFossi:
+                Intent i = new Intent(ReLicDataActivity.this, FossilDateActivity.class);
+                i.putExtra("Relicadata_id", id);
+                startActivity(i);
+                break;
+            default:
+
         }
     }
 
 
-    private void setVisibility(View view) {
+    private void setVisibility(View view){
         if (view.getVisibility() == View.GONE) {
-            view.setVisibility(View.VISIBLE);
-        } else {
+            view.setVisibility(View.VISIBLE);}
+        else {
             view.setVisibility(View.GONE);
         }
     }
@@ -245,8 +249,8 @@ public class ReLicDataActivity extends FragmentActivity implements View.OnClickL
                             String message = js.optString("message");
                             String status = js.optString("status");
                             if (status.equals("200")) {
-                                paleontoBeanList = JsonFormat.stringToList(message, PaleontologicalaBean.class);
-                                Log.d("limeng", "____" + paleontoBeanList.toString());
+                                paleontoBeanList = JsonFormat.stringToList(message,PaleontologicalaBean.class);
+                                Log.d("limeng","____"+paleontoBeanList.toString());
                                 setViewData();
                             } else {
                                 ToastUtils.showShort(ReLicDataActivity.this, message);

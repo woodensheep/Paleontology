@@ -31,17 +31,18 @@
 
     </RelativeLayout>
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/date_refresh"
+    <LinearLayout
+        android:layout_below="@id/rl_title"
+        android:id="@+id/ll_normal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/rl_title">
-
-        <android.support.v7.widget.RecyclerView
+        android:layout_height="match_parent">
+        <com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView
             android:id="@+id/date_show"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </android.support.v4.widget.SwipeRefreshLayout>
+            android:layout_height="match_parent">
+
+        </com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView>
+    </LinearLayout>
 
 </RelativeLayout>
 

@@ -208,7 +208,7 @@ public class PersonnelDataActivity extends AppCompatActivity {
 
     //上拉加载
     private void loadMore() {
-        pageNum += 10;
+        pageNum += rowsNum;
         OkGo.post(new Api(this).getPersonnelUrl())
                 .params("page", pageNum + "")
                 .params("rows", rowsNum + "")

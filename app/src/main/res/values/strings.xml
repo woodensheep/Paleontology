@@ -29,6 +29,28 @@
 
     <string name="paleontodatetop">基础数据</string>
     <string name="paleontodate">详细数据</string>
+    <string name="ceshi">测试</string>
+    <!--化石-->
+    <string name="fossiNum">化石编号:</string>
+    <string name="packingNum">装箱编号:</string>
+    <string name="fossilSpecies">化石种类:</string>
+    <string name="fossilSystemClassification">化石系统分类:</string>
+    <string name="earlyFossilName">初定化石名称:</string>
+    <string name="excavationUnit">发掘单位：</string>
+    <string name="excavationDate">发掘日期：</string>
+    <string name="excavationPerson">发掘人员：</string>
+    <string name="producer">产地：</string>
+    <string name="possilLon">经度：</string>
+    <string name="possilLat">纬度：</string>
+    <string name="fossilPosition">地理位置：</string>
+    <string name="geologicaAge">地质时代：</string>
+    <string name="stratumHorizon">底层层位：</string>
+    <string name="lithology">岩性：</string>
+    <string name="burialState">埋藏状态：</string>
+    <string name="keepstatus">保存情况:</string>
+    <string name="featureDescription">特征描述：</string>
+    <string name="fossilWhereabouts">化石去向：</string>
+    <string name="fossilSize">化石尺寸：</string>
 
 
     <string name="category_all">推荐</string>

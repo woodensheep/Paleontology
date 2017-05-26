@@ -30,6 +30,15 @@ public class Api {
         return "http://" + ip + ":" + port + "/ael/android/getPerson.do";
     }
 
+    //更新app
+    public String getUpdateServiceUrl() {
+        return "http://" + ip + ":" + port + "/ael/android/download.do";
+    }
+
+    //    获取版本号
+    public String getUpdateVerCodeUrl() {
+        return "http://" + ip + ":" + port + "/ael/android/haveNewVersion.do";
+    }
     //古生物数据接口
     public String getPaleontogicalUrl() {
         return "http://" + ip + ":" + port + "/ael/android/getPalae.do";
@@ -41,6 +50,11 @@ public class Api {
     //古生物详细数据接口
     public String getfindStaticValueDataUrl() {
         return "http://" + ip + ":" + port + "/ael/android/findStaticValueData.do";
+    }
+
+    //古生物详细数据接口
+    public String getFossilUrl() {
+        return "http://" + ip + ":" + port + "/ael/android/getFossil.do";
     }
 
 

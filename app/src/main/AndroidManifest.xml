@@ -29,7 +29,14 @@
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
         <activity android:name=".personneldata.PersonnelDataActivity" />
         <activity android:name=".relicdata.ui.PaleontologicalActivity" />
-        <activity android:name=".FossilDate.FossilDateActivity"></activity>
+        <activity android:name=".FossilDate.FossilDateActivity" />
+
+        <service
+            android:name=".common.UpdataService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".FossilDate.FossilActivity"></activity>
     </application>
 
 </manifest>
