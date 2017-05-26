@@ -20,7 +20,9 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.R;
 import com.nandity.paleontology.common.Api;
+import com.nandity.paleontology.common.BaseActivity;
 import com.nandity.paleontology.login.LoginActivity;
+import com.nandity.paleontology.util.ActivityCollectorUtils;
 import com.nandity.paleontology.util.JsonFormat;
 import com.nandity.paleontology.util.LogUtils;
 import com.nandity.paleontology.util.SharedUtils;
@@ -41,7 +43,7 @@ import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class PersonnelDataActivity extends AppCompatActivity {
+public class PersonnelDataActivity extends BaseActivity {
     @BindView(R.id.goBackBtn)
     ImageView goBackBtn;
     private String TAG = "Qingsong";
@@ -253,7 +255,7 @@ public class PersonnelDataActivity extends AppCompatActivity {
         SharedUtils.putShare(mContext, "isLogin", false);
         ToastUtils.showLong(PersonnelDataActivity.this, msg);
         ToActivityUtlis.toNextActivity(mContext, LoginActivity.class);
-        finish();
+        ActivityCollectorUtils.finishAll();
     }
 
     //第一次进入获取数据

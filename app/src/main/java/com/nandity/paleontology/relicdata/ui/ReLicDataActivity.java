@@ -18,14 +18,17 @@ import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.FossilDate.FossilDateActivity;
 import com.nandity.paleontology.R;
 import com.nandity.paleontology.common.Api;
+import com.nandity.paleontology.common.BaseActivity;
+import com.nandity.paleontology.login.LoginActivity;
 import com.nandity.paleontology.relicdata.util.CustomImageView;
 import com.nandity.paleontology.relicdata.util.ImageBean;
 import com.nandity.paleontology.relicdata.util.NineGridlayout;
-import com.nandity.paleontology.relicdata.util.PaleGsonHelper;
 import com.nandity.paleontology.relicdata.util.PaleontologicalaBean;
 import com.nandity.paleontology.relicdata.util.ScreenTools;
+import com.nandity.paleontology.util.ActivityCollectorUtils;
 import com.nandity.paleontology.util.JsonFormat;
 import com.nandity.paleontology.util.SharedUtils;
+import com.nandity.paleontology.util.ToActivityUtlis;
 import com.nandity.paleontology.util.ToastUtils;
 
 import org.json.JSONArray;
@@ -44,7 +47,7 @@ import okhttp3.Response;
  * Created by lemon on 2017/5/18.
  */
 
-public class ReLicDataActivity extends FragmentActivity implements View.OnClickListener {
+public class ReLicDataActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.tv_title)
     TextView tvTitle;
@@ -174,6 +177,10 @@ public class ReLicDataActivity extends FragmentActivity implements View.OnClickL
     NineGridlayout ivNgridLayout;
     @BindView(R.id.iv_oneimage)
     CustomImageView ivOneimage;
+    @BindView(R.id.tv_nextFossi)
+    TextView tvNextFossi;
+    @BindView(R.id.goBackPalo)
+    ImageView goBackPalo;
     private LinearLayoutManager mLinearLayoutManger;
     private Intent intent;
     private String title;
@@ -181,13 +188,14 @@ public class ReLicDataActivity extends FragmentActivity implements View.OnClickL
     private String sessionId;
     List<PaleontologicalaBean> paleontoBeanList;
     private List<ImageBean> imagesList;
-private Context context;
+    private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_relic_data);
         ButterKnife.bind(this);
-        context=this;
+        context = this;
         intent = getIntent();
         title = intent.getStringExtra("palaeobios_name");
         id = intent.getStringExtra("palaeobios_id");
@@ -208,6 +216,9 @@ private Context context;
         llItem4.setOnClickListener(this);
         llItem5.setOnClickListener(this);
         llItem6.setOnClickListener(this);
+        tvNextFossi.setOnClickListener(this);
+        goBackPalo.setOnClickListener(this);
+
     }
 
     @Override
@@ -236,16 +247,18 @@ private Context context;
                 i.putExtra("Relicadata_id", id);
                 startActivity(i);
                 break;
+            case  R.id.goBackPalo:
+                finish();
             default:
 
         }
     }
 
 
-    private void setVisibility(View view){
+    private void setVisibility(View view) {
         if (view.getVisibility() == View.GONE) {
-            view.setVisibility(View.VISIBLE);}
-        else {
+            view.setVisibility(View.VISIBLE);
+        } else {
             view.setVisibility(View.GONE);
         }
     }
@@ -265,10 +278,12 @@ private Context context;
                             String message = js.optString("message");
                             String status = js.optString("status");
                             if (status.equals("200")) {
-                                paleontoBeanList = JsonFormat.stringToList(message,PaleontologicalaBean.class);
-                                Log.d("limeng","____"+paleontoBeanList.toString());
+                                paleontoBeanList = JsonFormat.stringToList(message, PaleontologicalaBean.class);
+                                Log.d("limeng", "____" + paleontoBeanList.toString());
                                 setViewData();
-                            } else {
+                            } else if (status.equals("400")){
+                                initToLogin(message);
+                            }else{
                                 ToastUtils.showShort(ReLicDataActivity.this, message);
                             }
                         } catch (JSONException e) {
@@ -428,7 +443,7 @@ private Context context;
         layoutparams.width = imageWidth;
         ivOneimage.setLayoutParams(layoutparams);
         ivOneimage.setClickable(true);
-        ivOneimage.setScaleType(android.widget.ImageView.ScaleType.FIT_XY);
+        ivOneimage.setScaleType(ImageView.ScaleType.FIT_XY);
         ivOneimage.setImageUrl(image.getUrl());
 
     }
@@ -456,7 +471,9 @@ private Context context;
                             String status = js.optString("status");
                             if (status.equals("200")) {
                                 tv.setText(js.getJSONArray("message").getJSONObject(0).getString("text"));
-                            } else {
+                            } else if (status.equals("400")){
+                                initToLogin(message);
+                            }else{
                                 ToastUtils.showShort(ReLicDataActivity.this, message);
                             }
                         } catch (JSONException e) {
@@ -472,7 +489,13 @@ private Context context;
                     }
                 });
     }
-
+    //有别的设备登录，返回登录页面
+    private void initToLogin(String msg) {
+        SharedUtils.putShare(context, "isLogin", false);
+        ToastUtils.showLong(context, msg);
+        ToActivityUtlis.toNextActivity(context, LoginActivity.class);
+        ActivityCollectorUtils.finishAll();
+    }
     private void setOkPacture(String id) {
         final String[] s1 = new String[1];
         OkGo.post(new Api(this).getgetImgUrl())
@@ -488,17 +511,19 @@ private Context context;
                             String message = js.optString("message");
                             String status = js.optString("status");
                             if (status.equals("200")) {
-                                imagesList=new ArrayList<>();
+                                imagesList = new ArrayList<>();
                                 JSONArray jsa = js.getJSONArray("message");
-                                for (int i=0;i<jsa.length();i++){
-                                   String picture= new Api(context).getPictureDataUrl()+jsa.getJSONObject(i).get("name");
-                                    imagesList.add(new ImageBean(picture,500,500));
-                                    imagesList.add(new ImageBean(picture,500,500));
-                                    imagesList.add(new ImageBean(picture,500,500));
-                                    imagesList.add(new ImageBean(picture,500,500));
+                                for (int i = 0; i < jsa.length(); i++) {
+                                    String picture = new Api(context).getPictureDataUrl() + jsa.getJSONObject(i).get("name");
+                                    imagesList.add(new ImageBean(picture, 500, 500));
+                                    imagesList.add(new ImageBean(picture, 500, 500));
+                                    imagesList.add(new ImageBean(picture, 500, 500));
+                                    imagesList.add(new ImageBean(picture, 500, 500));
                                 }
                                 initPictureData(imagesList);
-                            } else {
+                            } else if (status.equals("400")){
+                                initToLogin(message);
+                            }else{
                                 ToastUtils.showShort(ReLicDataActivity.this, message);
                             }
                         } catch (JSONException e) {

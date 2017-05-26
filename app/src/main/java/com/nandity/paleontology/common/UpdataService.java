@@ -149,7 +149,7 @@ public class UpdataService extends Service {
         Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).mkdir() ;
 
         //设置文件存放路径
-        request.setDestinationInExternalPublicDir(  Environment.DIRECTORY_DOWNLOADS  , "app-release.apk" ) ;
+        request.setDestinationInExternalPublicDir(  Environment.DIRECTORY_DOWNLOADS  , "paleontology.apk" ) ;
     }
 
     /**

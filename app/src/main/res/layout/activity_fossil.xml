@@ -12,6 +12,7 @@
         android:background="@color/green">
 
         <ImageView
+            android:id="@+id/goBackFossilData"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginBottom="5dp"

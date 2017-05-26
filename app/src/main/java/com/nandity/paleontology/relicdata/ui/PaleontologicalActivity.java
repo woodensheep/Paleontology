@@ -3,28 +3,29 @@ package com.nandity.paleontology.relicdata.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.R;
 import com.nandity.paleontology.common.Api;
-import com.nandity.paleontology.personneldata.PersonnelAdapter;
-import com.nandity.paleontology.personneldata.PersonnelBean;
+import com.nandity.paleontology.common.BaseActivity;
+import com.nandity.paleontology.login.LoginActivity;
 import com.nandity.paleontology.relicdata.util.PaleontologicalaBean;
+import com.nandity.paleontology.util.ActivityCollectorUtils;
 import com.nandity.paleontology.util.DialogUtils;
 import com.nandity.paleontology.util.JsonFormat;
 import com.nandity.paleontology.util.LogUtils;
 import com.nandity.paleontology.util.SharedUtils;
+import com.nandity.paleontology.util.ToActivityUtlis;
 import com.nandity.paleontology.util.ToastUtils;
 import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 
@@ -39,7 +40,7 @@ import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class PaleontologicalActivity extends AppCompatActivity {
+public class PaleontologicalActivity extends BaseActivity {
 
     @BindView(R.id.spinner1)
     Spinner spinner1;
@@ -49,14 +50,16 @@ public class PaleontologicalActivity extends AppCompatActivity {
     Button btnSearch;
     @BindView(R.id.date_show)
     PullLoadMoreRecyclerView dateShow;
+    @BindView(R.id.tv_nextRelicData)
+    ImageView tvNextRelicData;
     private RecyclerView mRecyclerView;
     private String spinnerType;
     private PaleontoAdapter mPaleontoAdapter;
     private List<PaleontologicalaBean> mPaleontoBeanList;
     private String searchText;
     private String sessionId;
-    private int pageNum=0;
-    private int rowsNum=10;
+    private int pageNum = 0;
+    private int rowsNum = 10;
     private Context context;
     private DialogUtils dialogUtils;
 
@@ -64,8 +67,8 @@ public class PaleontologicalActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_paleontological);
-        context=this;
-        dialogUtils=new DialogUtils(context);
+        context = this;
+        dialogUtils = new DialogUtils(context);
         ButterKnife.bind(this);
         initListener();
         sessionId = (String) SharedUtils.getShare(this, "sessionId", "");
@@ -76,6 +79,12 @@ public class PaleontologicalActivity extends AppCompatActivity {
     }
 
     private void initListener() {
+        tvNextRelicData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         //下拉框选择监听
         spinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -108,7 +117,7 @@ public class PaleontologicalActivity extends AppCompatActivity {
         });
 
 
-        mPaleontoBeanList=new ArrayList<>();
+        mPaleontoBeanList = new ArrayList<>();
         dateShow.setLinearLayout();
         mPaleontoAdapter = new PaleontoAdapter(PaleontologicalActivity.this, mPaleontoBeanList);
         mPaleontoAdapter.setOnItemClickListener(new PaleontoAdapter.OnItemClickListener() {
@@ -165,6 +174,7 @@ public class PaleontologicalActivity extends AppCompatActivity {
                                 mPaleontoAdapter.notifyDataSetChanged();
                                 dateShow.setPullLoadMoreCompleted();
                             } else if (status.equals("400")) {
+                                initToLogin(msg);
                             } else if (status.equals("500")) {
                                 ToastUtils.showLong(context, msg);
                                 dateShow.setPullLoadMoreCompleted();
@@ -177,7 +187,7 @@ public class PaleontologicalActivity extends AppCompatActivity {
                     @Override
                     public void onError(Call call, Response response, Exception e) {
                         super.onError(call, response, e);
-                        ToastUtils.showShort(context,"网络请求失败");
+                        ToastUtils.showShort(context, "网络请求失败");
                     }
                 });
     }
@@ -192,7 +202,13 @@ public class PaleontologicalActivity extends AppCompatActivity {
             searchText = etSearch.getText().toString().trim();
         }
     }
-
+    //有别的设备登录，返回登录页面
+    private void initToLogin(String msg) {
+        SharedUtils.putShare(context, "isLogin", false);
+        ToastUtils.showLong(context, msg);
+        ToActivityUtlis.toNextActivity(context, LoginActivity.class);
+        ActivityCollectorUtils.finishAll();
+    }
     private void initView() {
         dialogUtils.showDialog();
         OkGo.post(new Api(this).getPaleontogicalUrl())
@@ -215,6 +231,8 @@ public class PaleontologicalActivity extends AppCompatActivity {
                                 List<PaleontologicalaBean> paleontoBeanList = JsonFormat.stringToList(message, PaleontologicalaBean.class);
                                 Log.d("limeng", paleontoBeanList.toString());
                                 initceshi(paleontoBeanList);
+                            }else if (status.equals("400")) {
+                                initToLogin(message);
                             } else if (status.equals("500")) {
                                 ToastUtils.showShort(PaleontologicalActivity.this, message);
                             }
@@ -223,11 +241,12 @@ public class PaleontologicalActivity extends AppCompatActivity {
                         }
 
                     }
+
                     @Override
                     public void onError(Call call, Response response, Exception e) {
                         dialogUtils.deleteDialog();
                         super.onError(call, response, e);
-                        ToastUtils.showShort(context,"网络请求失败");
+                        ToastUtils.showShort(context, "网络请求失败");
                     }
                 });
     }

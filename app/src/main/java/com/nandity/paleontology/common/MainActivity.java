@@ -16,11 +16,15 @@ import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.FossilDate.FossilActivity;
 import com.nandity.paleontology.R;
+import com.nandity.paleontology.login.LoginActivity;
 import com.nandity.paleontology.personneldata.PersonnelDataActivity;
 import com.nandity.paleontology.relicdata.ui.PaleontologicalActivity;
+import com.nandity.paleontology.util.ActivityCollectorUtils;
 import com.nandity.paleontology.util.AppUtils;
 import com.nandity.paleontology.util.LogUtils;
+import com.nandity.paleontology.util.SharedUtils;
 import com.nandity.paleontology.util.ToActivityUtlis;
+import com.nandity.paleontology.util.ToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,7 +34,7 @@ import butterknife.ButterKnife;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @BindView(R.id.ll_personal_data)
     LinearLayout llPersonalData;
@@ -45,7 +49,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
     @BindView(R.id.ll_vido_data)
     LinearLayout llVidoData;
     private boolean fabOpened = false;
-    private String TAG = "Qingsong", msg, status;
+    private String TAG = "Qingsong", msg, status,sessionId;
     private Context mContext;
 
 
@@ -56,6 +60,7 @@ public class MainActivity extends Activity implements View.OnClickListener {
         ButterKnife.bind(this);
         setListener();
         mContext = this;
+        sessionId= (String) SharedUtils.getShare(mContext,"sessionId","");
 
 
 //        floatingActionButton.setOnClickListener(new View.OnClickListener() {
@@ -109,10 +114,18 @@ public class MainActivity extends Activity implements View.OnClickListener {
         }
     }
 
+    //有别的设备登录，返回登录页面
+    private void initToLogin(String msg) {
+        SharedUtils.putShare(mContext, "isLogin", false);
+        ToastUtils.showLong(mContext, msg);
+        ToActivityUtlis.toNextActivity(mContext, LoginActivity.class);
+        ActivityCollectorUtils.finishAll();
+    }
     private void updateManager() {
         LogUtils.i(TAG,"进入更新");
         OkGo.post(new Api(mContext).getUpdateVerCodeUrl())
                 .params("versionNumber", AppUtils.getVerCode(mContext))
+                .params("sessionId", sessionId)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
@@ -123,8 +136,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
                             LogUtils.i(TAG, status);
                             if ("200".equals(status)) {
                                 showNoticeDialog();
-                            } else if ("300".equals(status)) {
-//                                ToastUtils.showShortToast("暂时没有更新");
+                            } else if ("400".equals(status)) {
+                            initToLogin(msg);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

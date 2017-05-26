@@ -22,7 +22,7 @@ public class AppUtils {
     public static String  getVerCode(Context context) {
         int versionNumber = -1;
         try {
-            versionNumber = context.getPackageManager().getPackageInfo("com.nandity.disastersystem", 0).versionCode;
+            versionNumber = context.getPackageManager().getPackageInfo("com.nandity.paleontology", 0).versionCode;
             System.out.println("当前版本" + versionNumber);
         } catch (PackageManager.NameNotFoundException e) {
             Log.e("version", e.getMessage());
@@ -55,7 +55,7 @@ public class AppUtils {
         Intent intent = new Intent();
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.setAction(android.content.Intent.ACTION_VIEW);
-        Uri uri = Uri.fromFile( new File("/sdcard/Download/app-release.apk")); //这里是APK路径
+        Uri uri = Uri.fromFile( new File("/sdcard/Download/paleontology.apk")); //这里是APK路径
         intent.setDataAndType( uri , "application/vnd.android.package-archive" ) ;
         context.startActivity(intent);
     }

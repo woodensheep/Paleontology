@@ -3,18 +3,20 @@ package com.nandity.paleontology.FossilDate;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nandity.paleontology.R;
-import com.nandity.paleontology.util.LogUtils;
+import com.nandity.paleontology.common.BaseActivity;
+import com.nandity.paleontology.util.ActivityCollectorUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class FossilActivity extends AppCompatActivity {
+public class FossilActivity extends BaseActivity {
 
     @BindView(R.id.packingNum)
     TextView packingNum;
@@ -66,6 +68,8 @@ public class FossilActivity extends AppCompatActivity {
     TextView fossilSize2;
     @BindView(R.id.fossilSize_3)
     TextView fossilSize3;
+    @BindView(R.id.goBackFossilData)
+    ImageView goBackFossilData;
     private FossiBean fossiBean;
 
     @Override
@@ -74,9 +78,19 @@ public class FossilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_fossil);
         ButterKnife.bind(this);
 //        fossiBean= FossilDateActivity.list.get(0);
-        ArrayList<FossiBean>list= (ArrayList<FossiBean>) getIntent().getSerializableExtra("list");
-        fossiBean=list.get(0);
+        ArrayList<FossiBean> list = (ArrayList<FossiBean>) getIntent().getSerializableExtra("list");
+        fossiBean = list.get(0);
         initdate();
+        initListener();
+    }
+
+    private void initListener() {
+        goBackFossilData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
     }
 
     private void initdate() {
@@ -105,5 +119,12 @@ public class FossilActivity extends AppCompatActivity {
         fossilSize1.setText(fossiBean.getLongness());
         fossilSize2.setText(fossiBean.getWide());
         fossilSize3.setText(fossiBean.getHeight());
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+       finish();
     }
 }

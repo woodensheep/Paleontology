@@ -29,6 +29,7 @@
 
     <string name="paleontodatetop">基础数据</string>
     <string name="paleontodate">详细数据</string>
+    <string name="ceshi">测试</string>
     <!--化石-->
     <string name="fossiNum">化石编号:</string>
     <string name="packingNum">装箱编号:</string>
@@ -50,7 +51,5 @@
     <string name="featureDescription">特征描述：</string>
     <string name="fossilWhereabouts">化石去向：</string>
     <string name="fossilSize">化石尺寸：</string>
-
-    <string name="ceshi"></string>
 
 </resources>
