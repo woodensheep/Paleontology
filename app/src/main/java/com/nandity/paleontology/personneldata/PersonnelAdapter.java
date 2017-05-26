@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.nandity.paleontology.R;
+import com.nandity.paleontology.common.Api;
 import com.nandity.paleontology.relicdata.ui.PaleontoAdapter;
 
 import java.util.List;
@@ -57,7 +58,7 @@ public class PersonnelAdapter extends RecyclerView.Adapter<PersonnelAdapter.View
                     .into(viewHolder.imageView);
         }else {
             Glide.with(context)
-                    .load("http://192.168.3.126:8080/ael/upload_file/img/" + item.getPhoto())
+                    .load(new Api(context).getPictureDataUrl() + item.getPhoto())
                     .into(viewHolder.imageView);
         }
 

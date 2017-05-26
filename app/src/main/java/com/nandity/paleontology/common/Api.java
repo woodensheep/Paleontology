@@ -47,9 +47,18 @@ public class Api {
     public String getPalaeInfoUrl() {
         return "http://" + ip + ":" + port + "/ael/android/getPalaeInfo.do";
     }
-    //古生物详细数据接口
+    //古生物详细数据接口-id对应的文字接口
     public String getfindStaticValueDataUrl() {
         return "http://" + ip + ":" + port + "/ael/android/findStaticValueData.do";
+    }
+    //古生物详细数据图片接口
+    public String getgetImgUrl() {
+        return "http://" + ip + ":" + port + "/ael/android/getImg.do";
+    }
+
+    //图片接口
+    public String getPictureDataUrl() {
+        return "http://" + ip + ":" + port + "/ael/upload_file/img/";
     }
 
     //古生物详细数据接口
@@ -58,5 +67,4 @@ public class Api {
     }
 
 
-    public static final String DATE_Personnel = "";
 }

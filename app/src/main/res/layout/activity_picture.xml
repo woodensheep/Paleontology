@@ -5,39 +5,24 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        android:orientation="vertical"
-        android:paddingBottom="15dp"
-        android:paddingLeft="15dp"
-        android:paddingTop="15dp">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <com.nandity.paleontology.relicdata.util.NineGridlayout
+            android:background="@color/cardview_shadow_start_color"
+            android:id="@+id/iv_ngrid_layout"
+            android:layout_marginBottom="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_marginTop="8dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="图片："
-                android:textColor="@color/relic_text_color"
-                android:textSize="@dimen/relic_text" />
-
-            <TextView
-                android:id="@+id/tv_picture_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/ceshi"
-                android:textColor="@color/relic_text_edit_color"
-                android:textSize="@dimen/relic_text_edit" />
-        </LinearLayout>
-
-
-
+        <com.nandity.paleontology.relicdata.util.CustomImageView
+            android:id="@+id/iv_oneimage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" />
 
     </LinearLayout>
 
