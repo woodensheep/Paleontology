@@ -245,6 +245,7 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
             case R.id.tv_nextFossi:
                 Intent i = new Intent(ReLicDataActivity.this, FossilDateActivity.class);
                 i.putExtra("Relicadata_id", id);
+                i.putExtra("Relicadata_name",title);
                 startActivity(i);
                 break;
             case  R.id.goBackPalo:

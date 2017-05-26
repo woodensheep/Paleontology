@@ -4,13 +4,13 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
@@ -18,7 +18,6 @@ import com.nandity.paleontology.R;
 import com.nandity.paleontology.common.Api;
 import com.nandity.paleontology.common.BaseActivity;
 import com.nandity.paleontology.login.LoginActivity;
-import com.nandity.paleontology.relicdata.ui.ReLicDataActivity;
 import com.nandity.paleontology.util.ActivityCollectorUtils;
 import com.nandity.paleontology.util.JsonFormat;
 import com.nandity.paleontology.util.LogUtils;
@@ -48,6 +47,8 @@ public class FossilDateActivity extends BaseActivity {
     LinearLayout llNormal;
     @BindView(R.id.goBackRelc)
     ImageView goBackRelc;
+    @BindView(R.id.fossilDate_title)
+    TextView fossilDateTitle;
     private String sessionId;
     private String FossiId;
     private RecyclerView mRecyclerView;
@@ -57,14 +58,15 @@ public class FossilDateActivity extends BaseActivity {
     private Context mContext;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fossil_date);
         ButterKnife.bind(this);
-        mContext=this;
+        mContext = this;
         FossiId = getIntent().getStringExtra("Relicadata_id");
+        String title = getIntent().getStringExtra("Relicadata_name");
+        fossilDateTitle.setText(title);
         sessionId = (String) SharedUtils.getShare(this, "sessionId", "");
         initView();
         initDialogAndRecy();
@@ -127,9 +129,9 @@ public class FossilDateActivity extends BaseActivity {
                                 fossiBeanList = JsonFormat.stringToList(message, FossiBean.class);
                                 initceshi(fossiBeanList);
                                 Log.d("qingsong", fossiBeanList.toString());
-                            } else if (status.equals("400")){
+                            } else if (status.equals("400")) {
                                 initToLogin(message);
-                            }else{
+                            } else {
                                 ToastUtils.showShort(mContext, message);
                             }
                         } catch (JSONException e) {
@@ -145,6 +147,7 @@ public class FossilDateActivity extends BaseActivity {
                 });
 
     }
+
     //有别的设备登录，返回登录页面
     private void initToLogin(String msg) {
         SharedUtils.putShare(mContext, "isLogin", false);
@@ -152,6 +155,7 @@ public class FossilDateActivity extends BaseActivity {
         ToActivityUtlis.toNextActivity(mContext, LoginActivity.class);
         ActivityCollectorUtils.finishAll();
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
