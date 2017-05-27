@@ -297,6 +297,7 @@ public class PersonnelDataActivity extends BaseActivity {
             @Override
             public void onItemClick(View view) {
                 int position = recyclerView.getChildAdapterPosition(view);
+                recyclerView.getChildViewHolder(view);
                 PersonnelBean bean = personnelBeanList.get(position);
                 ToastUtils.showLong(mContext, bean.getName());
             }

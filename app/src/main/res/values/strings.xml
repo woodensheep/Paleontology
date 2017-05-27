@@ -5,6 +5,8 @@
     <string name="paleontological_data">古生物数据</string>
     <string name="video_chat">视频会商</string>
     <string name="video_recording">现场录像视频</string>
+    <string name="system_setting">系统设置</string>
+
 
     <string name="hint_login_username">请输入手机号码</string>
     <string name="hint_login_password">输入密码</string>
@@ -51,5 +53,6 @@
     <string name="featureDescription">特征描述：</string>
     <string name="fossilWhereabouts">化石去向：</string>
     <string name="fossilSize">化石尺寸：</string>
+    <string name="fossiPhoto">照片：</string>
 
 </resources>

@@ -245,10 +245,10 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
             case R.id.tv_nextFossi:
                 Intent i = new Intent(ReLicDataActivity.this, FossilDateActivity.class);
                 i.putExtra("Relicadata_id", id);
-                i.putExtra("Relicadata_name",title);
+                i.putExtra("Relicadata_name", title);
                 startActivity(i);
                 break;
-            case  R.id.goBackPalo:
+            case R.id.goBackPalo:
                 finish();
             default:
 
@@ -282,9 +282,9 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
                                 paleontoBeanList = JsonFormat.stringToList(message, PaleontologicalaBean.class);
                                 Log.d("limeng", "____" + paleontoBeanList.toString());
                                 setViewData();
-                            } else if (status.equals("400")){
+                            } else if (status.equals("400")) {
                                 initToLogin(message);
-                            }else{
+                            } else {
                                 ToastUtils.showShort(ReLicDataActivity.this, message);
                             }
                         } catch (JSONException e) {
@@ -472,9 +472,9 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
                             String status = js.optString("status");
                             if (status.equals("200")) {
                                 tv.setText(js.getJSONArray("message").getJSONObject(0).getString("text"));
-                            } else if (status.equals("400")){
+                            } else if (status.equals("400")) {
                                 initToLogin(message);
-                            }else{
+                            } else {
                                 ToastUtils.showShort(ReLicDataActivity.this, message);
                             }
                         } catch (JSONException e) {
@@ -490,6 +490,7 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
                     }
                 });
     }
+
     //有别的设备登录，返回登录页面
     private void initToLogin(String msg) {
         SharedUtils.putShare(context, "isLogin", false);
@@ -497,6 +498,7 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
         ToActivityUtlis.toNextActivity(context, LoginActivity.class);
         ActivityCollectorUtils.finishAll();
     }
+
     private void setOkPacture(String id) {
         final String[] s1 = new String[1];
         OkGo.post(new Api(this).getgetImgUrl())
@@ -522,9 +524,9 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
                                     imagesList.add(new ImageBean(picture, 500, 500));
                                 }
                                 initPictureData(imagesList);
-                            } else if (status.equals("400")){
+                            } else if (status.equals("400")) {
                                 initToLogin(message);
-                            }else{
+                            } else {
                                 ToastUtils.showShort(ReLicDataActivity.this, message);
                             }
                         } catch (JSONException e) {

@@ -1,21 +1,24 @@
-package com.nandity.paleontology.common;
+package com.nandity.paleontology.common.fragment_main;
 
-import android.app.Activity;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
-import com.getbase.floatingactionbutton.FloatingActionButton;
-import com.getbase.floatingactionbutton.FloatingActionsMenu;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
-import com.nandity.paleontology.FossilDate.FossilActivity;
 import com.nandity.paleontology.R;
+import com.nandity.paleontology.common.Api;
+import com.nandity.paleontology.common.UpdataService;
 import com.nandity.paleontology.login.LoginActivity;
 import com.nandity.paleontology.personneldata.PersonnelDataActivity;
 import com.nandity.paleontology.relicdata.ui.PaleontologicalActivity;
@@ -31,88 +34,36 @@ import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+/**
+ * Created by qingsong on 2017/5/27.
+ */
+
+public class Fragment_work extends Fragment {
+
 
     @BindView(R.id.ll_personal_data)
     LinearLayout llPersonalData;
-    @BindView(R.id.action_update)
-    FloatingActionButton actionUpdate;
-    @BindView(R.id.action_signout)
-    FloatingActionButton actionSignout;
-    @BindView(R.id.actions_menu)
-    FloatingActionsMenu actionsMenu;
     @BindView(R.id.ll_paleontological_data)
     LinearLayout llPaleontologicalData;
     @BindView(R.id.ll_vido_data)
     LinearLayout llVidoData;
-    private boolean fabOpened = false;
-    private String TAG = "Qingsong", msg, status,sessionId;
+    private String TAG = "Qingsong", msg, status, sessionId;
     private Context mContext;
 
-
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
-        setListener();
-        mContext = this;
-        sessionId= (String) SharedUtils.getShare(mContext,"sessionId","");
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_main, container, false);
+        ButterKnife.bind(this, view);
+        mContext = getActivity();
 
-
-//        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                if (!fabOpened){
-//                    openMenu(view);
-//                }else{
-//                    closeMenu(view);
-//                }
-//            }
-//        });
+        return view;
     }
 
-    private void setListener() {
-        llPersonalData.setOnClickListener(this);
-        llPaleontologicalData.setOnClickListener(this);
-        llVidoData.setOnClickListener(this);
-        actionUpdate.setOnClickListener(this);
-    }
-
-
-    private void openMenu(View view) {
-        fabOpened = true;
-    }
-
-
-    private void closeMenu(View view) {
-        fabOpened = false;
-    }
-
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.action_update:
-                updateManager();
-                break;
-            case R.id.action_signout:
-
-                break;
-            case R.id.ll_personal_data:
-                ToActivityUtlis.toNextActivity(MainActivity.this, PersonnelDataActivity.class);
-                break;
-            case R.id.ll_paleontological_data:
-                ToActivityUtlis.toNextActivity(MainActivity.this, PaleontologicalActivity.class);
-                break;
-            case R.id.ll_vido_data:
-                ToActivityUtlis.toNextActivity(MainActivity.this, FossilActivity.class);
-
-        }
-    }
 
     //有别的设备登录，返回登录页面
     private void initToLogin(String msg) {
@@ -121,8 +72,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         ToActivityUtlis.toNextActivity(mContext, LoginActivity.class);
         ActivityCollectorUtils.finishAll();
     }
+
     private void updateManager() {
-        LogUtils.i(TAG,"进入更新");
+        LogUtils.i(TAG, "进入更新");
         OkGo.post(new Api(mContext).getUpdateVerCodeUrl())
                 .params("versionNumber", AppUtils.getVerCode(mContext))
                 .params("sessionId", sessionId)
@@ -137,7 +89,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                             if ("200".equals(status)) {
                                 showNoticeDialog();
                             } else if ("400".equals(status)) {
-                            initToLogin(msg);
+                                initToLogin(msg);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -149,14 +101,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private void showNoticeDialog() {
         Dialog dialog;
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
         builder.setTitle("软件版本更新");
         builder.setMessage(msg);
         builder.setPositiveButton("下载", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Intent service = new Intent(MainActivity.this, UpdataService.class);
-                startService(service);
+                Intent service = new Intent(mContext, UpdataService.class);
+                mContext.startService(service);
                 dialog.dismiss();
 
             }
@@ -170,5 +122,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         dialog = builder.create();
         dialog.show();
         dialog.setCanceledOnTouchOutside(false);
+    }
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+    }
+
+    @OnClick({R.id.ll_personal_data, R.id.ll_paleontological_data, R.id.ll_vido_data})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.ll_personal_data:
+                ToActivityUtlis.toNextActivity(mContext, PersonnelDataActivity.class);
+                break;
+            case R.id.ll_paleontological_data:
+                ToActivityUtlis.toNextActivity(mContext, PaleontologicalActivity.class);
+                break;
+            case R.id.ll_vido_data:
+                break;
+        }
     }
 }

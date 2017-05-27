@@ -1,9 +1,6 @@
 package com.nandity.paleontology.login;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.FragmentActivity;
@@ -24,11 +21,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lzy.okgo.OkGo;
-import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.R;
 import com.nandity.paleontology.common.Api;
-import com.nandity.paleontology.common.MainActivity;
+import com.nandity.paleontology.common.HomeActivity;
 import com.nandity.paleontology.util.ScreenZoomUtil;
 import com.nandity.paleontology.util.SharedUtils;
 import com.nandity.paleontology.util.ToActivityUtlis;
@@ -36,8 +32,6 @@ import com.nandity.paleontology.util.ToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -87,6 +81,11 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
         setContentView(R.layout.activity_login);
         AndroidBug5497Workaround.assistActivity(this);
         ButterKnife.bind(this);
+
+        if (SharedUtils.containsShare(this, "IP")&&SharedUtils.containsShare(this, "PORT")) {
+        }else{
+            ToastUtils.showShort(this,"请设置相应IP和端口");
+        }
         intiView();
         initListener();
         Log.d("limeng", sessionId);
@@ -259,7 +258,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                                 boolean isLogin=true;
                                 SharedUtils.putShare(LoginActivity.this,"isLogin",isLogin);
                                 ToastUtils.showShort(LoginActivity.this,message);
-                                ToActivityUtlis.toNextActivity(LoginActivity.this, MainActivity.class);
+                                ToActivityUtlis.toNextActivity(LoginActivity.this, HomeActivity.class);
                                 finish();
                             }else{
                                 ToastUtils.showShort(LoginActivity.this,message);

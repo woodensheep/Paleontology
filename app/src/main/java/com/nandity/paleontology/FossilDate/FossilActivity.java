@@ -1,15 +1,16 @@
 package com.nandity.paleontology.FossilDate;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.nandity.paleontology.R;
+import com.nandity.paleontology.common.Api;
 import com.nandity.paleontology.common.BaseActivity;
-import com.nandity.paleontology.util.ActivityCollectorUtils;
 
 import java.util.ArrayList;
 
@@ -60,8 +61,6 @@ public class FossilActivity extends BaseActivity {
     TextView featureDescription;
     @BindView(R.id.fossilWhereabouts)
     TextView fossilWhereabouts;
-    @BindView(R.id.showPic)
-    RecyclerView showPic;
     @BindView(R.id.fossilSize_1)
     TextView fossilSize1;
     @BindView(R.id.fossilSize_2)
@@ -70,6 +69,8 @@ public class FossilActivity extends BaseActivity {
     TextView fossilSize3;
     @BindView(R.id.goBackFossilData)
     ImageView goBackFossilData;
+    @BindView(R.id.fossiPhoto)
+    ImageView fossiPhoto;
     private FossiBean fossiBean;
 
     @Override
@@ -119,12 +120,21 @@ public class FossilActivity extends BaseActivity {
         fossilSize1.setText(fossiBean.getLongness());
         fossilSize2.setText(fossiBean.getWide());
         fossilSize3.setText(fossiBean.getHeight());
+        if (TextUtils.isEmpty(fossiBean.getPhoto())) {
+            Glide.with(this)
+                    .load(R.mipmap.ic_launcher)
+                    .into(fossiPhoto);
+        } else {
+            Glide.with(this)
+                    .load(new Api(this).getPictureDataUrl() + fossiBean.getPhoto())
+                    .into(fossiPhoto);
+        }
     }
 
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-       finish();
+        finish();
     }
 }

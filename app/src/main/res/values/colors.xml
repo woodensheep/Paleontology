@@ -6,7 +6,6 @@
 
     <color name="text_workbench">#2caeaa</color>
     <color name="green">#2caeaa</color>
-    <color name="white">#ffffff</color>
     <color name="greenish">#95ece8</color>
     <color name="gray">#707070</color>
     <color name="fab_menu">#2caeaa</color>
@@ -35,4 +34,13 @@
     <color name="color_d81e06">#d81e06</color>
     <color name="color_b0b8b2">#b0b8b2</color>
     <color name="color_000000">#000000</color>
+
+    <!-- TabLayout -->
+    <color name="main_color">#6FBCBA</color>
+    <color name="white">#FFFFFF</color>
+    <color name="tab_indicator">#d6d6d6</color>
+    <color name="tab_tv_normal">#999999</color>
+    <color name="tab_tv_selected">#45c01a</color>
+    <color name="tab_bg">#fcfcfc</color>
+    <color name="tab_div">#d6d6d6</color>
 </resources>

@@ -34,9 +34,14 @@
     </RelativeLayout>
     <!--布局-->
     <ScrollView
+        android:layout_below="@id/rl_title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/rl_title">
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="9dp"
+        android:layout_marginStart="9dp">
         <!--文字-->
         <RelativeLayout
             android:id="@+id/rl_fossil_1"
@@ -48,72 +53,92 @@
                 android:id="@+id/rl_1_ll_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp">
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="@string/fossiNum" />
 
                 <TextView
                     android:id="@+id/fossiNum"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="7"
                     android:text="@string/fossiNum" />
             </LinearLayout>
+            <View
+                android:id="@+id/view_1"
+                android:layout_below="@id/rl_1_ll_1"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/green"
+                />
             <!--装箱编号id-2 packingNum-->
             <LinearLayout
                 android:id="@+id/rl_1_ll_2"
-                android:layout_below="@id/rl_1_ll_1"
+                android:layout_below="@id/view_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="5dp">
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="@string/packingNum" />
 
                 <TextView
                     android:id="@+id/packingNum"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="7"
                     android:text="@string/packingNum" />
             </LinearLayout>
-
+            <View
+                android:id="@+id/view_2"
+                android:layout_below="@id/rl_1_ll_2"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/green"
+                />
             <!--化石种类id-3 fossilSpecies-->
             <LinearLayout
                 android:id="@+id/rl_1_ll_3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_1_ll_2"
-                android:padding="5dp">
+                android:layout_below="@id/view_2"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="@string/fossilSpecies" />
 
                 <TextView
                     android:id="@+id/fossilSpecies"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="7"
                     android:text="@string/fossilSpecies" />
             </LinearLayout>
+            <View
+                android:id="@+id/view_3"
+                android:layout_below="@id/rl_1_ll_3"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/green"
+                />
             <!--化石系统分类id-4  fossilSystemClassification_1,2,3,4-->
             <LinearLayout
                 android:id="@+id/rl_1_ll_4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_1_ll_3"
+                android:layout_below="@id/view_3"
                 android:orientation="vertical"
-                android:padding="5dp">
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -128,30 +153,31 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="门" />
+                        android:text="门：" />
 
                     <TextView
                         android:id="@+id/fossilSystemClassification_1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="3"
                         android:text="1" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="纲" />
+                        android:text="纲：" />
 
                     <TextView
                         android:id="@+id/fossilSystemClassification_2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="3"
                         android:text="1" />
                 </LinearLayout>
 
                 <LinearLayout
+                    android:layout_marginTop="3dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -159,142 +185,184 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="目" />
+                        android:text="目：" />
 
                     <TextView
                         android:id="@+id/fossilSystemClassification_3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="3"
                         android:text="1" />
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="科" />
+                        android:text="科：" />
 
                     <TextView
                         android:id="@+id/fossilSystemClassification_4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="3"
                         android:text="1" />
                 </LinearLayout>
             </LinearLayout>
+            <View
+                android:id="@+id/view_4"
+                android:layout_below="@id/rl_1_ll_4"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/green"
+                />
             <!--初定化石名称id-5 earlyFossilName-->
             <LinearLayout
                 android:id="@+id/rl_1_ll_5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_1_ll_4"
-                android:padding="5dp">
+                android:layout_below="@id/view_4"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="@string/earlyFossilName" />
 
                 <TextView
                     android:id="@+id/earlyFossilName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="7"
                     android:text="@string/earlyFossilName" />
             </LinearLayout>
+            <View
+                android:id="@+id/view_5"
+                android:layout_below="@id/rl_1_ll_5"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/green"
+                />
             <!--发掘单位id-6 excavationUnit-->
             <LinearLayout
                 android:id="@+id/rl_1_ll_6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_1_ll_5"
-                android:padding="5dp">
+                android:layout_below="@id/view_5"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="@string/excavationUnit" />
 
                 <TextView
                     android:id="@+id/excavationUnit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="7"
                     android:text="@string/excavationUnit" />
             </LinearLayout>
+            <View
+                android:id="@+id/view_6"
+                android:layout_below="@id/rl_1_ll_6"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/green"
+                />
             <!--发掘人员id-7 excavationPerson-->
             <LinearLayout
                 android:id="@+id/rl_1_ll_7"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_1_ll_6"
-                android:padding="5dp">
+                android:layout_below="@id/view_6"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="@string/excavationPerson" />
 
                 <TextView
                     android:id="@+id/excavationPerson"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="7"
                     android:text="@string/excavationPerson" />
             </LinearLayout>
+            <View
+                android:id="@+id/view_7"
+                android:layout_below="@id/rl_1_ll_7"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/green"
+                />
             <!--发掘日期id-8 excavationDate-->
             <LinearLayout
                 android:id="@+id/rl_1_ll_8"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_1_ll_7"
-                android:padding="5dp">
+                android:layout_below="@id/view_7"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="@string/excavationDate" />
 
                 <TextView
                     android:id="@+id/excavationDate"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="7"
                     android:text="@string/excavationDate" />
             </LinearLayout>
+            <View
+                android:id="@+id/view_8"
+                android:layout_below="@id/rl_1_ll_8"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/green"
+                />
             <!--产地id-9 producer-->
             <LinearLayout
                 android:id="@+id/rl_1_ll_9"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_1_ll_8"
-                android:padding="5dp">
+                android:layout_below="@id/view_8"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="@string/producer" />
 
                 <TextView
                     android:id="@+id/producer"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="7"
                     android:text="@string/producer" />
             </LinearLayout>
+            <View
+                android:id="@+id/view_9"
+                android:layout_below="@id/rl_1_ll_9"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/green"
+                />
             <!--地理位置id-10 possilLon,Lat-->
             <LinearLayout
                 android:id="@+id/rl_1_ll_10"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_1_ll_9"
+                android:layout_below="@id/view_9"
                 android:orientation="vertical"
-                android:padding="5dp">
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -315,7 +383,7 @@
                         android:id="@+id/possilLon"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="3"
                         android:text="1" />
 
                     <TextView
@@ -328,167 +396,223 @@
                         android:id="@+id/possilLat"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="3"
                         android:text="1" />
                 </LinearLayout>
 
 
             </LinearLayout>
+            <View
+                android:id="@+id/view_10"
+                android:layout_below="@id/rl_1_ll_10"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/green"
+                />
             <!--地址时代id-11 geologicaAge-->
             <LinearLayout
                 android:id="@+id/rl_1_ll_11"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_1_ll_10"
-                android:padding="5dp">
+                android:layout_below="@id/view_10"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="@string/geologicaAge" />
 
                 <TextView
                     android:id="@+id/geologicaAge"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="7"
                     android:text="@string/geologicaAge" />
             </LinearLayout>
+            <View
+                android:id="@+id/view_11"
+                android:layout_below="@id/rl_1_ll_11"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/green"
+                />
             <!--底层层位id-12 stratumHorizon-->
             <LinearLayout
                 android:id="@+id/rl_1_ll_12"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_1_ll_11"
-                android:padding="5dp">
+                android:layout_below="@id/view_11"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="@string/stratumHorizon" />
 
                 <TextView
                     android:id="@+id/stratumHorizon"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="7"
                     android:text="@string/stratumHorizon" />
             </LinearLayout>
+            <View
+                android:id="@+id/view_12"
+                android:layout_below="@id/rl_1_ll_12"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/green"
+                />
             <!--岩性id-13 lithology-->
             <LinearLayout
                 android:id="@+id/rl_1_ll_13"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_1_ll_12"
-                android:padding="5dp">
+                android:layout_below="@id/view_12"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="@string/lithology" />
 
                 <TextView
                     android:id="@+id/lithology"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="7"
                     android:text="@string/lithology" />
             </LinearLayout>
+            <View
+                android:id="@+id/view_13"
+                android:layout_below="@id/rl_1_ll_13"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/green"
+                />
             <!--埋藏状态id-14 burialState-->
             <LinearLayout
                 android:id="@+id/rl_1_ll_14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_1_ll_13"
-                android:padding="5dp">
+                android:layout_below="@id/view_13"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="@string/burialState" />
 
                 <TextView
                     android:id="@+id/burialState"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="7"
                     android:text="@string/burialState" />
             </LinearLayout>
+            <View
+                android:id="@+id/view_14"
+                android:layout_below="@id/rl_1_ll_14"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/green"
+                />
             <!--保存情况id-15 keepstatus-->
             <LinearLayout
                 android:id="@+id/rl_1_ll_15"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_1_ll_14"
-                android:padding="5dp">
+                android:layout_below="@id/view_14"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="@string/keepstatus" />
 
                 <TextView
                     android:id="@+id/keepstatus"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="7"
                     android:text="@string/keepstatus" />
             </LinearLayout>
+            <View
+                android:id="@+id/view_15"
+                android:layout_below="@id/rl_1_ll_15"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/green"
+                />
             <!--特征描述-16 featureDescription-->
             <LinearLayout
                 android:id="@+id/rl_1_ll_16"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_1_ll_15"
-                android:padding="5dp">
+                android:layout_below="@id/view_15"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="@string/featureDescription" />
 
                 <TextView
                     android:id="@+id/featureDescription"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="7"
                     android:text="@string/featureDescription" />
             </LinearLayout>
+            <View
+                android:id="@+id/view_16"
+                android:layout_below="@id/rl_1_ll_16"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/green"
+                />
             <!--化石去向-17 fossilWhereabouts-->
             <LinearLayout
                 android:id="@+id/rl_1_ll_17"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_1_ll_16"
-                android:padding="5dp">
+                android:layout_below="@id/view_16"
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:text="@string/fossilWhereabouts" />
 
                 <TextView
                     android:id="@+id/fossilWhereabouts"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="3"
+                    android:layout_weight="7"
                     android:text="@string/fossilWhereabouts" />
             </LinearLayout>
+            <View
+                android:id="@+id/view_17"
+                android:layout_below="@id/rl_1_ll_17"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@color/green"
+                />
             <!--化石尺寸id-18  fossilSize_1,2,3-->
             <LinearLayout
                 android:id="@+id/rl_1_ll_18"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/rl_1_ll_17"
+                android:layout_below="@id/view_17"
                 android:orientation="vertical"
-                android:padding="5dp">
+                android:padding="10dp">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -509,7 +633,7 @@
                         android:id="@+id/fossilSize_1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="3"
                         android:text="1" />
 
                     <TextView
@@ -522,7 +646,7 @@
                         android:id="@+id/fossilSize_2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="3"
                         android:text="1" />
 
                     <TextView
@@ -535,22 +659,37 @@
                         android:id="@+id/fossilSize_3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
+                        android:layout_weight="3"
                         android:text="1" />
 
 
                 </LinearLayout>
             </LinearLayout>
-            <!--照片 id-showPic-->
-            <RelativeLayout
+            <View
+                android:id="@+id/view_18"
                 android:layout_below="@id/rl_1_ll_18"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <android.support.v7.widget.RecyclerView
-                    android:id="@+id/showPic"
+                android:layout_height="2dp"
+                android:background="@color/green"
+                />
+            <!--照片 id-showPic-->
+            <RelativeLayout
+                android:layout_below="@id/view_18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp">
+                <TextView
+                    android:id="@+id/tv_fossiPhoto"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:text="@string/fossiPhoto"/>
+                <ImageView
+                    android:layout_below="@id/tv_fossiPhoto"
+                    android:id="@+id/fossiPhoto"
+                    android:layout_marginLeft="30dp"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:src="@mipmap/ic_launcher"/>
             </RelativeLayout>
         </RelativeLayout>
 

@@ -10,4 +10,7 @@
     <dimen name="category_tab_text">15.0sp</dimen>
     <dimen name="relic_text">16dp</dimen>
     <dimen name="relic_text_edit">16dp</dimen>
+
+    <dimen name="tab_div_height">0dp</dimen>
+    <dimen name="tab_height">60dp</dimen>
 </resources>

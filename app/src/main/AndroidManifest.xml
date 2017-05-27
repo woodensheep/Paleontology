@@ -21,7 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".common.MainActivity" />
         <activity android:name=".relicdata.ui.ReLicDataActivity" />
         <activity
             android:name=".login.SettingActivity"
@@ -36,7 +35,8 @@
             android:enabled="true"
             android:exported="true" />
 
-        <activity android:name=".FossilDate.FossilActivity"></activity>
+        <activity android:name=".FossilDate.FossilActivity" />
+        <activity android:name=".common.HomeActivity"></activity>
     </application>
 
 </manifest>
