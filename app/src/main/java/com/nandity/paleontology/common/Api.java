@@ -66,5 +66,10 @@ public class Api {
         return "http://" + ip + ":" + port + "/ael/android/getFossil.do";
     }
 
+    //古生物详细数据接口- 所属区县
+    public String getfindAreaDataUrl() {
+        return "http://" + ip + ":" + port + "/ael/android/findAreaData.do";
+    }
+
 
 }

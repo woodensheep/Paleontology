@@ -15,7 +15,6 @@ import com.nandity.paleontology.relicdata.util.PaleontologicalaBean;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 
 
 /**

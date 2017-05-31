@@ -150,7 +150,10 @@ public class NineGridlayout extends ViewGroup {
                 columns = 2;
             }
         } else {
-            rows = 3;
+            int a=length;
+            int b=3;
+            int c = a%b==0?a/b:a/b+1;
+            rows =c;
             columns = 3;
         }
     }

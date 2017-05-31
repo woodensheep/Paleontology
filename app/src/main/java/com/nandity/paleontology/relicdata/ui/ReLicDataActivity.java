@@ -353,7 +353,8 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
         tvBaseData1.setText(p.getRuins_dot());
         tvBaseData2.setText(p.getRelic_name());
         tvBaseData3.setText(relicType[Integer.parseInt(p.getRelic_type())]);
-        setOkhttpNum(p.getArea(), tvBaseData4);
+        setOkfindAreaData(p.getArea_id(), tvBaseData4);
+        Log.d("limeng",p.getArea_id());
         setOkhttpNum(p.getUnit_id(), tvBaseData5);
         tvBaseData6.setText(p.getKaifaxianzhuang());
         tvBaseData7.setText(p.getBaohuxianzhuang());
@@ -367,6 +368,8 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
         setOkhttpNum(p.getLevel(), tvBaseData14);
         tvBaseData15.setText(p.getFind_man());
         tvBaseData16.setText(p.getFind_time());
+
+
         tvBaseData17.setText(p.getDicengdaihao());
 //        tvBaseData18.setText(p.getYanxing());
         setOkhttpNum(p.getYanxing(), tvBaseData18);
@@ -394,7 +397,13 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
         tvNature4.setText(mNature1[Integer.parseInt(p.getSecurity())]);
         tvNature5.setText(mNature1[Integer.parseInt(p.getHuanjing_quality())]);
 
-        tvDataSources1.setText(p.getZiliaolaiyuan());
+
+        String[] sq=p.getZiliaolaiyuan().split(",");
+        String stringDataSources1 = "";
+        for (int i = 0; i < sq.length; i++) {
+            stringDataSources1=stringDataSources1+mZiliaolaiyuan[Integer.parseInt(sq[i])]+",";
+        }
+        tvDataSources1.setText(stringDataSources1);
 //        tvDataSources2.setText(p.getSurvey_man());
         setOkhttpNum(p.getSurvey_man(), tvDataSources2);
         tvDataSources3.setText(p.getSurvey_time());
@@ -518,15 +527,47 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
                                 JSONArray jsa = js.getJSONArray("message");
                                 for (int i = 0; i < jsa.length(); i++) {
                                     String picture = new Api(context).getPictureDataUrl() + jsa.getJSONObject(i).get("name");
-                                    imagesList.add(new ImageBean(picture, 500, 500));
-                                    imagesList.add(new ImageBean(picture, 500, 500));
-                                    imagesList.add(new ImageBean(picture, 500, 500));
-                                    imagesList.add(new ImageBean(picture, 500, 500));
+                                    imagesList.add(new ImageBean(picture, 250, 250));
                                 }
                                 initPictureData(imagesList);
                             } else if (status.equals("400")) {
                                 initToLogin(message);
                             } else {
+                                ToastUtils.showShort(ReLicDataActivity.this, message);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Call call, Response response, Exception e) {
+                        super.onError(call, response, e);
+                        ToastUtils.showShort(ReLicDataActivity.this, "网络请求失败");
+                    }
+                });
+    }
+
+    private void setOkfindAreaData(String id, final TextView tv) {
+        final String[] s1 = new String[1];
+        OkGo.post(new Api(this).getfindAreaDataUrl())
+                .params("sessionId", sessionId)
+                .params("id", id)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        Log.d("limeng", "s图片：" + s);
+                        JSONObject js = null;
+                        try {
+                            js = new JSONObject(s);
+                            String message = js.optString("message");
+                            String status = js.optString("status");
+                            if (status.equals("200")) {
+                                tv.setText(js.getJSONArray("message").getJSONObject(0).getString("text"));
+                            } else if (status.equals("400")){
+                                initToLogin(message);
+                            }else{
                                 ToastUtils.showShort(ReLicDataActivity.this, message);
                             }
                         } catch (JSONException e) {
