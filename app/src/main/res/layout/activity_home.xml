@@ -4,21 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@mipmap/background_workbench"
+    android:orientation="vertical"
     tools:context=".common.HomeActivity">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        />
+        android:layout_weight="1" />
+
     <android.support.design.widget.TabLayout
         android:id="@+id/tablayout"
+        style="@style/CustomTab"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tab_height"
-        style="@style/CustomTab"
-        />
+        android:background="@color/main_color" />
+
 
 </LinearLayout>

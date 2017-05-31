@@ -21,6 +21,8 @@
     </style>
 
     <style name="CustomTab" parent="Widget.Design.TabLayout" >
+        <item name="tabPaddingStart">0dp</item>
+        <item name="tabPaddingEnd">0dp</item>
         <item name="tabIndicatorColor">@color/tab_indicator</item>
         <item name="tabTextColor">@color/tab_tv_normal</item>
         <item name="tabSelectedTextColor">@color/tab_tv_selected</item>

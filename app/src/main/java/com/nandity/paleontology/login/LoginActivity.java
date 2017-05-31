@@ -227,9 +227,9 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                 } else if (TextUtils.isEmpty(pwd)) {
                     ToastUtils.showShort(this, "请输入密码");
                 } else {
-                    progressDialog.show();
-                    send();
-
+//                    progressDialog.show();
+//                    send();
+                    ToActivityUtlis.toNextActivity(LoginActivity.this, HomeActivity.class);
                 }
                 break;
             case R.id.forget_password:
