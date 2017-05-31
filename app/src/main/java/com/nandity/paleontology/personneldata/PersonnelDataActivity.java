@@ -2,6 +2,8 @@ package com.nandity.paleontology.personneldata;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +20,9 @@ import android.widget.Spinner;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
+import com.nandity.paleontology.FossilDate.FossiAdapter;
+import com.nandity.paleontology.FossilDate.FossilActivity;
+import com.nandity.paleontology.FossilDate.FossilDateActivity;
 import com.nandity.paleontology.R;
 import com.nandity.paleontology.common.Api;
 import com.nandity.paleontology.common.BaseActivity;
@@ -33,6 +38,7 @@ import com.wuxiaolong.pullloadmorerecyclerview.PullLoadMoreRecyclerView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -70,7 +76,7 @@ public class PersonnelDataActivity extends BaseActivity {
     private RecyclerView mRecyclerView;
     private PersonnelAdapter normalAdapter;
     private Context mContext = PersonnelDataActivity.this;
-    private String spinnerType = "0";
+    private String spinnerType = "0",number="0";
     private ProgressDialog progressDialog;
 
     @Override
@@ -106,15 +112,32 @@ public class PersonnelDataActivity extends BaseActivity {
                 loadMore();
             }
         });
+
     }
 
        //设置adapter
     private void setAdapter() {
         dateShow.setLinearLayout();
         normalAdapter = new PersonnelAdapter(mContext, personnelBeanlist);
+        PersonnelBean personnelBean= personnelBeanlist.get(0);
+        number=personnelBean.getIphone();
+        normalAdapter.setOnItemClickListener(new PersonnelAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(int position) {
+                call(number);
+            }
+        });
         dateShow.setAdapter(normalAdapter);
     }
 
+
+    private void call(String number) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_DIAL);
+        intent.setData(Uri.parse("tel://" + number));
+        startActivity(intent);
+
+    }
     /**
      * 判断输入的是字符还是数字
      *
@@ -140,6 +163,7 @@ public class PersonnelDataActivity extends BaseActivity {
                 .params(paramName, param)
                 .params("sessionId", sessionId)
                 .params("type", spinnerType)
+                .connTimeOut(10000)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
@@ -154,7 +178,6 @@ public class PersonnelDataActivity extends BaseActivity {
                             if (status.equals("200")) {
                                 personnelBeanlist = JsonFormat.stringToList(msg, PersonnelBean.class);
                                 setAdapter();
-                                itemClickListener(normalAdapter, personnelBeanlist, mRecyclerView);
                             } else if (status.equals("400")) {
                                 initToLogin(msg);
                             } else if (status.equals("500")) {
@@ -170,7 +193,9 @@ public class PersonnelDataActivity extends BaseActivity {
                     @Override
                     public void onError(Call call, Response response, Exception e) {
                         super.onError(call, response, e);
+
                         progressDialog.dismiss();
+                        ToastUtils.showLong(mContext, "网络请求失败");
                     }
                 });
 
@@ -214,10 +239,12 @@ public class PersonnelDataActivity extends BaseActivity {
         OkGo.post(new Api(this).getPersonnelUrl())
                 .params("page", pageNum + "")
                 .params("rows", rowsNum + "")
+                .connTimeOut(10000)
                 .params("sessionId", sessionId)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
+                        progressDialog.dismiss();
                         LogUtils.i("Qingsong", "上拉加载的数据：" + s.toString());
                         String msg, status;
                         try {
@@ -229,7 +256,6 @@ public class PersonnelDataActivity extends BaseActivity {
                                 personnelBeanlist.addAll(loadmoreList);
                                 normalAdapter.notifyDataSetChanged();
                                 dateShow.setPullLoadMoreCompleted();
-                                itemClickListener(normalAdapter, personnelBeanlist, mRecyclerView);
                             } else if (status.equals("400")) {
                                 initToLogin(msg);
                             } else if (status.equals("500")) {
@@ -244,8 +270,10 @@ public class PersonnelDataActivity extends BaseActivity {
                     @Override
                     public void onError(Call call, Response response, Exception e) {
                         super.onError(call, response, e);
+                        progressDialog.dismiss();
                         dateShow.setPullLoadMoreCompleted();
                         ToastUtils.showLong(mContext, "网络不给力请稍后");
+
                     }
                 });
     }
@@ -260,17 +288,21 @@ public class PersonnelDataActivity extends BaseActivity {
 
     //第一次进入获取数据
     private void initView() {
+
         LogUtils.i("Qingsong", new Api(this).getPersonnelUrl());
         OkGo.post(new Api(this).getPersonnelUrl())
                 .params("page", pageNum + "")
                 .params("rows", rowsNum + "")
                 .params("sessionId", sessionId)
+                .connTimeOut(5000)
+                .readTimeOut(5000)
+                .cacheTime(5000)
                 .execute(new StringCallback() {
                     @Override
                     public void onSuccess(String s, Call call, Response response) {
                         progressDialog.dismiss();
-                        LogUtils.i("Qingsong", "第一次返回的数据：" + s.toString());
                         String msg, status;
+                        LogUtils.i("Qingsong", "第一次返回的数据：" + s.toString());
                         try {
                             JSONObject jsonObject = new JSONObject(s);
                             msg = jsonObject.optString("message");
@@ -278,7 +310,6 @@ public class PersonnelDataActivity extends BaseActivity {
                             if (status.equals("200")) {
                                 personnelBeanlist = JsonFormat.stringToList(msg, PersonnelBean.class);
                                 setAdapter();
-                                itemClickListener(normalAdapter, personnelBeanlist, mRecyclerView);
                             } else if (status.equals("400")) {
                                 initToLogin(msg);
                             } else {
@@ -286,24 +317,18 @@ public class PersonnelDataActivity extends BaseActivity {
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            progressDialog.dismiss();
                         }
+                    }
+
+                    @Override
+                    public void onError(Call call, Response response, Exception e) {
+                        super.onError(call, response, e);
+                        progressDialog.dismiss();
+                        ToastUtils.showLong(mContext, "网络请求失败");
                     }
                 });
     }
-
-    //item监听
-    private void itemClickListener(PersonnelAdapter adapter, final List<PersonnelBean> personnelBeanList, final RecyclerView recyclerView) {
-        adapter.setOnItemClickListener(new PersonnelAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view) {
-                int position = recyclerView.getChildAdapterPosition(view);
-                recyclerView.getChildViewHolder(view);
-                PersonnelBean bean = personnelBeanList.get(position);
-                ToastUtils.showLong(mContext, bean.getName());
-            }
-        });
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();

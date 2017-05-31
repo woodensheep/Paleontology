@@ -8,12 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.nandity.paleontology.FossilDate.FossiAdapter;
 import com.nandity.paleontology.R;
 import com.nandity.paleontology.common.Api;
 import com.nandity.paleontology.relicdata.ui.PaleontoAdapter;
+import com.nandity.paleontology.relicdata.util.L;
 
 import java.util.List;
 
@@ -28,7 +31,7 @@ import java.util.List;
 public class PersonnelAdapter extends RecyclerView.Adapter<PersonnelAdapter.ViewHolder> {
     private Context context;
     private List<PersonnelBean> beanList;
-    public OnItemClickListener mOnItemClickListener = null;
+    public PersonnelAdapter.OnItemClickListener mOnItemClickListener;
 
     public PersonnelAdapter(Context context, List<PersonnelBean> beanList) {
         this.context = context;
@@ -44,7 +47,7 @@ public class PersonnelAdapter extends RecyclerView.Adapter<PersonnelAdapter.View
 
     //将数据与界面进行绑定的操作
     @Override
-    public void onBindViewHolder(ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(ViewHolder viewHolder, final int position) {
         final PersonnelBean item = beanList.get(position);
 
         viewHolder.mTextView.setText(item.getName());
@@ -55,10 +58,18 @@ public class PersonnelAdapter extends RecyclerView.Adapter<PersonnelAdapter.View
             Glide.with(context)
                     .load(R.mipmap.ic_launcher)
                     .into(viewHolder.imageView);
-        }else {
+        } else {
             Glide.with(context)
                     .load(new Api(context).getPictureDataUrl() + item.getPhoto())
                     .into(viewHolder.imageView);
+        }
+        if (mOnItemClickListener != null) {
+            viewHolder.linearLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mOnItemClickListener.onClick(position);
+                }
+            });
         }
 
     }
@@ -70,9 +81,10 @@ public class PersonnelAdapter extends RecyclerView.Adapter<PersonnelAdapter.View
     }
 
     //自定义的ViewHolder，持有每个Item的的所有界面元素
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder  {
         public TextView mTextView, mTextView1, mTextView2, mTextView3;
         public ImageView imageView;
+       public LinearLayout linearLayout;
 
         public ViewHolder(View view) {
             super(view);
@@ -80,25 +92,18 @@ public class PersonnelAdapter extends RecyclerView.Adapter<PersonnelAdapter.View
             mTextView1 = (TextView) view.findViewById(R.id.mobile_b);
             mTextView2 = (TextView) view.findViewById(R.id.company_b);
             mTextView3 = (TextView) view.findViewById(R.id.position_b);
-            imageView= (ImageView) view.findViewById(R.id.personnel_image);
+            imageView = (ImageView) view.findViewById(R.id.personnel_image);
+            linearLayout= (LinearLayout) view.findViewById(R.id.call_image);
 
-            view.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View v) {
-            if (mOnItemClickListener != null) {
-                mOnItemClickListener.onItemClick(v);
-            }
         }
     }
 
     public interface OnItemClickListener {
-        void onItemClick(View view);
+        void onClick(int position);
     }
 
-    public void setOnItemClickListener(OnItemClickListener listener) {
-        mOnItemClickListener = listener;
+    public void setOnItemClickListener(PersonnelAdapter.OnItemClickListener onItemClickListener) {
+        this.mOnItemClickListener = onItemClickListener;
     }
 }
 
