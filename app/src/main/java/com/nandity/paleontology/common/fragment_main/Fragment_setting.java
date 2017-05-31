@@ -14,6 +14,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.alibaba.sdk.android.AlibabaSDK;
+import com.alibaba.sdk.android.push.CloudPushService;
+import com.alibaba.sdk.android.push.CommonCallback;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.R;
@@ -49,7 +52,7 @@ public class Fragment_setting extends Fragment {
     LinearLayout llSignOut;
     private String TAG = "Qingsong", msg, status, sessionId;
     private Context mContext;
-
+    private CloudPushService pushService;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,11 +60,13 @@ public class Fragment_setting extends Fragment {
         ButterKnife.bind(this, view);
         mContext = getActivity();
         sessionId= (String) SharedUtils.getShare(mContext,"sessionId","");
+        pushService= AlibabaSDK.getService(CloudPushService.class);
         return view;
     }
 
     //有别的设备登录，返回登录页面
     private void initToLogin(String msg) {
+        pushService.unbindAccount();
         SharedUtils.putShare(mContext, "isLogin", false);
         ToastUtils.showLong(mContext, msg);
         ToActivityUtlis.toNextActivity(mContext, LoginActivity.class);

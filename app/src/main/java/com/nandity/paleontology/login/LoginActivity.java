@@ -20,6 +20,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.sdk.android.AlibabaSDK;
+import com.alibaba.sdk.android.push.CloudPushService;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.R;
@@ -73,7 +75,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
     private String sessionId;
     private ProgressDialog progressDialog;
     private  boolean isLogin=false;
-
+    private CloudPushService pushService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +83,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
         setContentView(R.layout.activity_login);
         AndroidBug5497Workaround.assistActivity(this);
         ButterKnife.bind(this);
-
+        pushService= AlibabaSDK.getService(CloudPushService.class);
         if (SharedUtils.containsShare(this, "IP")&&SharedUtils.containsShare(this, "PORT")) {
         }else{
             ToastUtils.showShort(this,"请设置相应IP和端口");
@@ -254,6 +256,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                             String message=js.optString("message");
                            String  status= js.optString("status");
                             if (status.equals("200")){
+                                pushService.bindAccount(mobile);
                                 boolean isLogin=true;
                                 SharedUtils.putShare(LoginActivity.this,"isLogin",isLogin);
                                 ToastUtils.showShort(LoginActivity.this,message);

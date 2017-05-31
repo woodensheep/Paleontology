@@ -43,4 +43,43 @@
     <color name="tab_tv_selected">#45c01a</color>
     <color name="tab_bg">#fcfcfc</color>
     <color name="tab_div">#d6d6d6</color>
+    <color name="grey">#363636</color>
+    <color name="dark_grey">#282828</color>
+    <color name="trans_dark_grey">#80282828</color>
+    <color name="trans_white">#20ffffff</color>
+    <color name="trans">#00000000</color>
+    <color name="blue">#cc33b5e5</color>
+
+    <!-- 蓝色 -->
+    <color name="blue1">#6699ff</color>
+    <!-- 带点透明度蓝色 -->
+    <color name="blue2">#5B6699ff</color>
+    <!-- 白色 -->
+    <color name="white3">#8aFFFFFF</color>
+    <!-- 黑色 -->
+    <color name="black">#000000</color>
+    <!-- 红色 -->
+    <color name="red">#CF2A27</color>
+
+    <!-- 灰色 -->
+    <color name="gray1">#808080</color>
+    <color name="gray3">#c6c6c6</color>
+    <color name="gray4">#EEEEEE</color>
+    <!-- 浅灰色 -->
+    <color name="gray2">#BBBFC6</color>
+    <!-- 半透明灰色  -->
+    <color name="gray5">#88000000</color>
+    <color name="gray6">#CDC1C5</color>
+
+    <!-- 浅红色 -->
+    <color name="red1">#FF43FF</color>
+    <!-- 整个title的颜色 -->
+    <color name="titlecolor">#29BFA5</color>
+
+    <!-- 上传图片添加的颜色 -->
+    <color name="none_color">#00000000</color>
+    <color name="albumback">#E1E0DE</color>
+    <color name="plugin_camera_black">#000000</color>
+    <!-- 蓝色 -->
+    <color name="blue3">#29BFA5</color>
 </resources>
