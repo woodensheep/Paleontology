@@ -228,9 +228,7 @@ public class VideoActivity extends Activity implements AnyChatBaseEvent {
 							public void onClick(DialogInterface dialog,
 									int which) {
 								destroyCurActivity();
-								Intent mIntent = new Intent("stop_service");
-								// 发送广播
-								sendBroadcast(mIntent);
+
 							}
 						})
 				.setNegativeButton("否", new DialogInterface.OnClickListener() {
@@ -243,6 +241,9 @@ public class VideoActivity extends Activity implements AnyChatBaseEvent {
 	}
 
 	private void destroyCurActivity() {
+		Intent mIntent = new Intent("stop_service");
+		// 发送广播
+		sendBroadcast(mIntent);
 		onPause();
 		onDestroy();
 	}
