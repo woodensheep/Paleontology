@@ -53,10 +53,14 @@ public class Fragment_setting extends Fragment {
     private String TAG = "Qingsong", msg, status, sessionId;
     private Context mContext;
     private CloudPushService pushService;
+    private View view;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_setting, container, false);
+        if (view ==null) {
+            view = inflater.inflate(R.layout.fragment_setting, container, false);
+        }
         ButterKnife.bind(this, view);
         mContext = getActivity();
         sessionId= (String) SharedUtils.getShare(mContext,"sessionId","");
@@ -127,6 +131,9 @@ public class Fragment_setting extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (view != null) {
+            ((ViewGroup) view.getParent()).removeView(view);
+        }
     }
 
     @OnClick({R.id.ll_update, R.id.ll_sign_out})

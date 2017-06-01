@@ -53,11 +53,14 @@ public class Fragment_work extends Fragment {
     LinearLayout llVidoData;
     private String TAG = "Qingsong";
     private Context mContext;
+   private View view;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        if (view == null){
+            view = inflater.inflate(R.layout.fragment_main, container, false);
+    }
         ButterKnife.bind(this, view);
         mContext = getActivity();
         return view;
@@ -66,6 +69,9 @@ public class Fragment_work extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (view != null) {
+            ((ViewGroup) view.getParent()).removeView(view);
+        }
     }
 
     @OnClick({R.id.ll_personal_data, R.id.ll_paleontological_data, R.id.ll_vido_data})

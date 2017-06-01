@@ -4,27 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/background_workbench"
     android:orientation="vertical"
     tools:context=".common.HomeActivity">
 
-    <RelativeLayout
-        android:id="@+id/rl_title"
-        android:layout_width="match_parent"
-        android:layout_height="45dp"
-        android:background="@color/green">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:gravity="center"
-            android:text="@string/workbench"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/ll_1"
