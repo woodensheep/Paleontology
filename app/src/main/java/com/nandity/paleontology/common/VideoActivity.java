@@ -47,7 +47,7 @@ public class VideoActivity extends Activity implements AnyChatBaseEvent {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
-		        | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
+		        | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON|WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		Intent intent = getIntent();
 		userID = intent.getIntExtra("USER_ID",0);
 		InitSDK();
@@ -286,6 +286,7 @@ public class VideoActivity extends Activity implements AnyChatBaseEvent {
 
 	protected void onDestroy() {
 		super.onDestroy();
+		getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		handler.removeCallbacks(runnable);
 		anychatSDK.mSensorHelper.DestroySensor();
 		anychatSDK.LeaveRoom(-1);
