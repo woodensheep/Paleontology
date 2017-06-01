@@ -376,7 +376,7 @@ public class VideoActivity extends Activity implements AnyChatBaseEvent {
 				anychatSDK.UserCameraControl(dwUserId, 0);
 				anychatSDK.UserSpeakControl(dwUserId, 0);
 				bOtherVideoOpened = false;
-				
+				destroyCurActivity();
 			}
 
 		} else {
