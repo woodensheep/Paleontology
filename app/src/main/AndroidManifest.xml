@@ -32,7 +32,11 @@
             android:name=".login.LoginActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen"
             android:windowSoftInputMode="stateAlwaysHidden|adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".relicdata.ui.ReLicDataActivity" />
         <activity
@@ -43,11 +47,7 @@
         <activity android:name=".relicdata.ui.PaleontologicalActivity" />
         <activity android:name=".FossilDate.FossilDateActivity" />
         <activity android:name=".common.HomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <service

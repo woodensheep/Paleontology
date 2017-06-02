@@ -38,8 +38,11 @@
         android:layout_gravity="center_vertical"
         android:layout_width="0dp"
         android:layout_weight="1"
+        android:background="@null"
+        android:textColor="@color/color_fe9571"
         android:layout_height="match_parent"
-        android:background="@mipmap/ic_nextpage"/>
+        android:text="详细数据"
+        />
     </LinearLayout>
 
     <View

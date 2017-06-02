@@ -210,6 +210,7 @@ public class PaleontologicalActivity extends BaseActivity {
         ActivityCollectorUtils.finishAll();
     }
     private void initView() {
+        pageNum=0;
         dialogUtils.showDialog();
         OkGo.post(new Api(this).getPaleontogicalUrl())
                 .params("palaeobiosType", spinnerType)
@@ -235,6 +236,7 @@ public class PaleontologicalActivity extends BaseActivity {
                                 initToLogin(message);
                             } else if (status.equals("500")) {
                                 ToastUtils.showShort(PaleontologicalActivity.this, message);
+                                initceshi(new ArrayList<PaleontologicalaBean>());
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

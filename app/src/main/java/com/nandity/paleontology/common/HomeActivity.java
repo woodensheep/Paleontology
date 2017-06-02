@@ -54,7 +54,20 @@ public class HomeActivity extends AppCompatActivity {
         mViewPager.setOffscreenPageLimit(2);
         mViewPager.setAdapter(mAdapter);
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTabLayout));
-        mTabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+        mTabLayout.addOnTabSelectedListener(new MyViewPagerOnTabSelectedListener(mViewPager));
+    }
+
+    public class MyViewPagerOnTabSelectedListener extends TabLayout.ViewPagerOnTabSelectedListener{
+
+        public MyViewPagerOnTabSelectedListener(ViewPager viewPager) {
+            super(viewPager);
+        }
+
+        @Override
+        public void onTabSelected(TabLayout.Tab tab) {
+            mTitle.setText(TAB_TITLES[tab.getPosition()]);
+            super.onTabSelected(tab);
+        }
     }
 
     /**

@@ -15,9 +15,8 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginBottom="5dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="5dp"
-
             android:src="@mipmap/goback" />
 
         <TextView
@@ -39,9 +38,9 @@
             android:layout_alignParentRight="true"
             android:gravity="center_vertical"
             android:paddingRight="8dp"
-            android:text="详细数据"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
+            android:text="化石数据"
+            android:textColor="@color/color_fe9571"
+            android:textSize="17sp" />
 
     </RelativeLayout>
 

@@ -40,6 +40,7 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
+        android:textColor="@color/color_fe9571"
         android:text="@string/paleontodate" />
     </LinearLayout>
 
