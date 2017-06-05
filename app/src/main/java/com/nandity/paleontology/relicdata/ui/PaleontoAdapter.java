@@ -45,7 +45,12 @@ public class PaleontoAdapter extends RecyclerView.Adapter<PaleontoAdapter.Paleon
         try {
             PaleontologicalaBean paleontologicalaBean = mPaleontoBeanList.get(position);
             Log.d("limeng","mPaleontoBeanList:"+paleontologicalaBean.getPalaeobiosName());
-            holder.paleonto_name.setText(paleontologicalaBean.getPalaeobiosName());
+            if(paleontologicalaBean.getPalaeobiosName()==null) {
+                holder.paleonto_name.setText("(无)");
+            }else {
+                holder.paleonto_name.setText(paleontologicalaBean.getPalaeobiosName());
+
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }

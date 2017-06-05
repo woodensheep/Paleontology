@@ -8,7 +8,7 @@
     <string name="system_setting">系统设置</string>
 
 
-    <string name="hint_login_username">请输入手机号码</string>
+    <string name="hint_login_username">请输入登陆账号</string>
     <string name="hint_login_password">输入密码</string>
     <string name="login">登录</string>
     <string name="logSetting">设置</string>
@@ -31,7 +31,7 @@
 
     <string name="paleontodatetop">基础数据</string>
     <string name="paleontodate">详细数据</string>
-    <string name="ceshi">-</string>
+    <string name="ceshi"></string>
     <!--化石-->
     <string name="fossiNum">化石编号:</string>
     <string name="packingNum">装箱编号:</string>

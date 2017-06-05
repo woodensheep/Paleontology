@@ -13,6 +13,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
+import com.alibaba.sdk.android.AlibabaSDK;
+import com.alibaba.sdk.android.push.CloudPushService;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.R;
@@ -124,9 +126,14 @@ public class PaleontologicalActivity extends BaseActivity {
             @Override
             public void onClick(int position) {
                 Intent i = new Intent(PaleontologicalActivity.this, ReLicDataActivity.class);
-                i.putExtra("palaeobios_name", mPaleontoBeanList.get(position).getPalaeobiosName());
                 i.putExtra("palaeobios_id", mPaleontoBeanList.get(position).getId());
-                startActivity(i);
+                if(mPaleontoBeanList.get(position).getPalaeobiosName()!=null) {
+                    i.putExtra("palaeobios_name", mPaleontoBeanList.get(position).getPalaeobiosName());
+                    startActivity(i);
+                }else {
+                    ToastUtils.showShort(context,"无法展示的数据");
+                    //i.putExtra("palaeobios_name", "(无)");
+                }
                 Log.d("limeng", "-------position------" + position);
             }
         });
@@ -175,6 +182,7 @@ public class PaleontologicalActivity extends BaseActivity {
                                 dateShow.setPullLoadMoreCompleted();
                             } else if (status.equals("400")) {
                                 initToLogin(msg);
+                                dateShow.setPullLoadMoreCompleted();
                             } else if (status.equals("500")) {
                                 ToastUtils.showLong(context, msg);
                                 dateShow.setPullLoadMoreCompleted();
@@ -187,6 +195,7 @@ public class PaleontologicalActivity extends BaseActivity {
                     @Override
                     public void onError(Call call, Response response, Exception e) {
                         super.onError(call, response, e);
+                        dateShow.setPullLoadMoreCompleted();
                         ToastUtils.showShort(context, "网络请求失败");
                     }
                 });
@@ -204,7 +213,10 @@ public class PaleontologicalActivity extends BaseActivity {
     }
     //有别的设备登录，返回登录页面
     private void initToLogin(String msg) {
-        SharedUtils.putShare(context, "isLogin", false);
+        CloudPushService pushService;
+        pushService= AlibabaSDK.getService(CloudPushService.class);
+        pushService.unbindAccount();
+        SharedUtils.putShare(context, "isLogin", "-1");
         ToastUtils.showLong(context, msg);
         ToActivityUtlis.toNextActivity(context, LoginActivity.class);
         ActivityCollectorUtils.finishAll();
@@ -249,6 +261,7 @@ public class PaleontologicalActivity extends BaseActivity {
                         dialogUtils.deleteDialog();
                         super.onError(call, response, e);
                         ToastUtils.showShort(context, "网络请求失败");
+                        finish();
                     }
                 });
     }
@@ -260,9 +273,14 @@ public class PaleontologicalActivity extends BaseActivity {
             @Override
             public void onClick(int position) {
                 Intent i = new Intent(PaleontologicalActivity.this, ReLicDataActivity.class);
-                i.putExtra("palaeobios_name", mPaleontoBeanList.get(position).getPalaeobiosName());
                 i.putExtra("palaeobios_id", mPaleontoBeanList.get(position).getId());
-                startActivity(i);
+                if(mPaleontoBeanList.get(position).getPalaeobiosName()!=null) {
+                    i.putExtra("palaeobios_name", mPaleontoBeanList.get(position).getPalaeobiosName());
+                    startActivity(i);
+                }else {
+                    ToastUtils.showShort(context,"无法展示的数据");
+                    //i.putExtra("palaeobios_name", "(无)");
+                }
                 Log.d("limeng", "-------position------" + position);
             }
         });

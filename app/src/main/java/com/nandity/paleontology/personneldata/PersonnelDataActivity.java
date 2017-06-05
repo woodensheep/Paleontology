@@ -18,6 +18,8 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 
+import com.alibaba.sdk.android.AlibabaSDK;
+import com.alibaba.sdk.android.push.CloudPushService;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.FossilDate.FossiAdapter;
@@ -280,7 +282,10 @@ public class PersonnelDataActivity extends BaseActivity {
 
     //有别的设备登录，返回登录页面
     private void initToLogin(String msg) {
-        SharedUtils.putShare(mContext, "isLogin", false);
+        CloudPushService pushService;
+        pushService= AlibabaSDK.getService(CloudPushService.class);
+        pushService.unbindAccount();
+        SharedUtils.putShare(this, "isLogin", "-1");
         ToastUtils.showLong(PersonnelDataActivity.this, msg);
         ToActivityUtlis.toNextActivity(mContext, LoginActivity.class);
         ActivityCollectorUtils.finishAll();

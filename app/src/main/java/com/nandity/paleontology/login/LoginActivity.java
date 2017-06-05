@@ -74,7 +74,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
     private String mobile;
     private String sessionId;
     private ProgressDialog progressDialog;
-    private  boolean isLogin=false;
+    private String isLogin = "-1";
     private CloudPushService pushService;
 
     @Override
@@ -83,17 +83,20 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
         setContentView(R.layout.activity_login);
         AndroidBug5497Workaround.assistActivity(this);
         ButterKnife.bind(this);
-        pushService= AlibabaSDK.getService(CloudPushService.class);
-        if (SharedUtils.containsShare(this, "IP")&&SharedUtils.containsShare(this, "PORT")) {
-        }else{
-            ToastUtils.showShort(this,"请设置相应IP和端口");
+        isLogin = (String) SharedUtils.getShare(this, "isLogin", "");
+        if ("1".equals(isLogin)) {
+            ToActivityUtlis.toNextActivity(LoginActivity.this, HomeActivity.class);
+            finish();
+        }else {
+            pushService = AlibabaSDK.getService(CloudPushService.class);
+            intiView();
+            initListener();
+            Log.d("limeng", sessionId);
         }
-        intiView();
-        initListener();
-        Log.d("limeng", sessionId);
     }
 
     private void intiView() {
+        Log.d("limeng","---intiView");
         screenHeight = this.getResources().getDisplayMetrics().heightPixels; //获取屏幕高度
         keyHeight = screenHeight / 4;//弹起高度为屏幕高度的1/3
         //dialog
@@ -101,8 +104,8 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
         progressDialog.setCancelable(false);
         progressDialog.setCanceledOnTouchOutside(false);
         progressDialog.setMessage("正在登录...");
-        sessionId=ToActivityUtlis.getMyUUID();
-        SharedUtils.putShare(this,"sessionId",sessionId);
+        sessionId = ToActivityUtlis.getMyUUID();
+        SharedUtils.putShare(this, "sessionId", sessionId);
     }
 
     private void initListener() {
@@ -224,15 +227,24 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                     etPassword.setSelection(pwd.length());
                 break;
             case R.id.btn_login:
+                if (SharedUtils.containsShare(this, "IP") && SharedUtils.containsShare(this, "PORT")) {
+                } else {
+                    ToastUtils.showShort(this, "请设置相应IP和端口");
+
+                }
+
                 if (TextUtils.isEmpty(mobile)) {
                     ToastUtils.showShort(this, "请输入账号");
                 } else if (TextUtils.isEmpty(pwd)) {
                     ToastUtils.showShort(this, "请输入密码");
-                } else {
+                } else if (SharedUtils.containsShare(this, "IP") && SharedUtils.containsShare(this, "PORT")) {
                     progressDialog.show();
                     send();
+                } else {
+                    ToastUtils.showShort(this, "请设置相应IP和端口");
+                    ToActivityUtlis.toNextActivity(LoginActivity.this, SettingActivity.class);
                 }
-                break;
+            break;
             case R.id.forget_password:
                 ToActivityUtlis.toNextActivity(LoginActivity.this, SettingActivity.class);
                 break;
@@ -240,9 +252,9 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
     }
 
     private void send() {
-        Log.i("Qingsong","sessionId:"+sessionId+"userName"+mobile+"passWord"+pwd);
+        Log.i("Qingsong", "sessionId:" + sessionId + "userName" + mobile + "passWord" + pwd);
         OkGo.post(new Api(this).getLoginUrl())
-                .params("sessionId",sessionId)
+                .params("sessionId", sessionId)
                 .params("userName", mobile)
                 .params("passWord", pwd)
                 .execute(new StringCallback() {
@@ -250,20 +262,21 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                     public void onSuccess(String s, Call call, Response response) {
                         Log.d("Qingsong", s.toString());
                         progressDialog.dismiss();
-                        JSONObject js= null;
+                        JSONObject js = null;
                         try {
                             js = new JSONObject(s);
-                            String message=js.optString("message");
-                           String  status= js.optString("status");
-                            if (status.equals("200")){
-                                pushService.bindAccount(mobile);
-                                boolean isLogin=true;
-                                SharedUtils.putShare(LoginActivity.this,"isLogin",isLogin);
-                                ToastUtils.showShort(LoginActivity.this,message);
+                            String message = js.optString("message");
+                            String status = js.optString("status");
+                            if (status.equals("200")) {
+                                SharedUtils.putShare(LoginActivity.this, "mobile", mobile);
+                                Log.d("limeng", (String) SharedUtils.getShare(LoginActivity.this, "mobile", ""));
+                                isLogin = "1";
+                                SharedUtils.putShare(LoginActivity.this, "isLogin", isLogin);
+                                ToastUtils.showShort(LoginActivity.this, message);
                                 ToActivityUtlis.toNextActivity(LoginActivity.this, HomeActivity.class);
                                 finish();
-                            }else{
-                                ToastUtils.showShort(LoginActivity.this,message);
+                            } else {
+                                ToastUtils.showShort(LoginActivity.this, message);
 
                             }
                         } catch (JSONException e) {
@@ -277,7 +290,7 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                     public void onError(Call call, Response response, Exception e) {
                         super.onError(call, response, e);
                         progressDialog.dismiss();
-                        ToastUtils.showShort(LoginActivity.this,"网络不给力请稍后");
+                        ToastUtils.showShort(LoginActivity.this, "网络不给力请稍后");
                     }
                 });
     }

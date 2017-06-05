@@ -65,8 +65,7 @@
                     android:id="@+id/fossiNum"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:text="@string/fossiNum" />
+                    android:layout_weight="7" />
             </LinearLayout>
             <View
                 android:id="@+id/view_1"
@@ -93,8 +92,7 @@
                     android:id="@+id/packingNum"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:text="@string/packingNum" />
+                    android:layout_weight="7" />
             </LinearLayout>
             <View
                 android:id="@+id/view_2"
@@ -121,8 +119,7 @@
                     android:id="@+id/fossilSpecies"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:text="@string/fossilSpecies" />
+                    android:layout_weight="7" />
             </LinearLayout>
             <View
                 android:id="@+id/view_3"
@@ -160,7 +157,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="1" />
+                        android:text="" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -173,7 +170,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="1" />
+                        android:text="" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -192,7 +189,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="1" />
+                        android:text="" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -205,7 +202,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="1" />
+                        android:text="" />
                 </LinearLayout>
             </LinearLayout>
             <View
@@ -233,8 +230,7 @@
                     android:id="@+id/earlyFossilName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:text="@string/earlyFossilName" />
+                    android:layout_weight="7" />
             </LinearLayout>
             <View
                 android:id="@+id/view_5"
@@ -261,8 +257,7 @@
                     android:id="@+id/excavationUnit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:text="@string/excavationUnit" />
+                    android:layout_weight="7" />
             </LinearLayout>
             <View
                 android:id="@+id/view_6"
@@ -289,8 +284,7 @@
                     android:id="@+id/excavationPerson"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:text="@string/excavationPerson" />
+                    android:layout_weight="7" />
             </LinearLayout>
             <View
                 android:id="@+id/view_7"
@@ -317,8 +311,7 @@
                     android:id="@+id/excavationDate"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:text="@string/excavationDate" />
+                    android:layout_weight="7" />
             </LinearLayout>
             <View
                 android:id="@+id/view_8"
@@ -345,8 +338,7 @@
                     android:id="@+id/producer"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:text="@string/producer" />
+                    android:layout_weight="7" />
             </LinearLayout>
             <View
                 android:id="@+id/view_9"
@@ -374,9 +366,8 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:text="@string/possilLon" />
 
                     <TextView
@@ -384,12 +375,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="1" />
+                        android:text="" />
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:text="@string/possilLat" />
 
                     <TextView
@@ -397,7 +387,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="1" />
+                        android:text="" />
                 </LinearLayout>
 
 
@@ -427,8 +417,7 @@
                     android:id="@+id/geologicaAge"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:text="@string/geologicaAge" />
+                    android:layout_weight="7" />
             </LinearLayout>
             <View
                 android:id="@+id/view_11"
@@ -455,8 +444,7 @@
                     android:id="@+id/stratumHorizon"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:text="@string/stratumHorizon" />
+                    android:layout_weight="7" />
             </LinearLayout>
             <View
                 android:id="@+id/view_12"
@@ -483,8 +471,7 @@
                     android:id="@+id/lithology"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:text="@string/lithology" />
+                    android:layout_weight="7" />
             </LinearLayout>
             <View
                 android:id="@+id/view_13"
@@ -511,8 +498,7 @@
                     android:id="@+id/burialState"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:text="@string/burialState" />
+                    android:layout_weight="7" />
             </LinearLayout>
             <View
                 android:id="@+id/view_14"
@@ -539,8 +525,7 @@
                     android:id="@+id/keepstatus"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:text="@string/keepstatus" />
+                    android:layout_weight="7" />
             </LinearLayout>
             <View
                 android:id="@+id/view_15"
@@ -567,8 +552,7 @@
                     android:id="@+id/featureDescription"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:text="@string/featureDescription" />
+                    android:layout_weight="7" />
             </LinearLayout>
             <View
                 android:id="@+id/view_16"
@@ -595,8 +579,7 @@
                     android:id="@+id/fossilWhereabouts"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="7"
-                    android:text="@string/fossilWhereabouts" />
+                    android:layout_weight="7" />
             </LinearLayout>
             <View
                 android:id="@+id/view_17"
@@ -624,9 +607,8 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:text="长：" />
 
                     <TextView
@@ -634,12 +616,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="1" />
+                        android:text="" />
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:text="宽：" />
 
                     <TextView
@@ -647,12 +628,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="1" />
+                        android:text="" />
 
                     <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:text="高：" />
 
                     <TextView
@@ -660,7 +640,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="3"
-                        android:text="1" />
+                        android:text="" />
 
 
                 </LinearLayout>
@@ -689,7 +669,7 @@
                     android:layout_marginLeft="30dp"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
-                    android:src="@mipmap/ic_launcher"/>
+                    />
             </RelativeLayout>
         </RelativeLayout>
 

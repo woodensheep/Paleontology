@@ -6,8 +6,8 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -15,11 +15,14 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.sdk.android.AlibabaSDK;
+import com.alibaba.sdk.android.push.CloudPushService;
 import com.nandity.paleontology.R;
 import com.nandity.paleontology.common.fragment_main.Fragment_setting;
 import com.nandity.paleontology.common.fragment_main.Fragment_work;
+import com.nandity.paleontology.util.SharedUtils;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
 
     private TabLayout mTabLayout;
     //Tab 文字
@@ -33,12 +36,17 @@ public class HomeActivity extends AppCompatActivity {
     private MyViewPagerAdapter mAdapter;
     private ViewPager mViewPager;
     private TextView mTitle;
-
+    private CloudPushService pushService;
+    private String mobile;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         initViews();
+        mobile=(String) SharedUtils.getShare(this,"mobile","");
+        Log.d("limeng","-1-1-:"+mobile);
+        pushService= AlibabaSDK.getService(CloudPushService.class);
+        pushService.bindAccount(mobile);
     }
 
     private void initViews() {

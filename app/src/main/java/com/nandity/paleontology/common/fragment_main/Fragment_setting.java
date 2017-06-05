@@ -70,8 +70,9 @@ public class Fragment_setting extends Fragment {
 
     //有别的设备登录，返回登录页面
     private void initToLogin(String msg) {
+
         pushService.unbindAccount();
-        SharedUtils.putShare(mContext, "isLogin", false);
+        SharedUtils.putShare(mContext, "isLogin", "-1");
         ToastUtils.showLong(mContext, msg);
         ToActivityUtlis.toNextActivity(mContext, LoginActivity.class);
         ActivityCollectorUtils.finishAll();
@@ -143,9 +144,31 @@ public class Fragment_setting extends Fragment {
                 updateManager();
                 break;
             case R.id.ll_sign_out:
-                SharedUtils.clearShare(mContext);
-                initToLogin("注销app");
+                showSignOutNoticeDialog();
                 break;
         }
+    }
+
+    private void showSignOutNoticeDialog() {
+        Dialog dialog;
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("是否注销账号");
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                SharedUtils.clearShare(mContext);
+                initToLogin("注销成功");
+                dialog.dismiss();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        dialog = builder.create();
+        dialog.show();
+        dialog.setCanceledOnTouchOutside(false);
     }
 }

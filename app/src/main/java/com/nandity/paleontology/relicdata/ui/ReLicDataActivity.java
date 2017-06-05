@@ -3,6 +3,8 @@ package com.nandity.paleontology.relicdata.ui;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
@@ -13,6 +15,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.sdk.android.AlibabaSDK;
+import com.alibaba.sdk.android.push.CloudPushService;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.FossilDate.FossilDateActivity;
@@ -392,25 +396,45 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
         tvArt6.setText(mArt6[Integer.parseInt(p.getZiyuanguimohezuhe())]);
 
         tvNature1.setText(mNature1[Integer.parseInt(p.getGeographical_condition())]);
-        tvNature2.setText(mNature1[Integer.parseInt(p.getVulnerability())]);
-        tvNature3.setText(mNature1[Integer.parseInt(p.getLvyou())]);
-        tvNature4.setText(mNature1[Integer.parseInt(p.getSecurity())]);
-        tvNature5.setText(mNature1[Integer.parseInt(p.getHuanjing_quality())]);
+        tvNature2.setText(mNature2[Integer.parseInt(p.getVulnerability())]);
+        tvNature3.setText(mNature3[Integer.parseInt(p.getLvyou())]);
+        tvNature4.setText(mNature4[Integer.parseInt(p.getSecurity())]);
+        tvNature5.setText(mNature5[Integer.parseInt(p.getHuanjing_quality())]);
 
 
         String[] sq=p.getZiliaolaiyuan().split(",");
         String stringDataSources1 = "";
         for (int i = 0; i < sq.length; i++) {
-            stringDataSources1=stringDataSources1+mZiliaolaiyuan[Integer.parseInt(sq[i])]+",";
+            stringDataSources1=stringDataSources1+mZiliaolaiyuan[Integer.parseInt(sq[i])]+"  ";
         }
         tvDataSources1.setText(stringDataSources1);
-//        tvDataSources2.setText(p.getSurvey_man());
-        setOkhttpNum(p.getSurvey_man(), tvDataSources2);
+
+        String[] sm=p.getSurvey_man().split(",");
+        for (int i = 0; i < sm.length; i++) {
+            Log.d("limeng",sm[i]);
+            setOkhttpNum2(sm[i]);
+        }
         tvDataSources3.setText(p.getSurvey_time());
         tvDataSources4.setText(p.getRemark());
         setOkPacture(id);
         //
     }
+
+
+    /**
+     *   msg.what=1  代表：调查人员
+     */
+    Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what){
+                case 1:
+                    tvDataSources2.append((String)msg.obj);
+                    break;
+            }
+            super.handleMessage(msg);
+        }
+    };
 
     private void initPictureData(List<ImageBean> itemList) {
         if (itemList.isEmpty() || itemList.isEmpty()) {
@@ -466,7 +490,6 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
 
 
     private void setOkhttpNum(String id, final TextView tv) {
-        final String[] s1 = new String[1];
         OkGo.post(new Api(this).getfindStaticValueDataUrl())
                 .params("sessionId", sessionId)
                 .params("id", id)
@@ -495,6 +518,46 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
                     @Override
                     public void onError(Call call, Response response, Exception e) {
                         super.onError(call, response, e);
+                        finish();
+                        ToastUtils.showShort(ReLicDataActivity.this, "网络请求失败");
+                    }
+                });
+    }
+
+    //多对应 tv.append
+    private void setOkhttpNum2(String id) {
+        OkGo.post(new Api(this).getfindStaticValueDataUrl())
+                .params("sessionId", sessionId)
+                .params("id", id)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        Log.d("limeng", "s" + s);
+                        JSONObject js = null;
+                        try {
+                            js = new JSONObject(s);
+                            String message = js.optString("message");
+                            String status = js.optString("status");
+                            if (status.equals("200")) {
+                                Message message1=Message.obtain();
+                                message1.what=1;
+                                message1.obj=js.getJSONArray("message").getJSONObject(0).getString("text")+"  ";
+                                mHandler.sendMessage(message1);
+                            } else if (status.equals("400")) {
+                                initToLogin(message);
+                            } else {
+                                ToastUtils.showShort(ReLicDataActivity.this, message);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(Call call, Response response, Exception e) {
+                        super.onError(call, response, e);
+                        finish();
                         ToastUtils.showShort(ReLicDataActivity.this, "网络请求失败");
                     }
                 });
@@ -502,7 +565,10 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
 
     //有别的设备登录，返回登录页面
     private void initToLogin(String msg) {
-        SharedUtils.putShare(context, "isLogin", false);
+        CloudPushService pushService;
+        pushService= AlibabaSDK.getService(CloudPushService.class);
+        pushService.unbindAccount();
+        SharedUtils.putShare(context, "isLogin", "-1");
         ToastUtils.showLong(context, msg);
         ToActivityUtlis.toNextActivity(context, LoginActivity.class);
         ActivityCollectorUtils.finishAll();
@@ -532,8 +598,8 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
                                 initPictureData(imagesList);
                             } else if (status.equals("400")) {
                                 initToLogin(message);
-                            } else {
-                                ToastUtils.showShort(ReLicDataActivity.this, message);
+                            } else if(status.equals("500")){
+                                //ToastUtils.showShort(ReLicDataActivity.this, message);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -544,6 +610,7 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
                     @Override
                     public void onError(Call call, Response response, Exception e) {
                         super.onError(call, response, e);
+                        finish();
                         ToastUtils.showShort(ReLicDataActivity.this, "网络请求失败");
                     }
                 });
@@ -579,6 +646,7 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
                     @Override
                     public void onError(Call call, Response response, Exception e) {
                         super.onError(call, response, e);
+                        finish();
                         ToastUtils.showShort(ReLicDataActivity.this, "网络请求失败");
                     }
                 });

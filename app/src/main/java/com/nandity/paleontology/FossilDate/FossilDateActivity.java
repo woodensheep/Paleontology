@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.sdk.android.AlibabaSDK;
+import com.alibaba.sdk.android.push.CloudPushService;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.R;
@@ -56,6 +58,7 @@ public class FossilDateActivity extends BaseActivity {
     private FossiAdapter fossiAdapter;
     private List<FossiBean> fossiBeanList;
     private Context mContext;
+
 
 
     @Override
@@ -143,6 +146,8 @@ public class FossilDateActivity extends BaseActivity {
                     public void onError(Call call, Response response, Exception e) {
                         super.onError(call, response, e);
                         progressDialog.dismiss();
+                        finish();
+                        ToastUtils.showShort(mContext, "请检查网络连接");
                     }
                 });
 
@@ -150,7 +155,10 @@ public class FossilDateActivity extends BaseActivity {
 
     //有别的设备登录，返回登录页面
     private void initToLogin(String msg) {
-        SharedUtils.putShare(mContext, "isLogin", false);
+        CloudPushService pushService;
+        pushService= AlibabaSDK.getService(CloudPushService.class);
+        pushService.unbindAccount();
+        SharedUtils.putShare(mContext, "isLogin", "-1");
         ToastUtils.showLong(mContext, msg);
         ToActivityUtlis.toNextActivity(mContext, LoginActivity.class);
         ActivityCollectorUtils.finishAll();
