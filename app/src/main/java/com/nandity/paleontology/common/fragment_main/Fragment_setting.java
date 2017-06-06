@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -95,6 +96,13 @@ public class Fragment_setting extends Fragment {
                                 showNoticeDialog();
                             } else if ("400".equals(status)) {
                                 initToLogin(msg);
+                            }else{
+
+                                Snackbar.make(view, "已经是最新版本",Snackbar.LENGTH_LONG).setAction("确认", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                    }
+                                }).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

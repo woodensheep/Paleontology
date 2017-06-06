@@ -70,8 +70,7 @@ public class UpdataService extends Service {
         //开始下载
         downloadManager = (DownloadManager)getSystemService(DOWNLOAD_SERVICE) ;
         mReference = downloadManager.enqueue( request ) ;
-
-		/*
+        	/*
 		下载管理器中有很多下载项，怎么知道一个资源已经下载过，避免重复下载呢？
 		我的项目中的需求就是apk更新下载，用户点击更新确定按钮，第一次是直接下载，
 		后面如果用户连续点击更新确定按钮，就不要重复下载了。
@@ -81,10 +80,14 @@ public class UpdataService extends Service {
         query.setFilterById( mReference );
         Cursor cursor = downloadManager.query( query ) ;
         if ( !cursor.moveToFirst() ) {// 没有记录
-
+            ToastUtils.showShort(getApplicationContext(),"已经下载过了1");
         } else {
             //有记录
+//            ToastUtils.showShort(getApplicationContext(),"已经下载过了2");
         }
+
+
+
     }
 
 
@@ -101,7 +104,7 @@ public class UpdataService extends Service {
         request.setTitle( "下载" ) ;
 
         //设置描述
-        request.setDescription( "2.0" ) ;
+        request.setDescription("") ;
 
         //request.setNotificationVisibility( Request.VISIBILITY_VISIBLE ) ;
 
