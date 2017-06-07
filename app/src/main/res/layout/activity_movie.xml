@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    tools:context="com.nandity.paleontology.hcvideo.MovieActivity">
+
+    <LinearLayout
+        android:id="@+id/fajuequ"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/fajuequ"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:text="云阳恐龙化石发掘区"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/zhushitu"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/zhushitu"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:text="云阳恐龙化石主视图"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/fajuequ4"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/fajuequ"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/fajuequ1"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:text="云阳恐龙化石发掘区四"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/fushitu"
+        android:layout_width="150dp"
+        android:layout_height="200dp"
+        android:layout_below="@+id/zhushitu"
+        android:layout_alignParentRight="true"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/fushitu"
+            android:layout_weight="1"
+            />
+        <TextView
+            android:text="云阳恐龙化石俯视图"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</RelativeLayout>

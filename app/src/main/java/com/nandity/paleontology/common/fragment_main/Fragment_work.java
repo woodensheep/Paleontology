@@ -19,6 +19,7 @@ import com.lzy.okgo.callback.StringCallback;
 import com.nandity.paleontology.R;
 import com.nandity.paleontology.common.Api;
 import com.nandity.paleontology.common.UpdataService;
+import com.nandity.paleontology.hcvideo.MovieActivity;
 import com.nandity.paleontology.login.LoginActivity;
 import com.nandity.paleontology.personneldata.PersonnelDataActivity;
 import com.nandity.paleontology.relicdata.ui.PaleontologicalActivity;
@@ -84,6 +85,7 @@ public class Fragment_work extends Fragment {
                 ToActivityUtlis.toNextActivity(mContext, PaleontologicalActivity.class);
                 break;
             case R.id.ll_vido_data:
+                ToActivityUtlis.toNextActivity(mContext, MovieActivity.class);
                 break;
         }
     }

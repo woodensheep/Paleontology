@@ -4,7 +4,6 @@
 
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -15,11 +14,10 @@
     <uses-permission android:name="android.permission.READ_LOGS" />
     <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
     <application
         android:name=".common.MyApplication"
         android:allowBackup="true"
@@ -50,22 +48,23 @@
 
         </activity>
 
+        <activity android:name=".hcvideo.MovieActivity"/>
+        <activity android:name=".hcvideo.HcActivity"
+            android:screenOrientation="portrait"/>
         <service
             android:name=".common.UpdataService"
             android:enabled="true"
             android:exported="true" />
 
         <activity android:name=".FossilDate.FossilActivity" />
-        <activity android:name=".common.ProgressActivity"/>
+        <activity android:name=".common.ProgressActivity" />
         <activity
             android:name=".common.VideoActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".common.ReceiveVideoActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".common.ReceiveVideoActivity"
             android:configChanges="orientation|keyboardHidden|navigation"
-            android:screenOrientation="portrait" />
-
+            android:screenOrientation="portrait"/>
         <meta-data
             android:name="com.alibaba.app.appkey"
             android:value="23884463" />
@@ -73,14 +72,13 @@
             android:name="com.alibaba.app.appsecret"
             android:value="d682837ee1c8f067e1789be0f1b76f36" />
 
-        <service
-            android:name=".common.MyService"
-            android:enabled="true" />
+        <service android:name=".common.MyService"
+            android:enabled="true"/>
         <!-- 通道保持服务 -->
         <service
             android:name="com.alibaba.sdk.android.push.ChannelService"
             android:exported="true"
-            android:process=":channel">
+            android:process=":channel" >
             <intent-filter>
                 <action android:name="com.taobao.accs.intent.action.SERVICE" />
             </intent-filter>
@@ -94,7 +92,7 @@
         <!-- 消息接收服务 -->
         <service
             android:name="com.alibaba.sdk.android.push.MsgService"
-            android:exported="false">
+            android:exported="false" >
             <intent-filter>
                 <action android:name="com.taobao.accs.intent.action.RECEIVE" />
             </intent-filter>
@@ -104,12 +102,12 @@
         </service>
 
         <!-- 连接心跳保持监听器 -->
-        <receiver android:name="anet.channel.heartbeat.HeartbeatManager$Receiver">
+        <receiver android:name="anet.channel.heartbeat.HeartbeatManager$Receiver" >
             <intent-filter>
                 <action android:name="anetwork.channel.intent.action.COMMAND" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".common.MyReceiver">
+        <receiver android:name=".common.MyReceiver" >
             <intent-filter>
                 <action android:name="com.fubangty.action.NOTIFICATION_OPENED" />
             </intent-filter>
@@ -140,7 +138,6 @@
                 <data android:scheme="package" />
             </intent-filter>
         </receiver>
-
     </application>
 
 </manifest>
