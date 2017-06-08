@@ -3,14 +3,13 @@
     <string-array name="personnel_date">
         <item>全部</item>
         <item>技术人员</item>
-        <item>专家</item>
-        <item>专业技工</item>
+        <item>专家顾问</item>
+        <item>技工人员</item>
         <item>管理人员</item>
     </string-array>
 
     <string-array name="paleontological_data">
         <item>全部</item>
-        <item>化石面结构</item>
         <item>古无脊椎动物</item>
         <item>古脊椎动物</item>
         <item>古植物</item>

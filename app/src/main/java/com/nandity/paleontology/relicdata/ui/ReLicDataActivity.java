@@ -300,6 +300,7 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
                     @Override
                     public void onError(Call call, Response response, Exception e) {
                         super.onError(call, response, e);
+                        finish();
                         ToastUtils.showShort(ReLicDataActivity.this, "网络请求失败");
                     }
                 });
@@ -352,74 +353,105 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
     private static final String[] mJiaotongzhuangkuang = {"", "极佳", "良好", "一般", "差"};
 
 
+    //责任人人员类型
+//    [{id:1,text:'技术人员'},{id:2,text:'专家顾问'},{id:3,text:'技工人员'},{id:4,text:'管理人员'}
+
+
     private void setViewData() {
         PaleontologicalaBean p = paleontoBeanList.get(0);
-        tvBaseData1.setText(p.getRuins_dot());
-        tvBaseData2.setText(p.getRelic_name());
-        tvBaseData3.setText(relicType[Integer.parseInt(p.getRelic_type())]);
+        tvBaseData1.setText(BeanStringIsNull(p.getRuins_dot()));
+        tvBaseData2.setText(BeanStringIsNull(p.getRelic_name()));
+        tvBaseData3.setText(relicType[stringIsNull(p.getRelic_type())]);
         setOkfindAreaData(p.getArea_id(), tvBaseData4);
         Log.d("limeng",p.getArea_id());
         setOkhttpNum(p.getUnit_id(), tvBaseData5);
-        tvBaseData6.setText(p.getKaifaxianzhuang());
-        tvBaseData7.setText(p.getBaohuxianzhuang());
-        tvBaseData8.setText(p.getDistrict());
-        tvBaseData9.setText(p.getKaifajianyi());
-        tvBaseData10.setText(p.getBaohujianyi());
-        tvBaseData11.setText(mJiaotongzhuangkuang[Integer.parseInt(p.getJiaotongzhuangkuang())]);
-        tvBaseData12.setText(p.getArea());
-        tvBaseData13.setText(p.getAltitude());
+        Log.d("limeng",p.getUnit_id());
+        tvBaseData6.setText(BeanStringIsNull(p.getKaifaxianzhuang()));
+        tvBaseData7.setText(BeanStringIsNull(p.getBaohuxianzhuang()));
+        tvBaseData8.setText(BeanStringIsNull(p.getDistrict()));
+        tvBaseData9.setText(BeanStringIsNull(p.getKaifajianyi()));
+        tvBaseData10.setText(BeanStringIsNull(p.getBaohujianyi()));
+        tvBaseData11.setText(mJiaotongzhuangkuang[stringIsNull(p.getJiaotongzhuangkuang())]);
+        tvBaseData12.setText(BeanStringIsNull(p.getArea()));
+        tvBaseData13.setText(BeanStringIsNull(p.getAltitude()));
         //tvBaseData14.setText(p.getLevel());
         setOkhttpNum(p.getLevel(), tvBaseData14);
-        tvBaseData15.setText(p.getFind_man());
-        tvBaseData16.setText(p.getFind_time());
+        tvBaseData15.setText(BeanStringIsNull(p.getFind_man()));
+        tvBaseData16.setText(BeanStringIsNull(p.getFind_time()));
 
 
-        tvBaseData17.setText(p.getDicengdaihao());
+        tvBaseData17.setText(BeanStringIsNull(p.getDicengdaihao()));
 //        tvBaseData18.setText(p.getYanxing());
         setOkhttpNum(p.getYanxing(), tvBaseData18);
-        tvBaseData19.setText(p.getYanxiang());
-        tvBaseData20.setText(p.getMaicangzhuangtai());
-        tvBaseData21.setText(p.getZhongleiname());
+        tvBaseData19.setText(BeanStringIsNull(p.getYanxiang()));
+        tvBaseData20.setText(BeanStringIsNull(p.getMaicangzhuangtai()));
+        tvBaseData21.setText(BeanStringIsNull(p.getZhongleiname()));
 
-        tvScientific1.setText(mScience1[Integer.parseInt(p.getKexueyanjiujiazhi())]);
-        tvScientific2.setText(mScience2[Integer.parseInt(p.getKejiaoyukepujiazhi())]);
-        tvScientific3.setText(mScience3[Integer.parseInt(p.getTypicality())]);
-        tvScientific4.setText(mScience4[Integer.parseInt(p.getRareness())]);
-        tvScientific5.setText(mScience5[Integer.parseInt(p.getIntegrity())]);
-        tvScientific6.setText(mScience6[Integer.parseInt(p.getResource_capacity())]);
+        tvScientific1.setText(mScience1[stringIsNull(p.getKexueyanjiujiazhi())]);
+        tvScientific2.setText(mScience2[stringIsNull(p.getKejiaoyukepujiazhi())]);
+        tvScientific3.setText(mScience3[stringIsNull(p.getTypicality())]);
+        tvScientific4.setText(mScience4[stringIsNull(p.getRareness())]);
+        tvScientific5.setText(mScience5[stringIsNull(p.getIntegrity())]);
+        tvScientific6.setText(mScience6[stringIsNull(p.getResource_capacity())]);
 
-        tvArt1.setText(mArt1[Integer.parseInt(p.getImage_value())]);
-        tvArt2.setText(mArt2[Integer.parseInt(p.getTint_beauty())]);
-        tvArt3.setText(mArt3[Integer.parseInt(p.getDongtaimei())]);
-        tvArt4.setText(mArt4[Integer.parseInt(p.getYuyuemei())]);
-        tvArt5.setText(mArt5[Integer.parseInt(p.getQitexingheqiyixing())]);
-        tvArt6.setText(mArt6[Integer.parseInt(p.getZiyuanguimohezuhe())]);
+        tvArt1.setText(mArt1[stringIsNull(p.getImage_value())]);
+        tvArt2.setText(mArt2[stringIsNull(p.getTint_beauty())]);
+        tvArt3.setText(mArt3[stringIsNull(p.getDongtaimei())]);
+        tvArt4.setText(mArt4[stringIsNull(p.getYuyuemei())]);
+        tvArt5.setText(mArt5[stringIsNull(p.getQitexingheqiyixing())]);
+        tvArt6.setText(mArt6[stringIsNull(p.getZiyuanguimohezuhe())]);
 
-        tvNature1.setText(mNature1[Integer.parseInt(p.getGeographical_condition())]);
-        tvNature2.setText(mNature2[Integer.parseInt(p.getVulnerability())]);
-        tvNature3.setText(mNature3[Integer.parseInt(p.getLvyou())]);
-        tvNature4.setText(mNature4[Integer.parseInt(p.getSecurity())]);
-        tvNature5.setText(mNature5[Integer.parseInt(p.getHuanjing_quality())]);
+        tvNature1.setText(mNature1[stringIsNull(p.getGeographical_condition())]);
+        tvNature2.setText(mNature2[stringIsNull(p.getVulnerability())]);
+        tvNature3.setText(mNature3[stringIsNull(p.getLvyou())]);
+        tvNature4.setText(mNature4[stringIsNull(p.getSecurity())]);
+        tvNature5.setText(mNature5[stringIsNull(p.getHuanjing_quality())]);
 
-
-        String[] sq=p.getZiliaolaiyuan().split(",");
+        String[] sq=BeanStringIsNull(p.getZiliaolaiyuan()).split(",");
         String stringDataSources1 = "";
         for (int i = 0; i < sq.length; i++) {
-            stringDataSources1=stringDataSources1+mZiliaolaiyuan[Integer.parseInt(sq[i])]+"  ";
+            stringDataSources1=stringDataSources1+mZiliaolaiyuan[stringIsNull(sq[i])]+"  ";
         }
+        Log.d("limeng","stringDataSources1"+stringDataSources1);
         tvDataSources1.setText(stringDataSources1);
 
-        String[] sm=p.getSurvey_man().split(",");
-        for (int i = 0; i < sm.length; i++) {
-            Log.d("limeng",sm[i]);
-            setOkhttpNum2(sm[i]);
-        }
-        tvDataSources3.setText(p.getSurvey_time());
-        tvDataSources4.setText(p.getRemark());
+            String[] sm = BeanStringIsNull(p.getSurvey_man()).split(",");
+            for (int i = 0; i < sm.length; i++) {
+                Log.d("limeng", sm[i]);
+                setOkhttpNum2(sm[i]);
+            }
+
+        tvDataSources3.setText(BeanStringIsNull(p.getSurvey_time()));
+        tvDataSources4.setText(BeanStringIsNull(p.getRemark()));
         setOkPacture(id);
         //
     }
 
+    /**
+     * 判断空
+     * @return
+     */
+    private String BeanStringIsNull(String s){
+        if("".equals(s)||s==null){
+            return "";
+        }else {
+            return s;
+        }
+    }
+
+    /**
+     *
+     * @param s2
+     * @return
+     */
+    private int stringIsNull(String s2){
+        Log.d("limeng","stringIsNull---:"+s2);
+        if("".equals(s2)||s2==null){
+            return 0;
+        }else {
+            return Integer.parseInt(s2);
+        }
+    }
 
     /**
      *   msg.what=1  代表：调查人员
@@ -507,7 +539,7 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
                             } else if (status.equals("400")) {
                                 initToLogin(message);
                             } else {
-                                ToastUtils.showShort(ReLicDataActivity.this, message);
+                               // ToastUtils.showShort(ReLicDataActivity.this, message);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -518,7 +550,7 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
                     @Override
                     public void onError(Call call, Response response, Exception e) {
                         super.onError(call, response, e);
-                        finish();
+                        Log.d("limeng", "setOkhttpNum" + "网络请求失败");
                         ToastUtils.showShort(ReLicDataActivity.this, "网络请求失败");
                     }
                 });
@@ -546,7 +578,7 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
                             } else if (status.equals("400")) {
                                 initToLogin(message);
                             } else {
-                                ToastUtils.showShort(ReLicDataActivity.this, message);
+                                //ToastUtils.showShort(ReLicDataActivity.this, message);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -557,7 +589,7 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
                     @Override
                     public void onError(Call call, Response response, Exception e) {
                         super.onError(call, response, e);
-                        finish();
+                        Log.d("limeng", "setOkhttpNum2" + "网络请求失败");
                         ToastUtils.showShort(ReLicDataActivity.this, "网络请求失败");
                     }
                 });
@@ -610,7 +642,7 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
                     @Override
                     public void onError(Call call, Response response, Exception e) {
                         super.onError(call, response, e);
-                        finish();
+                        Log.d("limeng", "setOkPacture" + "网络请求失败");
                         ToastUtils.showShort(ReLicDataActivity.this, "网络请求失败");
                     }
                 });
@@ -635,7 +667,7 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
                             } else if (status.equals("400")){
                                 initToLogin(message);
                             }else{
-                                ToastUtils.showShort(ReLicDataActivity.this, message);
+                                //ToastUtils.showShort(ReLicDataActivity.this, message);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -646,7 +678,7 @@ public class ReLicDataActivity extends BaseActivity implements View.OnClickListe
                     @Override
                     public void onError(Call call, Response response, Exception e) {
                         super.onError(call, response, e);
-                        finish();
+                        Log.d("limeng", "setOkfindAreaData" + "网络请求失败");
                         ToastUtils.showShort(ReLicDataActivity.this, "网络请求失败");
                     }
                 });

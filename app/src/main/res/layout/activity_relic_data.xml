@@ -20,6 +20,8 @@
             android:src="@mipmap/goback" />
 
         <TextView
+            android:layout_toRightOf="@+id/goBackPalo"
+            android:layout_toLeftOf="@+id/tv_nextFossi"
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -27,7 +29,9 @@
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
             android:gravity="center"
+            android:maxLines="1"
             android:paddingLeft="3dp"
+            android:ellipsize="marquee"
             android:textColor="@color/white"
             android:textSize="20sp" />
 

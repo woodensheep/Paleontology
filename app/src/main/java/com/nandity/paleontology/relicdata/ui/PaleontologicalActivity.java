@@ -64,7 +64,7 @@ public class PaleontologicalActivity extends BaseActivity {
     private int rowsNum = 10;
     private Context context;
     private DialogUtils dialogUtils;
-
+    private String areaId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +74,8 @@ public class PaleontologicalActivity extends BaseActivity {
         ButterKnife.bind(this);
         initListener();
         sessionId = (String) SharedUtils.getShare(this, "sessionId", "");
+        areaId = (String) SharedUtils.getShare(this, "areaId", "");
+        Log.d("limeng","areaId"+areaId);
         //initceshi();
         mPaleontoBeanList.clear();
         getSearchData();
@@ -97,7 +99,7 @@ public class PaleontologicalActivity extends BaseActivity {
                 if (pos == 0) {
                     spinnerType = "-1";
                 } else {
-                    spinnerType = (pos + 1) + "";
+                    spinnerType = (pos + 2) + "";
                 }
             }
 
@@ -164,6 +166,7 @@ public class PaleontologicalActivity extends BaseActivity {
                 .params("palaeobiosType", spinnerType)
                 .params("palaeobiosName", searchText)
                 .params("sessionId", sessionId)
+                .params("areaId", areaId)
                 .params("page", pageNum)
                 .params("rows", rowsNum)
                 .execute(new StringCallback() {
@@ -228,6 +231,7 @@ public class PaleontologicalActivity extends BaseActivity {
                 .params("palaeobiosType", spinnerType)
                 .params("palaeobiosName", searchText)
                 .params("sessionId", sessionId)
+                .params("areaId", areaId)
                 .params("page", pageNum)
                 .params("rows", rowsNum)
                 .execute(new StringCallback() {
