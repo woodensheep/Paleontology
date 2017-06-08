@@ -37,11 +37,17 @@ public class SettingActivity extends Activity {
 
     @OnClick(R.id.btn_setting)
     public void onViewClicked() {
+        int port = 0;
+        if(!(TextUtils.isEmpty(etPassword.getText().toString()))) {
+             port = Integer.parseInt(etPassword.getText().toString().trim());
+        }
         if (TextUtils.isEmpty(etMobile.getText().toString())) {
             ToastUtils.showShort(this, "请输入ip");
         } else if (TextUtils.isEmpty(etPassword.getText().toString())) {
             ToastUtils.showShort(this, "请输入端口");
-        } else {
+        } else if(!(port<65536&&port>0)) {
+            ToastUtils.showShort(this, "请输入正确的端口号");
+        }else {
             SharedUtils.putShare(this, "IP", etMobile.getText().toString());
             SharedUtils.putShare(this, "PORT", etPassword.getText().toString());
             finish();

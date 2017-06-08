@@ -7,8 +7,8 @@ import com.nandity.paleontology.util.SharedUtils;
 
 /**
  * Created by qingsong on 2017/5/18.
+ * 183.230.108.112:9055
  */
-
 public class Api {
 
     private String port;

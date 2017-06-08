@@ -101,7 +101,7 @@
                     android:background="@null"
                     android:gravity="center"
                     android:hint="@string/settingPort"
-                    android:inputType="textPassword"
+                    android:inputType="number"
                     android:maxLength="30"
                     android:singleLine="true"
                     android:text=""

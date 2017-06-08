@@ -35,6 +35,8 @@ import com.nandity.paleontology.util.ToastUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.SocketTimeoutException;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import okhttp3.Call;
@@ -267,8 +269,10 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                             js = new JSONObject(s);
                             String message = js.optString("message");
                             String status = js.optString("status");
+                            String areaId = js.optString("areaId");
                             if (status.equals("200")) {
                                 SharedUtils.putShare(LoginActivity.this, "mobile", mobile);
+                                SharedUtils.putShare(LoginActivity.this, "areaId", areaId);
                                 Log.d("limeng", (String) SharedUtils.getShare(LoginActivity.this, "mobile", ""));
                                 isLogin = "1";
                                 SharedUtils.putShare(LoginActivity.this, "isLogin", isLogin);
@@ -290,7 +294,12 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                     public void onError(Call call, Response response, Exception e) {
                         super.onError(call, response, e);
                         progressDialog.dismiss();
-                        ToastUtils.showShort(LoginActivity.this, "网络不给力请稍后");
+                        Log.d("limeng","e:"+e);
+                        if(e instanceof SocketTimeoutException){
+                            ToastUtils.showShort(LoginActivity.this, "请输入正确的IP地址或端口");
+                        }else{
+                            ToastUtils.showShort(LoginActivity.this, "请检查网络连接");
+                        }
                     }
                 });
     }
