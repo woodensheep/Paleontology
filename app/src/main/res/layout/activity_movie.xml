@@ -18,7 +18,7 @@
             android:layout_weight="1"
             />
         <TextView
-            android:text="云阳恐龙化石发掘区"
+            android:text="云阳恐龙化石发掘区\n(设备不支持转向和回放)"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -37,7 +37,7 @@
             android:layout_weight="1"
             />
         <TextView
-            android:text="云阳恐龙化石主视图"
+            android:text="云阳恐龙化石主视图\n(设备不支持回放)"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -56,7 +56,7 @@
             android:layout_weight="1"
             />
         <TextView
-            android:text="云阳恐龙化石发掘区四"
+            android:text="云阳恐龙化石发掘区四\n(设备不支持转向和回放)"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
@@ -76,7 +76,7 @@
             android:layout_weight="1"
             />
         <TextView
-            android:text="云阳恐龙化石俯视图"
+            android:text="云阳恐龙化石俯视图\n(设备不支持转向和回放)"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
